@@ -1,0 +1,118 @@
+{
+  "common": {
+    "appName": "KS Data",
+    "brand": "Filan Filani",
+    "loading": "Učitavanje…",
+    "save": "Sačuvaj",
+    "cancel": "Otkaži",
+    "back": "Nazad",
+    "optional": "opciono",
+    "error": "Došlo je do greške. Pokušaj ponovo."
+  },
+  "landing": {
+    "heroTitle": "Zaradi novac registrovanjem firmi na Kosovu",
+    "heroText": "KS Data je portal za runnere: registruj lokalne firme sa fotografijama, adresom i kontaktom — za svaki odobren unos zarađuješ 0,50 €.",
+    "cta": "Počni odmah",
+    "login": "Prijava",
+    "register": "Registracija",
+    "how1Title": "Registruj se kao runner",
+    "how1Text": "Napravi besplatan nalog putem emaila ili Google-a.",
+    "how2Title": "Registruj firme",
+    "how2Text": "Naziv, kategorija, grad, kontakt i fotografije — direktno sa telefona.",
+    "how3Title": "Zaradi 0,50 € po unosu",
+    "how3Text": "Nakon odobrenja, iznos se dodaje na tvoj nalog i isplaćuje bankovnim transferom."
+  },
+  "auth": {
+    "loginTitle": "Prijavi se na KS Data",
+    "registerTitle": "Postani runner",
+    "email": "Email",
+    "password": "Lozinka",
+    "fullName": "Ime i prezime",
+    "phone": "Broj telefona",
+    "submitLogin": "Prijavi se",
+    "submitRegister": "Napravi nalog",
+    "noAccount": "Nemaš nalog?",
+    "hasAccount": "Već imaš nalog?",
+    "google": "Nastavi sa Google-om",
+    "or": "ili",
+    "logout": "Odjava",
+    "checkEmail": "Proveri email da potvrdiš nalog.",
+    "invalidCredentials": "Pogrešan email ili lozinka."
+  },
+  "nav": {
+    "dashboard": "Pregled",
+    "myEntries": "Moji unosi",
+    "newEntry": "Novi unos",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "title": "Tvoj pregled",
+    "totalEntries": "Ukupno unosa",
+    "approved": "Odobreno",
+    "pending": "Na čekanju",
+    "rejected": "Odbijeno",
+    "earnings": "Tvoja zarada",
+    "earningsHint": "0,50 € po odobrenom unosu. Isplata bankovnim transferom.",
+    "newEntryCta": "Registruj novu firmu",
+    "recent": "Poslednji unosi",
+    "noEntries": "Još nema unosa."
+  },
+  "status": {
+    "draft": "Nacrt",
+    "pending": "Na čekanju",
+    "approved": "Odobreno",
+    "rejected": "Odbijeno"
+  },
+  "form": {
+    "title": "Registruj firmu",
+    "subtitle": "Popuni podatke o firmi. Polja sa * su obavezna.",
+    "name": "Naziv firme *",
+    "namePh": "npr. Auto Servis Besniku",
+    "category": "Kategorija *",
+    "city": "Grad / Opština *",
+    "address": "Adresa",
+    "addressPh": "Ulica, broj, naselje",
+    "phone": "Telefon *",
+    "whatsapp": "WhatsApp",
+    "viber": "Viber",
+    "email": "Email firme",
+    "website": "Veb-sajt",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "description": "Opis",
+    "descriptionPh": "Šta ova firma nudi?",
+    "photos": "Fotografije",
+    "photosHint": "Do 6 fotografija (izlog, unutrašnjost, proizvodi).",
+    "hours": "Radno vreme",
+    "hoursWeekdays": "Ponedeljak – Petak",
+    "hoursSaturday": "Subota",
+    "hoursSunday": "Nedelja",
+    "closed": "Zatvoreno",
+    "duplicateWarning": "Pažnja: firma sa ovim nazivom ili brojem telefona već postoji u ovom gradu. Proveri pre slanja.",
+    "submit": "Pošalji na odobrenje",
+    "success": "Unos je poslat!",
+    "successText": "Naš tim će ga pregledati. Nakon odobrenja zarađuješ 0,50 €.",
+    "addAnother": "Registruj još jednu",
+    "backToList": "Na moje unose",
+    "errorRequired": "Popuni obavezna polja."
+  },
+  "list": {
+    "title": "Moji unosi",
+    "empty": "Još nisi registrovao nijednu firmu.",
+    "emptyCta": "Registruj prvu",
+    "rejectedReason": "Razlog odbijanja"
+  },
+  "admin": {
+    "title": "Odobravanje unosa",
+    "queueEmpty": "Nema unosa na čekanju. 🎉",
+    "approve": "Odobri",
+    "reject": "Odbij",
+    "rejectReason": "Razlog odbijanja (vidi ga runner)",
+    "scout": "Runner",
+    "submittedAt": "Poslato",
+    "pendingCount": "unosa na čekanju"
+  },
+  "lang": {
+    "label": "Jezik"
+  }
+}

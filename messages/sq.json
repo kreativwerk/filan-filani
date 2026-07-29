@@ -1,0 +1,118 @@
+{
+  "common": {
+    "appName": "KS Data",
+    "brand": "Filan Filani",
+    "loading": "Duke u ngarkuar…",
+    "save": "Ruaj",
+    "cancel": "Anulo",
+    "back": "Kthehu",
+    "optional": "opsionale",
+    "error": "Ndodhi një gabim. Provo përsëri."
+  },
+  "landing": {
+    "heroTitle": "Fito para duke regjistruar bizneset e Kosovës",
+    "heroText": "KS Data është portali për runners: regjistro biznese lokale me foto, adresë dhe kontakt — për çdo regjistrim të aprovuar fiton 0,50 €.",
+    "cta": "Fillo tani",
+    "login": "Kyçu",
+    "register": "Regjistrohu",
+    "how1Title": "Regjistrohu si runner",
+    "how1Text": "Krijo llogarinë falas me email ose Google.",
+    "how2Title": "Regjistro biznese",
+    "how2Text": "Emri, kategoria, qyteti, kontakti dhe fotot — direkt nga telefoni.",
+    "how3Title": "Fito 0,50 € për regjistrim",
+    "how3Text": "Pas aprovimit, shuma shtohet në llogarinë tënde dhe paguhet me transfertë bankare."
+  },
+  "auth": {
+    "loginTitle": "Kyçu në KS Data",
+    "registerTitle": "Bëhu runner",
+    "email": "Email",
+    "password": "Fjalëkalimi",
+    "fullName": "Emri dhe mbiemri",
+    "phone": "Numri i telefonit",
+    "submitLogin": "Kyçu",
+    "submitRegister": "Krijo llogarinë",
+    "noAccount": "Nuk ke llogari?",
+    "hasAccount": "Ke llogari?",
+    "google": "Vazhdo me Google",
+    "or": "ose",
+    "logout": "Dilni",
+    "checkEmail": "Kontrollo email-in për ta konfirmuar llogarinë.",
+    "invalidCredentials": "Email ose fjalëkalim i gabuar."
+  },
+  "nav": {
+    "dashboard": "Paneli",
+    "myEntries": "Regjistrimet e mia",
+    "newEntry": "Regjistrim i ri",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "title": "Paneli yt",
+    "totalEntries": "Regjistrime gjithsej",
+    "approved": "Të aprovuara",
+    "pending": "Në pritje",
+    "rejected": "Të refuzuara",
+    "earnings": "Fitimi yt",
+    "earningsHint": "0,50 € për çdo regjistrim të aprovuar. Pagesa bëhet me transfertë bankare.",
+    "newEntryCta": "Regjistro biznes të ri",
+    "recent": "Regjistrimet e fundit",
+    "noEntries": "Ende nuk ke regjistrime."
+  },
+  "status": {
+    "draft": "Draft",
+    "pending": "Në pritje",
+    "approved": "Aprovuar",
+    "rejected": "Refuzuar"
+  },
+  "form": {
+    "title": "Regjistro biznes",
+    "subtitle": "Plotëso të dhënat e biznesit. Fushat me * janë të detyrueshme.",
+    "name": "Emri i biznesit *",
+    "namePh": "p.sh. Auto Servis Besniku",
+    "category": "Kategoria *",
+    "city": "Qyteti / Komuna *",
+    "address": "Adresa",
+    "addressPh": "Rruga, numri, lagjja",
+    "phone": "Telefoni *",
+    "whatsapp": "WhatsApp",
+    "viber": "Viber",
+    "email": "Email i biznesit",
+    "website": "Webfaqja",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "description": "Përshkrimi",
+    "descriptionPh": "Çfarë ofron ky biznes?",
+    "photos": "Fotot",
+    "photosHint": "Deri në 6 foto (fasada, brendësia, produktet).",
+    "hours": "Orari i punës",
+    "hoursWeekdays": "E hënë – E premte",
+    "hoursSaturday": "E shtunë",
+    "hoursSunday": "E diel",
+    "closed": "Mbyllur",
+    "duplicateWarning": "Kujdes: një biznes me këtë emër ose telefon ekziston tashmë në këtë qytet. Kontrollo para se ta dërgosh.",
+    "submit": "Dërgo për aprovim",
+    "success": "Regjistrimi u dërgua!",
+    "successText": "Ekipi ynë do ta shqyrtojë. Pas aprovimit fiton 0,50 €.",
+    "addAnother": "Regjistro tjetër",
+    "backToList": "Te regjistrimet e mia",
+    "errorRequired": "Plotëso fushat e detyrueshme."
+  },
+  "list": {
+    "title": "Regjistrimet e mia",
+    "empty": "Ende nuk ke regjistruar asnjë biznes.",
+    "emptyCta": "Regjistro të parin",
+    "rejectedReason": "Arsyeja e refuzimit"
+  },
+  "admin": {
+    "title": "Aprovimi i regjistrimeve",
+    "queueEmpty": "S'ka regjistrime në pritje. 🎉",
+    "approve": "Aprovo",
+    "reject": "Refuzo",
+    "rejectReason": "Arsyeja e refuzimit (e sheh runner-i)",
+    "scout": "Runner",
+    "submittedAt": "Dërguar më",
+    "pendingCount": "regjistrime në pritje"
+  },
+  "lang": {
+    "label": "Gjuha"
+  }
+}

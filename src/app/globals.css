@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafa;
+  --foreground: #123c46;
+  /* Design-Tokens (Petrol + Lime, angelehnt ans kreativwerk-Designsystem) */
+  --petrol: #0f4c5c;
+  --petrol-dark: #0a3641;
+  --lime: #c5f04a;
+  --lime-dark: #a8d431;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-petrol: var(--petrol);
+  --color-petrol-dark: var(--petrol-dark);
+  --color-lime: var(--lime);
+  --color-lime-dark: var(--lime-dark);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}

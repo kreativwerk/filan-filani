@@ -1,0 +1,118 @@
+{
+  "common": {
+    "appName": "KS Data",
+    "brand": "Filan Filani",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "optional": "optional",
+    "error": "Something went wrong. Please try again."
+  },
+  "landing": {
+    "heroTitle": "Earn money by registering Kosovo's businesses",
+    "heroText": "KS Data is the portal for runners: register local businesses with photos, address and contact details — you earn €0.50 for every approved entry.",
+    "cta": "Start now",
+    "login": "Sign in",
+    "register": "Sign up",
+    "how1Title": "Sign up as a runner",
+    "how1Text": "Create a free account with email or Google.",
+    "how2Title": "Register businesses",
+    "how2Text": "Name, category, city, contact and photos — straight from your phone.",
+    "how3Title": "Earn €0.50 per entry",
+    "how3Text": "Once approved, the amount is credited to your account and paid out by bank transfer."
+  },
+  "auth": {
+    "loginTitle": "Sign in to KS Data",
+    "registerTitle": "Become a runner",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full name",
+    "phone": "Phone number",
+    "submitLogin": "Sign in",
+    "submitRegister": "Create account",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already have an account?",
+    "google": "Continue with Google",
+    "or": "or",
+    "logout": "Sign out",
+    "checkEmail": "Check your email to confirm your account.",
+    "invalidCredentials": "Wrong email or password."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "myEntries": "My entries",
+    "newEntry": "New entry",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "title": "Your dashboard",
+    "totalEntries": "Total entries",
+    "approved": "Approved",
+    "pending": "Pending review",
+    "rejected": "Rejected",
+    "earnings": "Your earnings",
+    "earningsHint": "€0.50 per approved entry. Paid out by bank transfer.",
+    "newEntryCta": "Register a new business",
+    "recent": "Recent entries",
+    "noEntries": "No entries yet."
+  },
+  "status": {
+    "draft": "Draft",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "form": {
+    "title": "Register a business",
+    "subtitle": "Fill in the business details. Fields marked * are required.",
+    "name": "Business name *",
+    "namePh": "e.g. Auto Servis Besniku",
+    "category": "Category *",
+    "city": "City / Municipality *",
+    "address": "Address",
+    "addressPh": "Street, number, neighbourhood",
+    "phone": "Phone *",
+    "whatsapp": "WhatsApp",
+    "viber": "Viber",
+    "email": "Business email",
+    "website": "Website",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "description": "Description",
+    "descriptionPh": "What does this business offer?",
+    "photos": "Photos",
+    "photosHint": "Up to 6 photos (storefront, interior, products).",
+    "hours": "Opening hours",
+    "hoursWeekdays": "Monday – Friday",
+    "hoursSaturday": "Saturday",
+    "hoursSunday": "Sunday",
+    "closed": "Closed",
+    "duplicateWarning": "Warning: a business with this name or phone number already exists in this city. Please check before submitting.",
+    "submit": "Submit for review",
+    "success": "Entry submitted!",
+    "successText": "Our team will review it. Once approved you earn €0.50.",
+    "addAnother": "Register another",
+    "backToList": "Back to my entries",
+    "errorRequired": "Please fill in the required fields."
+  },
+  "list": {
+    "title": "My entries",
+    "empty": "You haven't registered any business yet.",
+    "emptyCta": "Register your first one",
+    "rejectedReason": "Rejection reason"
+  },
+  "admin": {
+    "title": "Review entries",
+    "queueEmpty": "No entries waiting for review. 🎉",
+    "approve": "Approve",
+    "reject": "Reject",
+    "rejectReason": "Rejection reason (visible to the runner)",
+    "scout": "Runner",
+    "submittedAt": "Submitted on",
+    "pendingCount": "entries pending"
+  },
+  "lang": {
+    "label": "Language"
+  }
+}

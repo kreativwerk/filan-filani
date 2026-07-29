@@ -1,0 +1,118 @@
+{
+  "common": {
+    "appName": "KS Data",
+    "brand": "Filan Filani",
+    "loading": "Lädt…",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "back": "Zurück",
+    "optional": "optional",
+    "error": "Es ist ein Fehler aufgetreten. Bitte erneut versuchen."
+  },
+  "landing": {
+    "heroTitle": "Verdiene Geld, indem du Kosovos Geschäfte erfasst",
+    "heroText": "KS Data ist das Portal für Runner: Erfasse lokale Geschäfte mit Fotos, Adresse und Kontakt — für jeden genehmigten Eintrag verdienst du 0,50 €.",
+    "cta": "Jetzt starten",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "how1Title": "Als Runner registrieren",
+    "how1Text": "Kostenloses Konto mit E-Mail oder Google erstellen.",
+    "how2Title": "Geschäfte erfassen",
+    "how2Text": "Name, Kategorie, Stadt, Kontakt und Fotos — direkt vom Handy.",
+    "how3Title": "0,50 € pro Eintrag verdienen",
+    "how3Text": "Nach der Freigabe wird der Betrag deinem Konto gutgeschrieben und per Überweisung ausgezahlt."
+  },
+  "auth": {
+    "loginTitle": "Bei KS Data anmelden",
+    "registerTitle": "Runner werden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "fullName": "Vor- und Nachname",
+    "phone": "Telefonnummer",
+    "submitLogin": "Anmelden",
+    "submitRegister": "Konto erstellen",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Schon ein Konto?",
+    "google": "Weiter mit Google",
+    "or": "oder",
+    "logout": "Abmelden",
+    "checkEmail": "Prüfe deine E-Mails, um das Konto zu bestätigen.",
+    "invalidCredentials": "E-Mail oder Passwort falsch."
+  },
+  "nav": {
+    "dashboard": "Übersicht",
+    "myEntries": "Meine Einträge",
+    "newEntry": "Neuer Eintrag",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "title": "Deine Übersicht",
+    "totalEntries": "Einträge gesamt",
+    "approved": "Genehmigt",
+    "pending": "In Prüfung",
+    "rejected": "Abgelehnt",
+    "earnings": "Dein Verdienst",
+    "earningsHint": "0,50 € pro genehmigtem Eintrag. Auszahlung per Banküberweisung.",
+    "newEntryCta": "Neues Geschäft erfassen",
+    "recent": "Letzte Einträge",
+    "noEntries": "Noch keine Einträge."
+  },
+  "status": {
+    "draft": "Entwurf",
+    "pending": "In Prüfung",
+    "approved": "Genehmigt",
+    "rejected": "Abgelehnt"
+  },
+  "form": {
+    "title": "Geschäft erfassen",
+    "subtitle": "Fülle die Daten des Geschäfts aus. Felder mit * sind Pflicht.",
+    "name": "Name des Geschäfts *",
+    "namePh": "z. B. Auto Servis Besniku",
+    "category": "Kategorie *",
+    "city": "Stadt / Gemeinde *",
+    "address": "Adresse",
+    "addressPh": "Straße, Nummer, Viertel",
+    "phone": "Telefon *",
+    "whatsapp": "WhatsApp",
+    "viber": "Viber",
+    "email": "E-Mail des Geschäfts",
+    "website": "Webseite",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "description": "Beschreibung",
+    "descriptionPh": "Was bietet dieses Geschäft an?",
+    "photos": "Fotos",
+    "photosHint": "Bis zu 6 Fotos (Fassade, Innenraum, Produkte).",
+    "hours": "Öffnungszeiten",
+    "hoursWeekdays": "Montag – Freitag",
+    "hoursSaturday": "Samstag",
+    "hoursSunday": "Sonntag",
+    "closed": "Geschlossen",
+    "duplicateWarning": "Achtung: Ein Geschäft mit diesem Namen oder dieser Telefonnummer existiert in dieser Stadt bereits. Bitte vor dem Absenden prüfen.",
+    "submit": "Zur Prüfung einreichen",
+    "success": "Eintrag eingereicht!",
+    "successText": "Unser Team prüft ihn. Nach der Freigabe verdienst du 0,50 €.",
+    "addAnother": "Weiteres Geschäft erfassen",
+    "backToList": "Zu meinen Einträgen",
+    "errorRequired": "Bitte fülle die Pflichtfelder aus."
+  },
+  "list": {
+    "title": "Meine Einträge",
+    "empty": "Du hast noch kein Geschäft erfasst.",
+    "emptyCta": "Erstes Geschäft erfassen",
+    "rejectedReason": "Ablehnungsgrund"
+  },
+  "admin": {
+    "title": "Einträge freigeben",
+    "queueEmpty": "Keine Einträge in der Warteschlange. 🎉",
+    "approve": "Freigeben",
+    "reject": "Ablehnen",
+    "rejectReason": "Ablehnungsgrund (sieht der Runner)",
+    "scout": "Runner",
+    "submittedAt": "Eingereicht am",
+    "pendingCount": "Einträge in Prüfung"
+  },
+  "lang": {
+    "label": "Sprache"
+  }
+}
