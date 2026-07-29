@@ -19,10 +19,10 @@ export function LogoutButton() {
     <button
       type="button"
       onClick={handleLogout}
-      className="flex items-center gap-1.5 text-sm font-medium text-petrol/70 hover:text-petrol"
+      aria-label={t("logout")}
+      className="grid h-11 w-11 flex-none place-items-center rounded-full text-muted hover:bg-surface hover:text-ink"
     >
-      <LogOut className="h-4 w-4" />
-      <span className="hidden sm:inline">{t("logout")}</span>
+      <LogOut className="h-[20px] w-[20px]" />
     </button>
   );
 }

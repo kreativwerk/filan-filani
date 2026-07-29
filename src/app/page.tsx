@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { UserPlus, Store, Euro } from "lucide-react";
+import { UserPlus, Store, Euro, ShieldCheck } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { Wordmark } from "@/components/ui";
 
 export default async function LandingPage() {
   const t = await getTranslations("landing");
+  const ta = await getTranslations("auth");
 
   if (hasSupabaseEnv()) {
     const supabase = await createClient();
@@ -26,58 +28,63 @@ export default async function LandingPage() {
   return (
     <main className="flex-1">
       <header className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-xl font-bold text-petrol">KS Data</span>
-          <span className="text-xs text-petrol/50">by Filan Filani</span>
-        </div>
+        <Wordmark size="sm" />
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <Link
             href="/login"
-            className="rounded-full border border-petrol/20 px-4 py-1.5 text-sm font-semibold text-petrol hover:bg-petrol/5"
+            className="flex h-11 items-center rounded-full border-[1.5px] border-line-strong bg-white px-5 text-sm font-bold text-ink hover:bg-surface"
           >
             {t("login")}
           </Link>
         </div>
       </header>
 
-      <section className="mx-auto max-w-3xl px-4 pb-16 pt-14 text-center">
-        <span className="inline-block rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-petrol-dark">
+      <section className="mx-auto max-w-3xl px-4 pb-14 pt-12 text-center">
+        <span className="inline-block rounded-full bg-primary-light px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-primary-dark">
           0,50 € / +1
         </span>
-        <h1 className="mt-5 text-4xl font-bold leading-tight text-petrol sm:text-5xl">
+        <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-ink sm:text-5xl">
           {t("heroTitle")}
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-lg text-foreground/70">
+        <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-2">
           {t("heroText")}
         </p>
         <div className="mt-8 flex items-center justify-center gap-3">
           <Link
             href="/register"
-            className="rounded-full bg-petrol px-7 py-3 text-sm font-semibold text-white hover:bg-petrol-dark"
+            className="flex h-14 items-center rounded-full bg-primary px-8 text-[17px] font-bold text-white hover:bg-primary-dark"
           >
             {t("cta")}
           </Link>
           <Link
             href="/login"
-            className="rounded-full border border-petrol/20 px-7 py-3 text-sm font-semibold text-petrol hover:bg-petrol/5"
+            className="flex h-14 items-center rounded-full border-[1.5px] border-primary bg-white px-8 text-[17px] font-bold text-primary-dark hover:bg-primary-light/40"
           >
             {t("login")}
           </Link>
         </div>
+        <p className="mt-6 flex items-center justify-center gap-2 text-[12.5px] text-muted">
+          <ShieldCheck className="h-[15px] w-[15px]" />
+          {ta("runnersOnly")}
+        </p>
       </section>
 
       <section className="mx-auto grid max-w-5xl gap-5 px-4 pb-20 sm:grid-cols-3">
         {steps.map((step, i) => (
           <div
             key={i}
-            className="rounded-2xl border border-petrol/10 bg-white p-6 shadow-sm"
+            className="rounded-[18px] border border-line bg-white p-5"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-lime">
-              <step.icon className="h-5 w-5 text-petrol-dark" />
+            <div className="grid h-11 w-11 place-items-center rounded-full bg-primary-light text-primary-dark">
+              <step.icon className="h-5 w-5" />
             </div>
-            <h3 className="mt-4 font-semibold text-petrol">{step.title}</h3>
-            <p className="mt-1.5 text-sm text-foreground/70">{step.text}</p>
+            <h3 className="mt-4 font-extrabold tracking-[-0.015em] text-ink">
+              {step.title}
+            </h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted">
+              {step.text}
+            </p>
           </div>
         ))}
       </section>

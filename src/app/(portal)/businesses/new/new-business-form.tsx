@@ -3,7 +3,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { CheckCircle2, ImagePlus, X } from "lucide-react";
+import {
+  Camera,
+  CheckCircle2,
+  ChevronsRight,
+  AtSign,
+  Globe,
+  Share2,
+  Mail,
+  MessageCircle,
+  Phone,
+  X,
+} from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
   localizedName,
@@ -14,19 +25,37 @@ import {
 import type { Locale } from "@/i18n/config";
 import {
   Button,
-  Card,
-  Field,
   Input,
+  RequiredPill,
   Select,
   Textarea,
-  Label,
+  cn,
 } from "@/components/ui";
 
 const MAX_PHOTOS = 6;
+const TOTAL_STEPS = 3;
 
 type HoursRow = { open: string; close: string; closed: boolean };
 
 const defaultHours: HoursRow = { open: "08:00", close: "18:00", closed: false };
+
+function IconField({
+  icon,
+  children,
+}: {
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex h-[50px] items-center gap-3 rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 focus-within:border-primary">
+      <span className="flex-none text-primary">{icon}</span>
+      {children}
+    </div>
+  );
+}
+
+const bareInput =
+  "h-full min-w-0 flex-1 border-none bg-transparent text-[16px] text-ink placeholder:text-muted focus:outline-none";
 
 export function NewBusinessForm({
   cities,
@@ -39,6 +68,7 @@ export function NewBusinessForm({
   const tc = useTranslations("common");
   const locale = useLocale() as Locale;
 
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     name: "",
     categoryId: "",
@@ -82,8 +112,25 @@ export function NewBusinessForm({
     setPhotos((prev) => [...prev, ...Array.from(files)].slice(0, MAX_PHOTOS));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  const filledCount = Object.values(form).filter(Boolean).length;
+
+  const stepValid =
+    step === 1
+      ? Boolean(form.name && form.cityId)
+      : step === 2
+        ? Boolean(form.phone)
+        : Boolean(form.categoryId);
+
+  function next() {
+    setError(null);
+    if (!stepValid) {
+      setError(t("errorRequired"));
+      return;
+    }
+    setStep((s) => Math.min(s + 1, TOTAL_STEPS));
+  }
+
+  async function handleSubmit() {
     setError(null);
     if (!form.name || !form.categoryId || !form.cityId || !form.phone) {
       setError(t("errorRequired"));
@@ -93,7 +140,6 @@ export function NewBusinessForm({
     const supabase = createClient();
 
     try {
-      // Duplikat-Prüfung — beim ersten Treffer warnen, zweiter Klick sendet trotzdem
       if (!duplicateWarned) {
         const { data: isDuplicate } = await supabase.rpc(
           "business_duplicate_exists",
@@ -179,22 +225,31 @@ export function NewBusinessForm({
 
   if (done) {
     return (
-      <Card className="mx-auto max-w-lg text-center">
-        <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-500" />
-        <h1 className="mt-4 text-2xl font-bold text-petrol">{t("success")}</h1>
-        <p className="mt-2 text-foreground/70">{t("successText")}</p>
+      <div className="mx-auto max-w-lg rounded-[28px] bg-white p-8 text-center shadow-[0_8px_32px_rgba(16,25,23,0.08)]">
+        <CheckCircle2 className="mx-auto h-14 w-14 text-primary" />
+        <h1 className="mt-4 text-2xl font-extrabold tracking-[-0.02em] text-ink">
+          {t("success")}
+        </h1>
+        <p className="mt-2 text-ink-2">{t("successText")}</p>
         <div className="mt-6 flex justify-center gap-3">
           <Button onClick={() => location.reload()}>{t("addAnother")}</Button>
           <Link
             href="/businesses"
-            className="inline-flex items-center rounded-full border border-petrol/20 px-5 py-2.5 text-sm font-semibold text-petrol hover:bg-petrol/5"
+            className="inline-flex h-[52px] items-center rounded-full border-[1.5px] border-line-strong bg-white px-6 text-[16px] font-bold text-ink hover:bg-surface"
           >
             {t("backToList")}
           </Link>
         </div>
-      </Card>
+      </div>
     );
   }
+
+  const sectionTitle =
+    step === 1
+      ? t("sectionCompany")
+      : step === 2
+        ? t("sectionContacts")
+        : t("sectionCategory");
 
   const hourRows: { key: keyof typeof hours; label: string }[] = [
     { key: "weekdays", label: t("hoursWeekdays") },
@@ -203,222 +258,278 @@ export function NewBusinessForm({
   ];
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <h1 className="text-2xl font-bold text-petrol">{t("title")}</h1>
-      <p className="mt-1 text-sm text-foreground/60">{t("subtitle")}</p>
+    <div className="mx-auto flex min-h-[70vh] max-w-2xl flex-col">
+      <div className="mb-4">
+        <h1 className="text-[22px] font-extrabold tracking-[-0.02em] text-ink">
+          {t("title")}
+        </h1>
+      </div>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-        <Card className="space-y-4">
-          <Field label={t("name")}>
+      <div className="flex-1 space-y-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="text-[15px] font-extrabold text-ink">
+            {sectionTitle}
+          </div>
+          <RequiredPill>{t("required")}</RequiredPill>
+        </div>
+
+        {step === 1 && (
+          <div className="space-y-2.5">
             <Input
+              placeholder={t("namePh")}
+              aria-label={t("name")}
               value={form.name}
               onChange={(e) => set("name", e.target.value)}
-              placeholder={t("namePh")}
-              required
             />
-          </Field>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label={t("category")}>
-              <Select
-                value={form.categoryId}
-                onChange={(e) => set("categoryId", e.target.value)}
-                required
-              >
-                <option value="" />
-                {categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {localizedName(c, locale)}
-                  </option>
-                ))}
-              </Select>
-            </Field>
-            <Field label={t("city")}>
-              <Select
-                value={form.cityId}
-                onChange={(e) => set("cityId", e.target.value)}
-                required
-              >
-                <option value="" />
-                {cities.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {localizedName(c, locale)}
-                  </option>
-                ))}
-              </Select>
-            </Field>
-          </div>
-          <Field label={t("address")}>
+            <Select
+              aria-label={t("city")}
+              value={form.cityId}
+              onChange={(e) => set("cityId", e.target.value)}
+              className={form.cityId ? "" : "text-muted"}
+            >
+              <option value="">{t("city")}</option>
+              {cities.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {localizedName(c, locale)}
+                </option>
+              ))}
+            </Select>
             <Input
+              placeholder={t("addressPh")}
+              aria-label={t("address")}
               value={form.address}
               onChange={(e) => set("address", e.target.value)}
-              placeholder={t("addressPh")}
             />
-          </Field>
-          <Field label={t("description")}>
             <Textarea
               rows={3}
+              placeholder={t("descriptionPh")}
+              aria-label={t("description")}
               value={form.description}
               onChange={(e) => set("description", e.target.value)}
-              placeholder={t("descriptionPh")}
             />
-          </Field>
-        </Card>
+            <div>
+              <p className="mb-2 text-xs text-muted">{t("photosHint")}</p>
+              <div className="flex flex-wrap gap-3">
+                {photos.map((file, i) => (
+                  <div key={i} className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={URL.createObjectURL(file)}
+                      alt=""
+                      className="h-20 w-20 rounded-[14px] object-cover"
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPhotos((p) => p.filter((_, idx) => idx !== i))
+                      }
+                      className="absolute -right-1.5 -top-1.5 rounded-full bg-alert p-0.5 text-white"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                ))}
+                {photos.length < MAX_PHOTOS && (
+                  <label className="flex h-12 cursor-pointer items-center gap-2 rounded-full border-[1.5px] border-primary bg-white px-5 text-[15px] font-bold text-primary-dark hover:bg-primary-light/40">
+                    <Camera className="h-[18px] w-[18px]" />
+                    {t("addPhoto")}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                      onChange={(e) => addPhotos(e.target.files)}
+                    />
+                  </label>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
-        <Card className="space-y-4">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label={t("phone")}>
-              <Input
+        {step === 2 && (
+          <div className="space-y-2.5">
+            <IconField icon={<Phone className="h-[19px] w-[19px]" />}>
+              <input
                 type="tel"
+                placeholder={`${t("phone").replace(" *", "")} *`}
                 value={form.phone}
                 onChange={(e) => set("phone", e.target.value)}
-                placeholder="+383 4x xxx xxx"
-                required
+                className={bareInput}
               />
-            </Field>
-            <Field label={`WhatsApp (${tc("optional")})`}>
-              <Input
-                type="tel"
-                value={form.whatsapp}
-                onChange={(e) => set("whatsapp", e.target.value)}
-              />
-            </Field>
-            <Field label={`Viber (${tc("optional")})`}>
-              <Input
-                type="tel"
-                value={form.viber}
-                onChange={(e) => set("viber", e.target.value)}
-              />
-            </Field>
-            <Field label={`${t("email")} (${tc("optional")})`}>
-              <Input
+            </IconField>
+            <IconField icon={<Mail className="h-[19px] w-[19px]" />}>
+              <input
                 type="email"
+                placeholder={t("email")}
                 value={form.email}
                 onChange={(e) => set("email", e.target.value)}
+                className={bareInput}
               />
-            </Field>
-            <Field label={`${t("website")} (${tc("optional")})`}>
-              <Input
+            </IconField>
+            <IconField icon={<MessageCircle className="h-[19px] w-[19px]" />}>
+              <input
+                type="tel"
+                placeholder={`WhatsApp (${tc("optional")})`}
+                value={form.whatsapp}
+                onChange={(e) => set("whatsapp", e.target.value)}
+                className={bareInput}
+              />
+            </IconField>
+            <IconField icon={<MessageCircle className="h-[19px] w-[19px]" />}>
+              <input
+                type="tel"
+                placeholder={`Viber (${tc("optional")})`}
+                value={form.viber}
+                onChange={(e) => set("viber", e.target.value)}
+                className={bareInput}
+              />
+            </IconField>
+            <IconField icon={<Globe className="h-[19px] w-[19px]" />}>
+              <input
+                placeholder={`${t("website")} (${tc("optional")})`}
                 value={form.website}
                 onChange={(e) => set("website", e.target.value)}
-                placeholder="https://"
+                className={bareInput}
               />
-            </Field>
-            <Field label={`Facebook (${tc("optional")})`}>
-              <Input
+            </IconField>
+            <IconField icon={<Share2 className="h-[19px] w-[19px]" />}>
+              <input
+                placeholder={`Facebook (${tc("optional")})`}
                 value={form.facebook}
                 onChange={(e) => set("facebook", e.target.value)}
+                className={bareInput}
               />
-            </Field>
-            <Field label={`Instagram (${tc("optional")})`}>
-              <Input
+            </IconField>
+            <IconField icon={<AtSign className="h-[19px] w-[19px]" />}>
+              <input
+                placeholder={`Instagram (${tc("optional")})`}
                 value={form.instagram}
                 onChange={(e) => set("instagram", e.target.value)}
+                className={bareInput}
               />
-            </Field>
+            </IconField>
           </div>
-        </Card>
+        )}
 
-        <Card>
-          <Label>{t("hours")}</Label>
-          <div className="mt-2 space-y-3">
-            {hourRows.map(({ key, label }) => (
-              <div
-                key={key}
-                className="flex flex-wrap items-center gap-3 text-sm"
-              >
-                <span className="w-36 text-foreground/70">{label}</span>
-                <Input
-                  type="time"
-                  className="w-28"
-                  disabled={hours[key].closed}
-                  value={hours[key].open}
-                  onChange={(e) =>
-                    setHours((h) => ({
-                      ...h,
-                      [key]: { ...h[key], open: e.target.value },
-                    }))
-                  }
-                />
-                <span className="text-foreground/40">–</span>
-                <Input
-                  type="time"
-                  className="w-28"
-                  disabled={hours[key].closed}
-                  value={hours[key].close}
-                  onChange={(e) =>
-                    setHours((h) => ({
-                      ...h,
-                      [key]: { ...h[key], close: e.target.value },
-                    }))
-                  }
-                />
-                <label className="flex items-center gap-1.5 text-foreground/70">
-                  <input
-                    type="checkbox"
-                    checked={hours[key].closed}
-                    onChange={(e) =>
-                      setHours((h) => ({
-                        ...h,
-                        [key]: { ...h[key], closed: e.target.checked },
-                      }))
-                    }
-                  />
-                  {t("closed")}
-                </label>
-              </div>
-            ))}
-          </div>
-        </Card>
+        {step === 3 && (
+          <div className="space-y-4">
+            <Select
+              aria-label={t("category")}
+              value={form.categoryId}
+              onChange={(e) => set("categoryId", e.target.value)}
+              className={form.categoryId ? "" : "text-muted"}
+            >
+              <option value="">{t("chooseCategory")}</option>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {localizedName(c, locale)}
+                </option>
+              ))}
+            </Select>
 
-        <Card>
-          <Label>{t("photos")}</Label>
-          <p className="mb-3 text-xs text-foreground/50">{t("photosHint")}</p>
-          <div className="flex flex-wrap gap-3">
-            {photos.map((file, i) => (
-              <div key={i} className="relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt=""
-                  className="h-20 w-20 rounded-xl object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={() =>
-                    setPhotos((p) => p.filter((_, idx) => idx !== i))
-                  }
-                  className="absolute -right-1.5 -top-1.5 rounded-full bg-red-600 p-0.5 text-white"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
+            <div className="rounded-[18px] border border-line bg-white p-4">
+              <div className="mb-3 text-[15px] font-extrabold text-ink">
+                {t("hours")}
               </div>
-            ))}
-            {photos.length < MAX_PHOTOS && (
-              <label className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-petrol/20 text-petrol/40 hover:border-petrol/40">
-                <ImagePlus className="h-6 w-6" />
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="hidden"
-                  onChange={(e) => addPhotos(e.target.files)}
-                />
-              </label>
-            )}
+              <div className="space-y-3">
+                {hourRows.map(({ key, label }) => (
+                  <div
+                    key={key}
+                    className="flex flex-wrap items-center gap-3 text-sm"
+                  >
+                    <span className="w-32 text-ink-2">{label}</span>
+                    <Input
+                      type="time"
+                      className="h-11 w-28"
+                      disabled={hours[key].closed}
+                      value={hours[key].open}
+                      onChange={(e) =>
+                        setHours((h) => ({
+                          ...h,
+                          [key]: { ...h[key], open: e.target.value },
+                        }))
+                      }
+                    />
+                    <span className="text-faint">–</span>
+                    <Input
+                      type="time"
+                      className="h-11 w-28"
+                      disabled={hours[key].closed}
+                      value={hours[key].close}
+                      onChange={(e) =>
+                        setHours((h) => ({
+                          ...h,
+                          [key]: { ...h[key], close: e.target.value },
+                        }))
+                      }
+                    />
+                    <label className="flex items-center gap-1.5 text-ink-2">
+                      <input
+                        type="checkbox"
+                        checked={hours[key].closed}
+                        onChange={(e) =>
+                          setHours((h) => ({
+                            ...h,
+                            [key]: { ...h[key], closed: e.target.checked },
+                          }))
+                        }
+                      />
+                      {t("closed")}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </Card>
+        )}
 
         {showDuplicateWarning && (
-          <p className="rounded-xl bg-amber-50 p-4 text-sm text-amber-800">
+          <p className="rounded-[14px] bg-amber-50 p-4 text-sm text-amber-800">
             {t("duplicateWarning")}
           </p>
         )}
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm font-semibold text-alert">{error}</p>}
+      </div>
 
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? tc("loading") : t("submit")}
+      {/* Fortschritts-Footer wie im Design: Segmente + eine primäre Aktion */}
+      <div className="sticky bottom-24 mt-6 flex items-center gap-3 rounded-[18px] border border-line bg-white p-3.5 sm:bottom-4">
+        <div className="flex flex-1 flex-col gap-1.5">
+          <div className="text-[12.5px] font-bold text-muted">
+            {t("step", { n: step, total: TOTAL_STEPS })} ·{" "}
+            {t("fieldsDone", { count: filledCount })}
+          </div>
+          <div className="flex gap-1">
+            {Array.from({ length: TOTAL_STEPS }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={t("step", { n: i + 1, total: TOTAL_STEPS })}
+                onClick={() => i + 1 < step && setStep(i + 1)}
+                className={cn(
+                  "h-1 flex-1 rounded-full",
+                  i + 1 <= step ? "bg-primary" : "bg-line",
+                )}
+              />
+            ))}
+          </div>
+        </div>
+        <Button
+          type="button"
+          onClick={step < TOTAL_STEPS ? next : handleSubmit}
+          disabled={loading}
+          className="h-[52px] flex-none px-6 text-[17px]"
+        >
+          {loading
+            ? tc("loading")
+            : step < TOTAL_STEPS
+              ? t("continue")
+              : t("submit")}
+          {!loading && step < TOTAL_STEPS && (
+            <ChevronsRight className="h-5 w-5" />
+          )}
         </Button>
-      </form>
+      </div>
     </div>
   );
 }

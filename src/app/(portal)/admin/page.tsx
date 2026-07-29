@@ -34,44 +34,51 @@ export default async function AdminPage() {
     .order("created_at", { ascending: true });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-petrol">{t("title")}</h1>
-        <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-700">
+        <h1 className="text-[22px] font-extrabold tracking-[-0.02em] text-ink">
+          {t("title")}
+        </h1>
+        <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-extrabold text-primary-dark">
           {pending?.length ?? 0} {t("pendingCount")}
         </span>
       </div>
 
       {!pending?.length ? (
-        <Card className="text-foreground/60">{t("queueEmpty")}</Card>
+        <Card className="text-muted">{t("queueEmpty")}</Card>
       ) : (
         <div className="space-y-4">
           {pending.map((b) => (
             <Card key={b.id} className="space-y-4">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h2 className="text-lg font-bold text-petrol">{b.name}</h2>
-                  <p className="text-sm text-foreground/60">
+                  <h2 className="text-lg font-extrabold tracking-[-0.015em] text-ink">
+                    {b.name}
+                  </h2>
+                  <p className="text-sm text-muted">
                     {b.business_categories
-                      ?.map((bc) =>
-                        { const c = one(bc.categories); return c ? localizedName(c, locale) : ""; },
-                      )
+                      ?.map((bc) => {
+                        const c = one(bc.categories);
+                        return c ? localizedName(c, locale) : "";
+                      })
                       .filter(Boolean)
                       .join(", ")}
-                    {one(b.cities) ? ` · ${localizedName(one(b.cities)!, locale)}` : ""}
+                    {one(b.cities)
+                      ? ` · ${localizedName(one(b.cities)!, locale)}`
+                      : ""}
                   </p>
-                  <p className="mt-1 text-sm text-foreground/60">
+                  <p className="mt-1 text-sm text-muted">
                     {[b.address, b.phone, b.whatsapp, b.email, b.website]
                       .filter(Boolean)
                       .join(" · ")}
                   </p>
                   {b.description && (
-                    <p className="mt-2 max-w-xl text-sm text-foreground/80">
+                    <p className="mt-2 max-w-xl text-sm text-ink-2">
                       {b.description}
                     </p>
                   )}
                 </div>
-                <div className="text-right text-xs text-foreground/50">
+                <div className="text-right text-xs text-faint">
                   <p>
                     {t("scout")}: {one(b.scout)?.full_name || "—"}
                   </p>
@@ -90,16 +97,16 @@ export default async function AdminPage() {
                       key={i}
                       src={p.url}
                       alt=""
-                      className="h-24 w-24 rounded-xl object-cover"
+                      className="h-24 w-24 rounded-[14px] object-cover"
                     />
                   ))}
                 </div>
               )}
 
-              <div className="flex flex-wrap items-center gap-3 border-t border-petrol/10 pt-4">
+              <div className="flex flex-wrap items-center gap-3 border-t border-divider pt-4">
                 <form action={approveBusiness}>
                   <input type="hidden" name="id" value={b.id} />
-                  <Button type="submit" variant="secondary">
+                  <Button type="submit" variant="soft" className="h-11 text-sm">
                     {t("approve")}
                   </Button>
                 </form>
@@ -108,9 +115,9 @@ export default async function AdminPage() {
                   <Input
                     name="reason"
                     placeholder={t("rejectReason")}
-                    className="min-w-40 flex-1"
+                    className="h-11 min-w-40 flex-1"
                   />
-                  <Button type="submit" variant="danger">
+                  <Button type="submit" variant="danger" className="h-11 text-sm">
                     {t("reject")}
                   </Button>
                 </form>

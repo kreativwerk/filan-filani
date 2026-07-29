@@ -16,7 +16,7 @@
     "login": "Sign in",
     "register": "Sign up",
     "how1Title": "Sign up as a runner",
-    "how1Text": "Create a free account with email or Google.",
+    "how1Text": "Create a free account with your email.",
     "how2Title": "Register businesses",
     "how2Text": "Name, category, city, contact and photos — straight from your phone.",
     "how3Title": "Earn €0.50 per entry",
@@ -37,13 +37,18 @@
     "or": "or",
     "logout": "Sign out",
     "checkEmail": "Check your email to confirm your account.",
-    "invalidCredentials": "Wrong email or password."
+    "invalidCredentials": "Wrong email or password.",
+    "forgotPassword": "Forgot your password?",
+    "resetSent": "We sent you a password reset email.",
+    "runnersOnly": "Authorized runners only"
   },
   "nav": {
     "dashboard": "Dashboard",
     "myEntries": "My entries",
     "newEntry": "New entry",
-    "admin": "Admin"
+    "admin": "Admin",
+    "home": "Home",
+    "entries": "Entries"
   },
   "dashboard": {
     "title": "Your dashboard",
@@ -55,7 +60,15 @@
     "earningsHint": "€0.50 per approved entry. Paid out by bank transfer.",
     "newEntryCta": "Register a new business",
     "recent": "Recent entries",
-    "noEntries": "No entries yet."
+    "noEntries": "No entries yet.",
+    "greeting": "Hello",
+    "corrections": "Corrections",
+    "correctionsOpen": "{count} open",
+    "categories": "Categories",
+    "today": "{count} today",
+    "totalShort": "Total entries",
+    "earningsShort": "Total earnings",
+    "thisMonth": "overall"
   },
   "status": {
     "draft": "Draft",
@@ -94,7 +107,16 @@
     "successText": "Our team will review it. Once approved you earn €0.50.",
     "addAnother": "Register another",
     "backToList": "Back to my entries",
-    "errorRequired": "Please fill in the required fields."
+    "errorRequired": "Please fill in the required fields.",
+    "step": "Step {n} of {total}",
+    "fieldsDone": "{count} fields filled",
+    "sectionCompany": "Business details",
+    "sectionContacts": "Business contacts",
+    "sectionCategory": "Category & hours",
+    "required": "required",
+    "continue": "Continue",
+    "chooseCategory": "Choose a category",
+    "addPhoto": "Add photo"
   },
   "list": {
     "title": "My entries",

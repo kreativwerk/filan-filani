@@ -16,7 +16,7 @@
     "login": "Anmelden",
     "register": "Registrieren",
     "how1Title": "Als Runner registrieren",
-    "how1Text": "Kostenloses Konto mit E-Mail oder Google erstellen.",
+    "how1Text": "Kostenloses Konto mit deiner E-Mail erstellen.",
     "how2Title": "Geschäfte erfassen",
     "how2Text": "Name, Kategorie, Stadt, Kontakt und Fotos — direkt vom Handy.",
     "how3Title": "0,50 € pro Eintrag verdienen",
@@ -37,13 +37,18 @@
     "or": "oder",
     "logout": "Abmelden",
     "checkEmail": "Prüfe deine E-Mails, um das Konto zu bestätigen.",
-    "invalidCredentials": "E-Mail oder Passwort falsch."
+    "invalidCredentials": "E-Mail oder Passwort falsch.",
+    "forgotPassword": "Passwort vergessen?",
+    "resetSent": "Wir haben dir eine E-Mail zum Zurücksetzen geschickt.",
+    "runnersOnly": "Nur für autorisierte Runner"
   },
   "nav": {
     "dashboard": "Übersicht",
     "myEntries": "Meine Einträge",
     "newEntry": "Neuer Eintrag",
-    "admin": "Admin"
+    "admin": "Admin",
+    "home": "Start",
+    "entries": "Einträge"
   },
   "dashboard": {
     "title": "Deine Übersicht",
@@ -55,7 +60,15 @@
     "earningsHint": "0,50 € pro genehmigtem Eintrag. Auszahlung per Banküberweisung.",
     "newEntryCta": "Neues Geschäft erfassen",
     "recent": "Letzte Einträge",
-    "noEntries": "Noch keine Einträge."
+    "noEntries": "Noch keine Einträge.",
+    "greeting": "Hallo",
+    "corrections": "Korrekturen",
+    "correctionsOpen": "{count} offen",
+    "categories": "Kategorien",
+    "today": "{count} heute",
+    "totalShort": "Einträge gesamt",
+    "earningsShort": "Verdienst gesamt",
+    "thisMonth": "insgesamt"
   },
   "status": {
     "draft": "Entwurf",
@@ -94,7 +107,16 @@
     "successText": "Unser Team prüft ihn. Nach der Freigabe verdienst du 0,50 €.",
     "addAnother": "Weiteres Geschäft erfassen",
     "backToList": "Zu meinen Einträgen",
-    "errorRequired": "Bitte fülle die Pflichtfelder aus."
+    "errorRequired": "Bitte fülle die Pflichtfelder aus.",
+    "step": "Schritt {n} von {total}",
+    "fieldsDone": "{count} Felder ausgefüllt",
+    "sectionCompany": "Daten des Geschäfts",
+    "sectionContacts": "Kontakte des Geschäfts",
+    "sectionCategory": "Kategorie & Öffnungszeiten",
+    "required": "Pflicht",
+    "continue": "Weiter",
+    "chooseCategory": "Kategorie wählen",
+    "addPhoto": "Foto hinzufügen"
   },
   "list": {
     "title": "Meine Einträge",

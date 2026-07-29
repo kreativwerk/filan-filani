@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { Button, Card, Field, Input } from "@/components/ui";
+import { Button, Input, Wordmark } from "@/components/ui";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
@@ -41,7 +41,6 @@ export default function RegisterPage() {
       return;
     }
     if (!data.session) {
-      // E-Mail-Bestätigung ist aktiviert
       setInfo(t("checkEmail"));
       setLoading(false);
       return;
@@ -50,104 +49,103 @@ export default function RegisterPage() {
     router.refresh();
   }
 
-  async function handleGoogle() {
-    if (!configured) return;
-    await createClient().auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${location.origin}/auth/callback?next=/dashboard` },
-    });
-  }
+  const field = (
+    label: string,
+    input: React.ReactNode,
+  ): React.ReactNode => (
+    <label className="flex flex-col gap-2">
+      <span className="text-sm font-bold text-ink-2">{label}</span>
+      {input}
+    </label>
+  );
 
   return (
-    <main className="flex flex-1 flex-col items-center px-4 py-10">
-      <div className="mb-6 flex w-full max-w-md items-center justify-between">
-        <Link href="/" className="text-lg font-bold text-petrol">
-          KS Data
-        </Link>
+    <main className="flex flex-1 flex-col items-center bg-surface px-5 pb-8">
+      <div className="flex w-full max-w-md justify-end pt-4">
         <LanguageSwitcher />
       </div>
-      <Card className="w-full max-w-md">
-        <h1 className="text-xl font-bold text-petrol">{t("registerTitle")}</h1>
+
+      <Link href="/" className="pb-8 pt-8">
+        <Wordmark size="lg" />
+      </Link>
+
+      <div className="w-full max-w-md rounded-[28px] bg-white p-6 shadow-[0_8px_32px_rgba(16,25,23,0.08)]">
+        <h1 className="text-center text-[22px] font-extrabold tracking-[-0.015em] text-ink">
+          {t("registerTitle")}
+        </h1>
         {!configured && (
-          <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
+          <p className="mt-3 rounded-[14px] bg-amber-50 p-3 text-sm text-amber-800">
             Supabase ist noch nicht konfiguriert (.env.local fehlt).
           </p>
         )}
         {info ? (
-          <p className="mt-5 rounded-xl bg-emerald-50 p-4 text-sm text-emerald-800">
+          <p className="mt-5 rounded-[14px] bg-primary-light p-4 text-sm text-primary-dark">
             {info}
           </p>
         ) : (
-          <>
-            <form onSubmit={handleSubmit} className="mt-5 space-y-4">
-              <Field label={t("fullName")}>
-                <Input
-                  required
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  autoComplete="name"
-                />
-              </Field>
-              <Field label={t("phone")}>
-                <Input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  autoComplete="tel"
-                  placeholder="+383 4x xxx xxx"
-                />
-              </Field>
-              <Field label={t("email")}>
-                <Input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                />
-              </Field>
-              <Field label={t("password")}>
-                <Input
-                  type="password"
-                  required
-                  minLength={8}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="new-password"
-                />
-              </Field>
-              {error && <p className="text-sm text-red-600">{error}</p>}
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={loading || !configured}
-              >
-                {loading ? tc("loading") : t("submitRegister")}
-              </Button>
-            </form>
-            <div className="my-4 flex items-center gap-3 text-xs text-foreground/40">
-              <span className="h-px flex-1 bg-petrol/10" />
-              {t("or")}
-              <span className="h-px flex-1 bg-petrol/10" />
-            </div>
+          <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-3.5">
+            {field(
+              t("fullName"),
+              <Input
+                required
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                autoComplete="name"
+                className="h-[52px]"
+              />,
+            )}
+            {field(
+              t("phone"),
+              <Input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                autoComplete="tel"
+                placeholder="+383 4x xxx xxx"
+                className="h-[52px]"
+              />,
+            )}
+            {field(
+              t("email"),
+              <Input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                className="h-[52px]"
+              />,
+            )}
+            {field(
+              t("password"),
+              <Input
+                type="password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
+                className="h-[52px]"
+              />,
+            )}
+            {error && <p className="text-sm text-alert">{error}</p>}
             <Button
-              type="button"
-              variant="ghost"
-              className="w-full"
-              onClick={handleGoogle}
-              disabled={!configured}
+              type="submit"
+              className="mt-1 h-14 w-full text-[19px]"
+              disabled={loading || !configured}
             >
-              {t("google")}
+              {loading ? tc("loading") : t("submitRegister")}
             </Button>
-          </>
+          </form>
         )}
-        <p className="mt-5 text-center text-sm text-foreground/60">
-          {t("hasAccount")}{" "}
-          <Link href="/login" className="font-semibold text-petrol underline">
-            {t("submitLogin")}
-          </Link>
-        </p>
-      </Card>
+      </div>
+
+      <p className="mt-5 text-center text-sm text-muted">
+        {t("hasAccount")}{" "}
+        <Link href="/login" className="font-bold text-primary">
+          {t("submitLogin")}
+        </Link>
+      </p>
     </main>
   );
 }

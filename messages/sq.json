@@ -16,7 +16,7 @@
     "login": "Kyçu",
     "register": "Regjistrohu",
     "how1Title": "Regjistrohu si runner",
-    "how1Text": "Krijo llogarinë falas me email ose Google.",
+    "how1Text": "Krijo llogarinë falas me email-in tënd.",
     "how2Title": "Regjistro biznese",
     "how2Text": "Emri, kategoria, qyteti, kontakti dhe fotot — direkt nga telefoni.",
     "how3Title": "Fito 0,50 € për regjistrim",
@@ -37,13 +37,18 @@
     "or": "ose",
     "logout": "Dilni",
     "checkEmail": "Kontrollo email-in për ta konfirmuar llogarinë.",
-    "invalidCredentials": "Email ose fjalëkalim i gabuar."
+    "invalidCredentials": "Email ose fjalëkalim i gabuar.",
+    "forgotPassword": "Keni harruar fjalëkalimin?",
+    "resetSent": "Të dërguam një email për ta rivendosur fjalëkalimin.",
+    "runnersOnly": "Vetëm për runner-at e autorizuar"
   },
   "nav": {
     "dashboard": "Paneli",
     "myEntries": "Regjistrimet e mia",
     "newEntry": "Regjistrim i ri",
-    "admin": "Admin"
+    "admin": "Admin",
+    "home": "Ballina",
+    "entries": "Shënimet"
   },
   "dashboard": {
     "title": "Paneli yt",
@@ -55,7 +60,15 @@
     "earningsHint": "0,50 € për çdo regjistrim të aprovuar. Pagesa bëhet me transfertë bankare.",
     "newEntryCta": "Regjistro biznes të ri",
     "recent": "Regjistrimet e fundit",
-    "noEntries": "Ende nuk ke regjistrime."
+    "noEntries": "Ende nuk ke regjistrime.",
+    "greeting": "Përshëndetje",
+    "corrections": "Korrigjime",
+    "correctionsOpen": "{count} të hapura",
+    "categories": "Kategori",
+    "today": "{count} sot",
+    "totalShort": "Shënimet totale",
+    "earningsShort": "Fitime totale",
+    "thisMonth": "gjithsej"
   },
   "status": {
     "draft": "Draft",
@@ -94,7 +107,16 @@
     "successText": "Ekipi ynë do ta shqyrtojë. Pas aprovimit fiton 0,50 €.",
     "addAnother": "Regjistro tjetër",
     "backToList": "Te regjistrimet e mia",
-    "errorRequired": "Plotëso fushat e detyrueshme."
+    "errorRequired": "Plotëso fushat e detyrueshme.",
+    "step": "Hapi {n} nga {total}",
+    "fieldsDone": "{count} fusha të plotësuara",
+    "sectionCompany": "Dhënat e kompanisë",
+    "sectionContacts": "Kontaktet e kompanisë",
+    "sectionCategory": "Kategori & orari",
+    "required": "e detyrueshme",
+    "continue": "Vazhdo",
+    "chooseCategory": "Zgjidh kategorinë",
+    "addPhoto": "Shto foto"
   },
   "list": {
     "title": "Regjistrimet e mia",

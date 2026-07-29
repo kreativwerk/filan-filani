@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="dd600123-c885-4094-947f-7342e2581212"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("5cf4afb7-28b1-4bb7-9917-e97d4395f9ce") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("4fd1680d-7056-4320-8fad-db6e03b4021e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c6a7761f-e0bc-477b-b0c6-42f62d230bab") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ccaa14aa-8ac1-46b0-80e6-bc0e0037dd45") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("196a889c-d0e3-4b46-9c27-70581b923aca") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("acb97f37-9ae4-4bb8-8000-e934c6e8221a") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("f09045a5-f9c1-4d59-8e0e-a29ad563f532") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("a407179d-042f-4b1d-95d8-d15b6e943214") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("3492a029-c449-427b-ad4a-b83489a8085e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("186db501-6479-46e3-9145-d759bce7b31b") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("583c3eb8-c46c-4f7b-bc26-0fa5743dd927") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c7f7050d-966a-4742-a2b9-18fbf6e934f8") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7ee3c449-8b9b-41ba-9301-8f554f3652d1") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("bf2ff879-da2a-4d4b-94f4-90618b5b74cf") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("552c9797-9293-4e04-a33e-2a4ebd0c3814") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("f06f8af4-53fb-47fe-865c-ccf57959d480") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("583c3eb8-c46c-4f7b-bc26-0fa5743dd927") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c7f7050d-966a-4742-a2b9-18fbf6e934f8") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("7ee3c449-8b9b-41ba-9301-8f554f3652d1") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("bf2ff879-da2a-4d4b-94f4-90618b5b74cf") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("552c9797-9293-4e04-a33e-2a4ebd0c3814") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("f06f8af4-53fb-47fe-865c-ccf57959d480") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("583c3eb8-c46c-4f7b-bc26-0fa5743dd927") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("c7f7050d-966a-4742-a2b9-18fbf6e934f8") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("7ee3c449-8b9b-41ba-9301-8f554f3652d1") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("bf2ff879-da2a-4d4b-94f4-90618b5b74cf") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("552c9797-9293-4e04-a33e-2a4ebd0c3814") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("f06f8af4-53fb-47fe-865c-ccf57959d480") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("583c3eb8-c46c-4f7b-bc26-0fa5743dd927") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("c7f7050d-966a-4742-a2b9-18fbf6e934f8") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("7ee3c449-8b9b-41ba-9301-8f554f3652d1") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("bf2ff879-da2a-4d4b-94f4-90618b5b74cf") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("552c9797-9293-4e04-a33e-2a4ebd0c3814") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("f06f8af4-53fb-47fe-865c-ccf57959d480") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("583c3eb8-c46c-4f7b-bc26-0fa5743dd927") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("c7f7050d-966a-4742-a2b9-18fbf6e934f8") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("7ee3c449-8b9b-41ba-9301-8f554f3652d1") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("bf2ff879-da2a-4d4b-94f4-90618b5b74cf") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("552c9797-9293-4e04-a33e-2a4ebd0c3814") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("f06f8af4-53fb-47fe-865c-ccf57959d480") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<script src="a47043b1-ee98-4ea8-975b-ae5ec8280d2d"></script>
+<style>
+  body { margin: 0; background: #E9EDEB; color: #101917; font-family: "Manrope", -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #2222DD; text-decoration: none; }
+  a:hover { color: #1414A0; }
+</style>
+</helmet>
+
+<section style="padding:48px; display:flex; flex-direction:column; gap:32px">
+  <header style="display:flex; flex-direction:column; gap:14px; max-width:72ch">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#2222DD; font-weight:500">KS data — Runner-Zugang</div>
+    <h1 style="margin:0; font-size:44px; line-height:1.05; letter-spacing:-0.035em; font-weight:800">Das Werkzeug, nicht die Marke</h1>
+    <p style="margin:0; font-size:17px; line-height:1.6; color:#3C4A48; text-wrap:pretty">Runner erfassen Daten unterwegs — Geschwindigkeit und Fehlerfreiheit sind hier alles. Dieselben Fundamente wie Filan Filani (4-px-Spacing, Typo-Skala, 44-px-Ziele, voll gerundete Buttons, gemessener Kontrast), aber eigene Primärfarbe <span style="font-family:'IBM Plex Mono',monospace">#2222DD</span> (9:1 mit Weiß), damit niemand Erfassungs- und Konsumenten-App verwechselt.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:8px">
+      <span style="padding:7px 12px; border-radius:999px; background:#fff; border:1px solid #E3E7E6; font-size:13px; font-weight:600; color:#3C4A48">Web-App · Mobile zuerst</span>
+      <span style="padding:7px 12px; border-radius:999px; background:#E7E7FF; font-size:13px; font-weight:700; color:#1414A0">Primär #2222DD · 9:1</span>
+      <span style="padding:7px 12px; border-radius:999px; background:#E7E7FF; font-size:13px; font-weight:700; color:#1414A0">Pflichtfeld-Marker in Blau</span>
+      <a href="Filan Filani Design System.dc.html" style="padding:7px 12px; border-radius:999px; background:#2222DD; color:#fff; font-size:13px; font-weight:700">Styleguide →</a>
+    </div>
+  </header>
+
+  <div style="display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start">
+
+    <div id="3a" style="display:flex; flex-direction:column; gap:16px; width:430px">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span style="width:34px; height:34px; border-radius:10px; background:#2222DD; color:#fff; display:grid; place-items:center; font-size:14px; font-weight:800; font-family:'IBM Plex Mono',monospace">3a</span>
+        <div style="line-height:1.2">
+          <div style="font-size:19px; font-weight:800; letter-spacing:-0.015em">Login</div>
+          <div style="font-size:13.5px; color:#5B6B68">Nur E-Mail und Passwort · kein Provider-Login</div>
+        </div>
+      </div>
+      <div style="width:390px; height:844px; border-radius:44px; background:#F4F6F5; border:1px solid #D3DBD9; box-shadow:0 24px 60px rgba(16,25,23,0.14); overflow:hidden; display:flex; flex-direction:column">
+        <div style="height:52px; flex:none; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 6px; font-size:14px; font-weight:700">
+          <span>9:41</span>
+          <span style="display:flex; gap:6px; align-items:center"><i data-lucide="signal" style="width:15px;height:15px"></i><i data-lucide="wifi" style="width:15px;height:15px"></i><i data-lucide="battery-full" style="width:19px;height:19px"></i></span>
+        </div>
+        <div style="flex:1; padding:0 20px 28px; display:flex; flex-direction:column">
+          <div style="flex:none; padding:56px 0 48px; display:flex; flex-direction:column; align-items:center; gap:16px; position:relative">
+            <div style="position:absolute; right:8px; top:10px; z-index:0; width:120px; height:120px; opacity:0.7; background:repeating-linear-gradient(135deg,#E3E7E6 0 8px,#EDF0EF 8px 16px); border-radius:16px; display:grid; place-items:center">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#5B6B68; text-align:center; line-height:1.5">Kosovo<br>silhouette</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:1px; position:relative; z-index:1">
+              <span style="font-size:46px; font-weight:800; letter-spacing:-0.04em; color:#101917">KS</span>
+              <span style="font-size:46px; font-weight:400; letter-spacing:-0.03em; color:#101917">data</span>
+              <span style="width:11px; height:11px; border-radius:999px; background:#2222DD; margin-left:4px"></span>
+            </div>
+          </div>
+          <div style="background:#fff; border-radius:28px; padding:26px 20px 22px; box-shadow:0 8px 32px rgba(16,25,23,0.08); display:flex; flex-direction:column; gap:14px">
+            <div style="font-size:22px; font-weight:800; letter-spacing:0.06em; text-align:center; color:#101917">LOGIN</div>
+            <label style="display:flex; flex-direction:column; gap:7px">
+              <span style="font-size:14px; font-weight:700; color:#3C4A48">E-mail</span>
+              <input placeholder="email-i yt" style="height:52px; border:1.5px solid #D3DBD9; border-radius:14px; padding:0 16px; font-size:16px; font-family:inherit; color:#101917; background:#fff; width:100%">
+            </label>
+            <label style="display:flex; flex-direction:column; gap:7px">
+              <span style="font-size:14px; font-weight:700; color:#3C4A48">Fjalëkalimi</span>
+              <input type="password" value="12345678" style="height:52px; border:1.5px solid #D3DBD9; border-radius:14px; padding:0 16px; font-size:16px; font-family:inherit; color:#101917; background:#fff; width:100%">
+            </label>
+            <button style="height:56px; border:none; border-radius:999px; background:#2222DD; color:#fff; font-size:19px; font-weight:700; font-family:inherit; margin-top:4px">vazhdo</button>
+            <a href="#3a" style="font-size:14px; font-weight:700; text-align:center; padding:8px 0">Keni harruar fjalëkalimin?</a>
+          </div>
+          <div style="margin-top:auto; display:flex; align-items:center; justify-content:center; gap:8px; padding-top:24px; font-size:12.5px; color:#5B6B68">
+            <i data-lucide="shield-check" style="width:15px;height:15px"></i>Vetëm për runner-at e autorizuar
+          </div>
+        </div>
+      </div>
+      <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:14px; font-weight:800">Entscheidungen</div>
+        <ul style="margin:0; padding-left:18px; font-size:13.5px; color:#5B6B68; line-height:1.65">
+          <li>Kein Social-Login: Runner-Konten werden vergeben, nicht selbst erstellt.</li>
+          <li>Labels über den Feldern statt Platzhalter-Text allein — Platzhalter verschwinden beim Tippen.</li>
+          <li>Wortmarke bleibt Typo (KS fett, data leicht, Punkt in Primärblau); Kosovo-Silhouette als Asset einsetzen.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="3b" style="display:flex; flex-direction:column; gap:16px; width:430px">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span style="width:34px; height:34px; border-radius:10px; background:#2222DD; color:#fff; display:grid; place-items:center; font-size:14px; font-weight:800; font-family:'IBM Plex Mono',monospace">3b</span>
+        <div style="line-height:1.2">
+          <div style="font-size:19px; font-weight:800; letter-spacing:-0.015em">Dashboard</div>
+          <div style="font-size:13.5px; color:#5B6B68">Verdienst, Korrekturen, Kategorien · Erfassen als FAB</div>
+        </div>
+      </div>
+      <div style="width:390px; height:844px; border-radius:44px; background:#fff; border:1px solid #D3DBD9; box-shadow:0 24px 60px rgba(16,25,23,0.14); overflow:hidden; display:flex; flex-direction:column">
+        <div style="height:52px; flex:none; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 6px; font-size:14px; font-weight:700">
+          <span>9:41</span>
+          <span style="display:flex; gap:6px; align-items:center"><i data-lucide="signal" style="width:15px;height:15px"></i><i data-lucide="wifi" style="width:15px;height:15px"></i><i data-lucide="battery-full" style="width:19px;height:19px"></i></span>
+        </div>
+        <div style="flex:none; padding:8px 16px 14px; display:flex; align-items:center; gap:12px">
+          <div style="flex:1; min-width:0; line-height:1.25">
+            <div style="font-size:13.5px; color:#5B6B68; font-weight:500">Përshëndetje</div>
+            <div style="font-size:22px; font-weight:800; letter-spacing:-0.02em">Albert Dobra</div>
+          </div>
+          <div style="width:44px; height:44px; border-radius:999px; display:grid; place-items:center; color:#101917; flex:none; position:relative"><i data-lucide="bell" style="width:23px;height:23px"></i><span style="position:absolute; top:2px; right:2px; min-width:20px; height:20px; padding:0 5px; border-radius:999px; background:#FF4A1A; color:#fff; font-size:12px; font-weight:800; display:grid; place-items:center; border:2px solid #fff">3</span></div>
+          <div style="width:44px; height:44px; border-radius:999px; background:#F4F6F5; color:#3C4A48; display:grid; place-items:center; flex:none"><i data-lucide="user" style="width:23px;height:23px"></i></div>
+        </div>
+        <div style="flex:1; overflow:hidden; background:#F4F6F5; padding:16px; display:flex; flex-direction:column; gap:18px">
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#5B6B68">Dashboard</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+              <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; padding:16px; display:flex; flex-direction:column; gap:6px">
+                <div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#5B6B68">Fitime totale</div>
+                <div style="font-size:26px; font-weight:800; letter-spacing:-0.025em; font-family:'IBM Plex Mono',monospace; color:#2222DD">105,50 €</div>
+                <div style="font-size:12.5px; color:#5B6B68">këtë muaj</div>
+              </div>
+              <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; padding:16px; display:flex; flex-direction:column; gap:6px">
+                <div style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#5B6B68">Shënimet totale</div>
+                <div style="font-size:26px; font-weight:800; letter-spacing:-0.025em; font-family:'IBM Plex Mono',monospace">221</div>
+                <div style="font-size:12.5px; color:#5B6B68">14 sot</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#5B6B68">Korrigjime</div>
+              <span style="padding:4px 10px; border-radius:999px; background:#E7E7FF; color:#1414A0; font-size:12px; font-weight:800">3 të hapura</span>
+            </div>
+            <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; overflow:hidden">
+              <sc-for list="{{ fixes }}" as="f" hint-placeholder-count="3">
+                <div style="display:flex; align-items:center; gap:12px; padding:13px 14px; border-bottom:1px solid #EEF1F0">
+                  <div style="width:36px; height:36px; border-radius:999px; background:#E7E7FF; color:#1414A0; display:grid; place-items:center; flex:none"><i data-lucide="{{ f.icon }}" style="width:18px;height:18px"></i></div>
+                  <div style="flex:1; min-width:0">
+                    <div style="font-size:15px; font-weight:700">{{ f.name }}</div>
+                    <div style="font-size:13px; color:#5B6B68">{{ f.what }}</div>
+                  </div>
+                  <i data-lucide="chevron-right" style="width:19px;height:19px;color:#8A9895"></i>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#5B6B68">Kategori</div>
+              <a href="#3b" style="font-size:13px; font-weight:700; color:#2222DD">Të gjitha 18</a>
+            </div>
+            <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; overflow:hidden">
+              <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-bottom:1px solid #EEF1F0">
+                  <div style="font-size:15px; font-weight:600; color:#101917">{{ c.label }}</div>
+                  <div style="font-size:13px; font-weight:700; color:#5B6B68; font-family:'IBM Plex Mono',monospace">{{ c.n }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="flex:none; background:rgba(255,255,255,0.94); backdrop-filter:blur(20px); border-top:1px solid #E3E7E6; padding:10px 24px 22px; display:flex; align-items:center; justify-content:space-between">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px; color:#2222DD; width:64px"><i data-lucide="home" style="width:26px;height:26px"></i><span style="font-size:11px; font-weight:800">Ballina</span></div>
+          <button style="width:64px; height:64px; border:none; border-radius:999px; background:#2222DD; color:#fff; display:grid; place-items:center; box-shadow:0 8px 24px rgba(34,34,221,0.32); margin-top:-26px"><i data-lucide="plus" style="width:30px;height:30px"></i></button>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px; color:#5B6B68; width:64px"><i data-lucide="list" style="width:26px;height:26px"></i><span style="font-size:11px; font-weight:600">Shënimet</span></div>
+        </div>
+      </div>
+      <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:14px; font-weight:800">Entscheidungen</div>
+        <ul style="margin:0; padding-left:18px; font-size:13.5px; color:#5B6B68; line-height:1.65">
+          <li>Erfassen ist die eine Aktion: FAB in Primärblau, überall erreichbar, 64 px.</li>
+          <li>Korrekturen sind eine echte Liste mit Zeile pro Fall — kein Textblock in einer Box.</li>
+          <li>Verdienst in Primärblau, Zählwerte neutral: Geld ist die einzige farbige Zahl.</li>
+          <li>Kategorien mit Anzahl statt nackter Namensliste — sagt dem Runner, wo Lücken sind.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="3c" style="display:flex; flex-direction:column; gap:16px; width:430px">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span style="width:34px; height:34px; border-radius:10px; background:#2222DD; color:#fff; display:grid; place-items:center; font-size:14px; font-weight:800; font-family:'IBM Plex Mono',monospace">3c</span>
+        <div style="line-height:1.2">
+          <div style="font-size:19px; font-weight:800; letter-spacing:-0.015em">Regjistrim</div>
+          <div style="font-size:13.5px; color:#5B6B68">Erfassung · Pflichtfelder sichtbar markiert</div>
+        </div>
+      </div>
+      <div style="width:390px; height:844px; border-radius:44px; background:#fff; border:1px solid #D3DBD9; box-shadow:0 24px 60px rgba(16,25,23,0.14); overflow:hidden; display:flex; flex-direction:column">
+        <div style="height:52px; flex:none; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 6px; font-size:14px; font-weight:700">
+          <span>9:41</span>
+          <span style="display:flex; gap:6px; align-items:center"><i data-lucide="signal" style="width:15px;height:15px"></i><i data-lucide="wifi" style="width:15px;height:15px"></i><i data-lucide="battery-full" style="width:19px;height:19px"></i></span>
+        </div>
+        <div style="flex:none; padding:6px 16px 12px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #EEF1F0">
+          <div style="flex:1; min-width:0; line-height:1.2">
+            <div style="font-size:22px; font-weight:800; letter-spacing:-0.02em">Regjistrim</div>
+            <div style="font-size:12.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#5B6B68; margin-top:3px">02 Skenderaj</div>
+          </div>
+          <div style="width:44px; height:44px; border-radius:999px; display:grid; place-items:center; color:#101917; flex:none; position:relative"><i data-lucide="bell" style="width:22px;height:22px"></i><span style="position:absolute; top:2px; right:2px; min-width:20px; height:20px; padding:0 5px; border-radius:999px; background:#FF4A1A; color:#fff; font-size:12px; font-weight:800; display:grid; place-items:center; border:2px solid #fff">3</span></div>
+          <div style="width:44px; height:44px; border-radius:999px; background:#F4F6F5; color:#3C4A48; display:grid; place-items:center; flex:none"><i data-lucide="user" style="width:22px;height:22px"></i></div>
+        </div>
+        <div style="flex:1; overflow:hidden; background:#F4F6F5; padding:14px 16px; display:flex; flex-direction:column; gap:16px">
+          <div style="display:flex; flex-direction:column; gap:9px">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+              <div style="font-size:15px; font-weight:800">Dhënat e kompanisë</div>
+              <span style="padding:4px 10px; border-radius:999px; border:1.5px solid #2222DD; color:#1414A0; font-size:11.5px; font-weight:800">e detyrueshme</span>
+            </div>
+            <input placeholder="Emri i kompanisë" style="height:50px; border:1.5px solid #D3DBD9; border-radius:14px; padding:0 15px; font-size:16px; font-family:inherit; color:#101917; background:#fff; width:100%">
+            <input placeholder="Rruga e kompanisë" style="height:50px; border:1.5px solid #D3DBD9; border-radius:14px; padding:0 15px; font-size:16px; font-family:inherit; color:#101917; background:#fff; width:100%">
+            <input placeholder="Numri i shtëpisë" style="height:50px; border:1.5px solid #D3DBD9; border-radius:14px; padding:0 15px; font-size:16px; font-family:inherit; color:#101917; background:#fff; width:100%">
+            <div style="display:flex; gap:10px; padding-top:2px">
+              <button style="flex:1; height:48px; border:none; border-radius:999px; background:#2222DD; color:#fff; font-size:15px; font-weight:700; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:8px"><i data-lucide="map-pin" style="width:18px;height:18px"></i>Shto lokacionin</button>
+              <button style="flex:1; height:48px; border:1.5px solid #2222DD; border-radius:999px; background:#fff; color:#1414A0; font-size:15px; font-weight:700; font-family:inherit; display:flex; align-items:center; justify-content:center; gap:8px"><i data-lucide="camera" style="width:18px;height:18px"></i>Shto foto</button>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:9px">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+              <div style="font-size:15px; font-weight:800">Kontaktet e kompanisë</div>
+              <span style="padding:4px 10px; border-radius:999px; border:1.5px solid #2222DD; color:#1414A0; font-size:11.5px; font-weight:800">e detyrueshme</span>
+            </div>
+            <div style="height:50px; border:1.5px solid #D3DBD9; border-radius:14px; background:#fff; display:flex; align-items:center; gap:11px; padding:0 15px">
+              <i data-lucide="phone" style="width:19px;height:19px;color:#2222DD"></i>
+              <input placeholder="Numri i telefonit" style="flex:1; min-width:0; border:none; outline:none; font-size:16px; font-family:inherit; color:#101917; background:transparent">
+            </div>
+            <div style="height:50px; border:1.5px solid #D3DBD9; border-radius:14px; background:#fff; display:flex; align-items:center; gap:11px; padding:0 15px">
+              <i data-lucide="mail" style="width:19px;height:19px;color:#2222DD"></i>
+              <input placeholder="Adresa e email-it" style="flex:1; min-width:0; border:none; outline:none; font-size:16px; font-family:inherit; color:#101917; background:transparent">
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:9px">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+              <div style="font-size:15px; font-weight:800">Kategori</div>
+              <span style="padding:4px 10px; border-radius:999px; border:1.5px solid #2222DD; color:#1414A0; font-size:11.5px; font-weight:800">e detyrueshme</span>
+            </div>
+            <div style="height:50px; border:1.5px solid #D3DBD9; border-radius:14px; background:#fff; display:flex; align-items:center; justify-content:space-between; padding:0 15px; color:#5B6B68; font-size:16px">Zgjidh kategorinë<i data-lucide="chevron-down" style="width:20px;height:20px;color:#101917"></i></div>
+          </div>
+        </div>
+        <div style="flex:none; background:#fff; border-top:1px solid #E3E7E6; padding:12px 16px 22px; display:flex; align-items:center; gap:12px">
+          <div style="flex:1; display:flex; flex-direction:column; gap:6px">
+            <div style="font-size:12.5px; font-weight:700; color:#5B6B68">Hapi 1 nga 3 · 4 fusha të plotësuara</div>
+            <div style="display:flex; gap:4px">
+              <div style="flex:1; height:4px; border-radius:999px; background:#2222DD"></div>
+              <div style="flex:1; height:4px; border-radius:999px; background:#E3E7E6"></div>
+              <div style="flex:1; height:4px; border-radius:999px; background:#E3E7E6"></div>
+            </div>
+          </div>
+          <button style="height:52px; padding:0 24px; border:none; border-radius:999px; background:#2222DD; color:#fff; font-size:17px; font-weight:700; font-family:inherit; display:flex; align-items:center; gap:9px; flex:none">Vazhdo<i data-lucide="chevrons-right" style="width:20px;height:20px"></i></button>
+        </div>
+      </div>
+      <div style="background:#fff; border:1px solid #E3E7E6; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:14px; font-weight:800">Entscheidungen</div>
+        <ul style="margin:0; padding-left:18px; font-size:13.5px; color:#5B6B68; line-height:1.65">
+          <li>Pflicht-Marker als Outline-Pill in Primärblau — sichtbar, ohne wie ein Button zu wirken.</li>
+          <li>Nur eine primäre Aktion unten (Vazhdo), Fortschritt daneben statt zweier gleich starker Buttons.</li>
+          <li>„Shto lokacionin“ gefüllt, „Shto foto“ outline: GPS ist der Regelfall, Foto optional.</li>
+          <li>Icons im Feld statt Labels darüber, wo der Feldtyp eindeutig ist (Telefon, E-Mail).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+class Component extends DCLogic {
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const run = () => { if (window.lucide) window.lucide.createIcons(); };
+    run();
+    if (!window.lucide) setTimeout(run, 400);
+    setTimeout(run, 1200);
+  }
+  renderVals() {
+    return {
+      fixes: [
+        { icon: "phone", name: "Floktar Berati", what: "Numri i telefonit mungon" },
+        { icon: "camera", name: "Restorant Djema", what: "Duhet një foto e re" },
+        { icon: "map-pin", name: "Kafene Lura", what: "Adresa është e gabuar" }
+      ],
+      cats: [
+        { label: "Artizan / Ustai", n: "42" },
+        { label: "Kafene", n: "31" },
+        { label: "Restorant", n: "28" }
+      ]
+    };
+  }
+}
+
+</script>
+
+
+</body></html>

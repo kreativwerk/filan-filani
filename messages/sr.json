@@ -16,7 +16,7 @@
     "login": "Prijava",
     "register": "Registracija",
     "how1Title": "Registruj se kao runner",
-    "how1Text": "Napravi besplatan nalog putem emaila ili Google-a.",
+    "how1Text": "Napravi besplatan nalog svojim emailom.",
     "how2Title": "Registruj firme",
     "how2Text": "Naziv, kategorija, grad, kontakt i fotografije — direktno sa telefona.",
     "how3Title": "Zaradi 0,50 € po unosu",
@@ -37,13 +37,18 @@
     "or": "ili",
     "logout": "Odjava",
     "checkEmail": "Proveri email da potvrdiš nalog.",
-    "invalidCredentials": "Pogrešan email ili lozinka."
+    "invalidCredentials": "Pogrešan email ili lozinka.",
+    "forgotPassword": "Zaboravili ste lozinku?",
+    "resetSent": "Poslali smo ti email za resetovanje lozinke.",
+    "runnersOnly": "Samo za ovlašćene runnere"
   },
   "nav": {
     "dashboard": "Pregled",
     "myEntries": "Moji unosi",
     "newEntry": "Novi unos",
-    "admin": "Admin"
+    "admin": "Admin",
+    "home": "Početna",
+    "entries": "Unosi"
   },
   "dashboard": {
     "title": "Tvoj pregled",
@@ -55,7 +60,15 @@
     "earningsHint": "0,50 € po odobrenom unosu. Isplata bankovnim transferom.",
     "newEntryCta": "Registruj novu firmu",
     "recent": "Poslednji unosi",
-    "noEntries": "Još nema unosa."
+    "noEntries": "Još nema unosa.",
+    "greeting": "Zdravo",
+    "corrections": "Ispravke",
+    "correctionsOpen": "{count} otvoreno",
+    "categories": "Kategorije",
+    "today": "{count} danas",
+    "totalShort": "Ukupno unosa",
+    "earningsShort": "Ukupna zarada",
+    "thisMonth": "ukupno"
   },
   "status": {
     "draft": "Nacrt",
@@ -94,7 +107,16 @@
     "successText": "Naš tim će ga pregledati. Nakon odobrenja zarađuješ 0,50 €.",
     "addAnother": "Registruj još jednu",
     "backToList": "Na moje unose",
-    "errorRequired": "Popuni obavezna polja."
+    "errorRequired": "Popuni obavezna polja.",
+    "step": "Korak {n} od {total}",
+    "fieldsDone": "{count} polja popunjeno",
+    "sectionCompany": "Podaci o firmi",
+    "sectionContacts": "Kontakti firme",
+    "sectionCategory": "Kategorija i radno vreme",
+    "required": "obavezno",
+    "continue": "Nastavi",
+    "chooseCategory": "Izaberi kategoriju",
+    "addPhoto": "Dodaj fotografiju"
   },
   "list": {
     "title": "Moji unosi",

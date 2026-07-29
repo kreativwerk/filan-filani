@@ -1,28 +1,44 @@
 @import "tailwindcss";
 
+/* Design-Tokens aus dem KS-Data-Design (design/ksdata-runner-app.html):
+   Manrope + IBM Plex Mono, Primärblau #2222DD, Flächen #E9EDEB/#F4F6F5 */
 :root {
-  --background: #f8fafa;
-  --foreground: #123c46;
-  /* Design-Tokens (Petrol + Lime, angelehnt ans kreativwerk-Designsystem) */
-  --petrol: #0f4c5c;
-  --petrol-dark: #0a3641;
-  --lime: #c5f04a;
-  --lime-dark: #a8d431;
+  --background: #e9edeb;
+  --surface: #f4f6f5;
+  --ink: #101917;
+  --ink-2: #3c4a48;
+  --muted: #5b6b68;
+  --faint: #8a9895;
+  --line: #e3e7e6;
+  --line-strong: #d3dbd9;
+  --divider: #eef1f0;
+  --primary: #2222dd;
+  --primary-dark: #1414a0;
+  --primary-light: #e7e7ff;
+  --alert: #ff4a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-petrol: var(--petrol);
-  --color-petrol-dark: var(--petrol-dark);
-  --color-lime: var(--lime);
-  --color-lime-dark: var(--lime-dark);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-divider: var(--divider);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-alert: var(--alert);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-plex-mono);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  color: var(--ink);
+  font-family: var(--font-manrope), -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
