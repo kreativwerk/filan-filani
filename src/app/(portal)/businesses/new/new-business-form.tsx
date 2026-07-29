@@ -41,6 +41,14 @@ type HoursRow = { open: string; close: string; closed: boolean };
 
 const defaultHours: HoursRow = { open: "08:00", close: "18:00", closed: false };
 
+function fromSaved(
+  saved: { open: string; close: string } | null | undefined,
+): HoursRow | null {
+  if (saved === undefined) return null;
+  if (saved === null) return { ...defaultHours, closed: true };
+  return { open: saved.open, close: saved.close, closed: false };
+}
+
 function IconField({
   icon,
   children,
@@ -59,12 +67,32 @@ function IconField({
 const bareInput =
   "h-full min-w-0 flex-1 border-none bg-transparent text-[16px] text-ink placeholder:text-muted focus:outline-none";
 
+export type BusinessInitial = {
+  name: string;
+  categoryId: string;
+  cityId: string;
+  address: string;
+  phone: string;
+  whatsapp: string;
+  viber: string;
+  email: string;
+  website: string;
+  facebook: string;
+  instagram: string;
+  description: string;
+  openingHours: OpeningHours | null;
+};
+
 export function NewBusinessForm({
   cities,
   categories,
+  businessId,
+  initial,
 }: {
   cities: City[];
   categories: Category[];
+  businessId?: string;
+  initial?: BusinessInitial;
 }) {
   const t = useTranslations("form");
   const tc = useTranslations("common");
@@ -72,27 +100,29 @@ export function NewBusinessForm({
 
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
-    name: "",
-    categoryId: "",
-    cityId: "",
-    address: "",
-    phone: "",
-    whatsapp: "",
-    viber: "",
-    email: "",
-    website: "",
-    facebook: "",
-    instagram: "",
-    description: "",
+    name: initial?.name ?? "",
+    categoryId: initial?.categoryId ?? "",
+    cityId: initial?.cityId ?? "",
+    address: initial?.address ?? "",
+    phone: initial?.phone ?? "",
+    whatsapp: initial?.whatsapp ?? "",
+    viber: initial?.viber ?? "",
+    email: initial?.email ?? "",
+    website: initial?.website ?? "",
+    facebook: initial?.facebook ?? "",
+    instagram: initial?.instagram ?? "",
+    description: initial?.description ?? "",
   });
   const [hours, setHours] = useState<{
     weekdays: HoursRow;
     saturday: HoursRow;
     sunday: HoursRow;
   }>({
-    weekdays: { ...defaultHours },
-    saturday: { ...defaultHours },
-    sunday: { ...defaultHours, closed: true },
+    weekdays: fromSaved(initial?.openingHours?.weekdays) ?? { ...defaultHours },
+    saturday: fromSaved(initial?.openingHours?.saturday) ?? { ...defaultHours },
+    sunday:
+      fromSaved(initial?.openingHours?.sunday) ??
+      { ...defaultHours, closed: true },
   });
   const [photos, setPhotos] = useState<File[]>([]);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(
@@ -154,7 +184,7 @@ export function NewBusinessForm({
     const supabase = createClient();
 
     try {
-      if (!duplicateWarned) {
+      if (!businessId && !duplicateWarned) {
         const { data: isDuplicate } = await supabase.rpc(
           "business_duplicate_exists",
           {
@@ -184,41 +214,60 @@ export function NewBusinessForm({
         sunday: toRow(hours.sunday),
       };
 
-      const { data: business, error: insertError } = await supabase
-        .from("businesses")
-        .insert({
-          name: form.name.trim(),
-          description: form.description.trim() || null,
-          city_id: Number(form.cityId),
-          address: form.address.trim() || null,
-          lat: coords?.lat ?? null,
-          lng: coords?.lng ?? null,
-          phone: form.phone.trim(),
-          whatsapp: form.whatsapp.trim() || null,
-          viber: form.viber.trim() || null,
-          email: form.email.trim() || null,
-          website: form.website.trim() || null,
-          facebook: form.facebook.trim() || null,
-          instagram: form.instagram.trim() || null,
-          opening_hours,
-          status: "pending",
-          source: "scout",
-          scout_id: user.id,
-          created_by: user.id,
-        })
-        .select("id")
-        .single();
-      if (insertError) throw insertError;
+      const values = {
+        name: form.name.trim(),
+        description: form.description.trim() || null,
+        city_id: Number(form.cityId),
+        address: form.address.trim() || null,
+        phone: form.phone.trim(),
+        whatsapp: form.whatsapp.trim() || null,
+        viber: form.viber.trim() || null,
+        email: form.email.trim() || null,
+        website: form.website.trim() || null,
+        facebook: form.facebook.trim() || null,
+        instagram: form.instagram.trim() || null,
+        opening_hours,
+      };
+      if (coords) {
+        Object.assign(values, { lat: coords.lat, lng: coords.lng });
+      }
+
+      let id = businessId;
+      if (businessId) {
+        const { error: updateError } = await supabase
+          .from("businesses")
+          .update({ ...values, status: "pending", review_note: null })
+          .eq("id", businessId);
+        if (updateError) throw updateError;
+        await supabase
+          .from("business_categories")
+          .delete()
+          .eq("business_id", businessId);
+      } else {
+        const { data: business, error: insertError } = await supabase
+          .from("businesses")
+          .insert({
+            ...values,
+            status: "pending",
+            source: "scout",
+            scout_id: user.id,
+            created_by: user.id,
+          })
+          .select("id")
+          .single();
+        if (insertError) throw insertError;
+        id = business.id;
+      }
 
       await supabase.from("business_categories").insert({
-        business_id: business.id,
+        business_id: id,
         category_id: Number(form.categoryId),
       });
 
       for (let i = 0; i < photos.length; i++) {
         const file = photos[i];
         const ext = file.name.split(".").pop() ?? "jpg";
-        const path = `${user.id}/${business.id}/${i}-${Date.now()}.${ext}`;
+        const path = `${user.id}/${id}/${i}-${Date.now()}.${ext}`;
         const { error: uploadError } = await supabase.storage
           .from("business-photos")
           .upload(path, file);
@@ -228,7 +277,7 @@ export function NewBusinessForm({
         } = supabase.storage.from("business-photos").getPublicUrl(path);
         await supabase
           .from("business_photos")
-          .insert({ business_id: business.id, url: publicUrl, sort: i });
+          .insert({ business_id: id, url: publicUrl, sort: i });
       }
 
       setDone(true);
@@ -277,7 +326,7 @@ export function NewBusinessForm({
     <div className="mx-auto flex min-h-[70vh] max-w-2xl flex-col">
       <div className="mb-4">
         <h1 className="text-[22px] font-extrabold tracking-[-0.02em] text-ink">
-          {t("title")}
+          {businessId ? t("editTitle") : t("title")}
         </h1>
       </div>
 
@@ -557,7 +606,9 @@ export function NewBusinessForm({
             ? tc("loading")
             : step < TOTAL_STEPS
               ? t("continue")
-              : t("submit")}
+              : businessId
+                ? t("resubmit")
+                : t("submit")}
           {!loading && step < TOTAL_STEPS && (
             <ChevronsRight className="h-5 w-5" />
           )}

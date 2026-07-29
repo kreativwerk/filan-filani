@@ -119,7 +119,9 @@
     "chooseCategory": "Kategorie wählen",
     "addPhoto": "Foto hinzufügen",
     "addLocation": "Standort hinzufügen",
-    "locationSaved": "Standort gespeichert"
+    "locationSaved": "Standort gespeichert",
+    "editTitle": "Eintrag korrigieren",
+    "resubmit": "Erneut einreichen"
   },
   "list": {
     "title": "Meine Einträge",
@@ -135,7 +137,15 @@
     "rejectReason": "Ablehnungsgrund (sieht der Runner)",
     "scout": "Runner",
     "submittedAt": "Eingereicht am",
-    "pendingCount": "Einträge in Prüfung"
+    "pendingCount": "Einträge in Prüfung",
+    "runners": "Runner",
+    "balance": "Offener Betrag",
+    "credited": "Verdient",
+    "paidOut": "Ausgezahlt",
+    "payout": "Auszahlung verbuchen",
+    "payoutNote": "z. B. Überweisung Juli",
+    "entriesApproved": "genehmigte Einträge",
+    "noRunners": "Noch keine Runner."
   },
   "lang": {
     "label": "Sprache"

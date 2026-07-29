@@ -119,7 +119,9 @@
     "chooseCategory": "Choose a category",
     "addPhoto": "Add photo",
     "addLocation": "Add location",
-    "locationSaved": "Location saved"
+    "locationSaved": "Location saved",
+    "editTitle": "Fix entry",
+    "resubmit": "Resubmit"
   },
   "list": {
     "title": "My entries",
@@ -135,7 +137,15 @@
     "rejectReason": "Rejection reason (visible to the runner)",
     "scout": "Runner",
     "submittedAt": "Submitted on",
-    "pendingCount": "entries pending"
+    "pendingCount": "entries pending",
+    "runners": "Runners",
+    "balance": "Balance due",
+    "credited": "Earned",
+    "paidOut": "Paid out",
+    "payout": "Record payout",
+    "payoutNote": "e.g. bank transfer July",
+    "entriesApproved": "approved entries",
+    "noRunners": "No runners yet."
   },
   "lang": {
     "label": "Language"

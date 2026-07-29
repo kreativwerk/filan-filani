@@ -66,9 +66,10 @@ export function DashboardView({ data }: { data: DashboardData }) {
                 correctionIcons[c.icon as keyof typeof correctionIcons] ??
                 CircleAlert;
               return (
-                <div
+                <Link
                   key={c.id}
-                  className="flex items-center gap-3 border-b border-divider px-3.5 py-3 last:border-b-0"
+                  href={`/businesses/${c.id}/edit`}
+                  className="flex items-center gap-3 border-b border-divider px-3.5 py-3 last:border-b-0 hover:bg-surface"
                 >
                   <div className="grid h-9 w-9 flex-none place-items-center rounded-full bg-primary-light text-primary-dark">
                     <Icon className="h-[18px] w-[18px]" />
@@ -82,7 +83,7 @@ export function DashboardView({ data }: { data: DashboardData }) {
                     </div>
                   </div>
                   <ChevronRight className="h-[19px] w-[19px] flex-none text-faint" />
-                </div>
+                </Link>
               );
             })}
           </div>

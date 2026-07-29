@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
@@ -35,13 +36,21 @@ export default async function AdminPage() {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-[22px] font-extrabold tracking-[-0.02em] text-ink">
           {t("title")}
         </h1>
-        <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-extrabold text-primary-dark">
-          {pending?.length ?? 0} {t("pendingCount")}
-        </span>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin/runners"
+            className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
+          >
+            {t("runners")}
+          </Link>
+          <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-extrabold text-primary-dark">
+            {pending?.length ?? 0} {t("pendingCount")}
+          </span>
+        </div>
       </div>
 
       {!pending?.length ? (

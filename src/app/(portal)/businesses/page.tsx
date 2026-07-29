@@ -8,6 +8,7 @@ import { StatusBadge } from "@/components/status-badge";
 
 export default async function BusinessesPage() {
   const t = await getTranslations("list");
+  const tf = await getTranslations("form");
   const locale = (await getLocale()) as Locale;
   const supabase = await createClient();
   const {
@@ -56,11 +57,19 @@ export default async function BusinessesPage() {
                 </div>
                 <StatusBadge status={b.status as BusinessStatus} />
               </div>
-              {b.status === "rejected" && b.review_note && (
-                <p className="mt-2.5 rounded-[14px] bg-[#FFE4DC] p-3 text-sm text-[#A3241A]">
-                  <span className="font-bold">{t("rejectedReason")}: </span>
-                  {b.review_note}
-                </p>
+              {b.status === "rejected" && (
+                <Link
+                  href={`/businesses/${b.id}/edit`}
+                  className="mt-2.5 block rounded-[14px] bg-[#FFE4DC] p-3 text-sm text-[#A3241A] hover:opacity-90"
+                >
+                  {b.review_note && (
+                    <>
+                      <span className="font-bold">{t("rejectedReason")}: </span>
+                      {b.review_note} —{" "}
+                    </>
+                  )}
+                  <span className="font-bold underline">{tf("editTitle")}</span>
+                </Link>
               )}
             </div>
           ))}

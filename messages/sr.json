@@ -119,7 +119,9 @@
     "chooseCategory": "Izaberi kategoriju",
     "addPhoto": "Dodaj fotografiju",
     "addLocation": "Dodaj lokaciju",
-    "locationSaved": "Lokacija sačuvana"
+    "locationSaved": "Lokacija sačuvana",
+    "editTitle": "Ispravi unos",
+    "resubmit": "Pošalji ponovo"
   },
   "list": {
     "title": "Moji unosi",
@@ -135,7 +137,15 @@
     "rejectReason": "Razlog odbijanja (vidi ga runner)",
     "scout": "Runner",
     "submittedAt": "Poslato",
-    "pendingCount": "unosa na čekanju"
+    "pendingCount": "unosa na čekanju",
+    "runners": "Runneri",
+    "balance": "Za isplatu",
+    "credited": "Zarađeno",
+    "paidOut": "Isplaćeno",
+    "payout": "Zabeleži isplatu",
+    "payoutNote": "npr. bankovni transfer jul",
+    "entriesApproved": "odobrenih unosa",
+    "noRunners": "Još nema runnera."
   },
   "lang": {
     "label": "Jezik"

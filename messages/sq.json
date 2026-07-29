@@ -119,7 +119,9 @@
     "chooseCategory": "Zgjidh kategorinë",
     "addPhoto": "Shto foto",
     "addLocation": "Shto lokacionin",
-    "locationSaved": "Lokacioni u ruajt"
+    "locationSaved": "Lokacioni u ruajt",
+    "editTitle": "Korrigjo regjistrimin",
+    "resubmit": "Dërgo përsëri"
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -135,7 +137,15 @@
     "rejectReason": "Arsyeja e refuzimit (e sheh runner-i)",
     "scout": "Runner",
     "submittedAt": "Dërguar më",
-    "pendingCount": "regjistrime në pritje"
+    "pendingCount": "regjistrime në pritje",
+    "runners": "Runner-ët",
+    "balance": "Bilanci",
+    "credited": "Fituar",
+    "paidOut": "Paguar",
+    "payout": "Regjistro pagesën",
+    "payoutNote": "p.sh. Transfertë bankare korrik",
+    "entriesApproved": "regjistrime të aprovuara",
+    "noRunners": "Ende s'ka runner-ë."
   },
   "lang": {
     "label": "Gjuha"
