@@ -145,9 +145,28 @@
     "payout": "Zabeleži isplatu",
     "payoutNote": "npr. bankovni transfer jul",
     "entriesApproved": "odobrenih unosa",
-    "noRunners": "Još nema runnera."
+    "noRunners": "Još nema runnera.",
+    "newBusiness": "Dodaj firmu",
+    "importCsv": "Uvezi CSV",
+    "importHint": "Kolone: name, city, category, phone, address, email, website, whatsapp, description. Prvi red = nazivi kolona.",
+    "importPreview": "Pregled",
+    "importRun": "Uvezi {count} firmi",
+    "importDone": "{ok} uvezeno, {failed} neuspešno",
+    "importInvalid": "redova sa greškama (grad/kategorija nije pronađena)",
+    "downloadTemplate": "Preuzmi šablon",
+    "importFile": "Izaberi CSV fajl"
   },
   "lang": {
     "label": "Jezik"
+  },
+  "ff": {
+    "continueEmail": "nastavi emailom",
+    "google": "Nastavi sa Google-om",
+    "facebook": "Nastavi sa Facebook-om",
+    "apple": "Nastavi sa Apple-om",
+    "terms": "Nastavkom prihvataš uslove i privatnost.",
+    "welcome": "Dobro došao!",
+    "comingSoon": "Aplikacija je u izradi — uskoro ovde.",
+    "magicSent": "Poslali smo ti link za prijavu na email."
   }
 }

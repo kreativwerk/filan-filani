@@ -1,0 +1,41 @@
+// Filan-Filani-Signet — exakte Pfade aus design/filan-filani-screens.html
+export function FFLogo({
+  variant = "light",
+  className,
+}: {
+  variant?: "light" | "dark";
+  className?: string;
+}) {
+  const onDark = variant === "dark";
+  return (
+    <svg
+      viewBox="0 0 195.72 195.72"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Filan Filani"
+      className={className}
+    >
+      <rect
+        x="11.64"
+        y="11.64"
+        width="172.44"
+        height="172.44"
+        rx="86.22"
+        ry="86.22"
+        fill={onDark ? "#FFFFFF" : "#12574F"}
+      />
+      <path
+        d="M57.99,88.89v-21.44c0-7.67,6.22-13.89,13.89-13.89h63.6c.38,0,.75.15,1.02.42l12.4,12.4c.56.56.56,1.48,0,2.04l-12.72,12.72c-.27.27-.64.42-1.02.42h-62.89s-9.9-.33-14.28,7.32Z"
+        fill="#FF4A1A"
+      />
+      <path
+        d="M57.99,122.09v-21.44c0-7.67,6.22-13.89,13.89-13.89h37.15c.38,0,.75.15,1.02.42l12.4,12.4c.56.56.56,1.48,0,2.04l-12.72,12.72c-.27.27-.64.42-1.02.42h-36.44s-9.9-.33-14.28,7.32Z"
+        fill={onDark ? "#12574F" : "#FFFFFF"}
+      />
+      <path
+        d="M72.58,119.29h9.91c.8,0,1.45.65,1.45,1.45v26.31c0,.8-.65,1.45-1.45,1.45h-9.91c-8.06,0-14.6-6.54-14.6-14.6h0c0-8.06,6.54-14.6,14.6-14.6Z"
+        fill={onDark ? "#12574F" : "#FFFFFF"}
+      />
+    </svg>
+  );
+}

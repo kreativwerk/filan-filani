@@ -40,7 +40,19 @@ export default async function AdminPage() {
         <h1 className="text-[22px] font-extrabold tracking-[-0.02em] text-ink">
           {t("title")}
         </h1>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href="/admin/new"
+            className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white hover:bg-primary-dark"
+          >
+            {t("newBusiness")}
+          </Link>
+          <Link
+            href="/admin/import"
+            className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
+          >
+            {t("importCsv")}
+          </Link>
           <Link
             href="/admin/runners"
             className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"

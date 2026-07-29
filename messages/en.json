@@ -145,9 +145,28 @@
     "payout": "Record payout",
     "payoutNote": "e.g. bank transfer July",
     "entriesApproved": "approved entries",
-    "noRunners": "No runners yet."
+    "noRunners": "No runners yet.",
+    "newBusiness": "Add business",
+    "importCsv": "Import CSV",
+    "importHint": "Columns: name, city, category, phone, address, email, website, whatsapp, description. First row = column names.",
+    "importPreview": "Preview",
+    "importRun": "Import {count} businesses",
+    "importDone": "{ok} imported, {failed} failed",
+    "importInvalid": "rows with errors (city/category not found)",
+    "downloadTemplate": "Download template",
+    "importFile": "Choose CSV file"
   },
   "lang": {
     "label": "Language"
+  },
+  "ff": {
+    "continueEmail": "continue with email",
+    "google": "Continue with Google",
+    "facebook": "Continue with Facebook",
+    "apple": "Continue with Apple",
+    "terms": "By continuing you accept the terms and privacy policy.",
+    "welcome": "Welcome!",
+    "comingSoon": "The app is under construction — coming soon.",
+    "magicSent": "We sent you a sign-in link by email."
   }
 }

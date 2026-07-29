@@ -16,6 +16,13 @@
   --primary-dark: #1414a0;
   --primary-light: #e7e7ff;
   --alert: #ff4a1a;
+  /* Filan-Filani-Marke (design/filan-filani-screens.html) */
+  --ff-primary: #12574f;
+  --ff-primary-dark: #0b443e;
+  --ff-accent: #ff4a1a;
+  --ff-mint: #dcedea;
+  --ff-mint-light: #f1f8f6;
+  --ff-teal-soft: #9fd3c9;
 }
 
 @theme inline {
@@ -32,6 +39,12 @@
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
   --color-alert: var(--alert);
+  --color-ff-primary: var(--ff-primary);
+  --color-ff-primary-dark: var(--ff-primary-dark);
+  --color-ff-accent: var(--ff-accent);
+  --color-ff-mint: var(--ff-mint);
+  --color-ff-mint-light: var(--ff-mint-light);
+  --color-ff-teal-soft: var(--ff-teal-soft);
   --font-sans: var(--font-manrope);
   --font-mono: var(--font-plex-mono);
 }

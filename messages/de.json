@@ -145,9 +145,28 @@
     "payout": "Auszahlung verbuchen",
     "payoutNote": "z. B. Überweisung Juli",
     "entriesApproved": "genehmigte Einträge",
-    "noRunners": "Noch keine Runner."
+    "noRunners": "Noch keine Runner.",
+    "newBusiness": "Betrieb anlegen",
+    "importCsv": "CSV importieren",
+    "importHint": "Spalten: name, city, category, phone, address, email, website, whatsapp, description. Erste Zeile = Spaltennamen.",
+    "importPreview": "Vorschau",
+    "importRun": "{count} Betriebe importieren",
+    "importDone": "{ok} importiert, {failed} fehlgeschlagen",
+    "importInvalid": "Zeilen mit Fehlern (Stadt/Kategorie nicht gefunden)",
+    "downloadTemplate": "Vorlage herunterladen",
+    "importFile": "CSV-Datei wählen"
   },
   "lang": {
     "label": "Sprache"
+  },
+  "ff": {
+    "continueEmail": "mit E-Mail fortfahren",
+    "google": "Mit Google anmelden",
+    "facebook": "Mit Facebook anmelden",
+    "apple": "Mit Apple anmelden",
+    "terms": "Mit dem Fortfahren akzeptierst du AGB und Datenschutz.",
+    "welcome": "Willkommen!",
+    "comingSoon": "Die App ist im Aufbau — bald verfügbar.",
+    "magicSent": "Wir haben dir einen Anmelde-Link per E-Mail geschickt."
   }
 }

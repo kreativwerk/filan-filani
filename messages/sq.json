@@ -145,9 +145,28 @@
     "payout": "Regjistro pagesën",
     "payoutNote": "p.sh. Transfertë bankare korrik",
     "entriesApproved": "regjistrime të aprovuara",
-    "noRunners": "Ende s'ka runner-ë."
+    "noRunners": "Ende s'ka runner-ë.",
+    "newBusiness": "Shto biznes",
+    "importCsv": "Importo CSV",
+    "importHint": "Kolonat: name, city, category, phone, address, email, website, whatsapp, description. Rreshti i parë = emrat e kolonave.",
+    "importPreview": "Parapamja",
+    "importRun": "Importo {count} biznese",
+    "importDone": "{ok} u importuan, {failed} dështuan",
+    "importInvalid": "rreshta me gabime (qyteti/kategoria nuk u gjet)",
+    "downloadTemplate": "Shkarko shabllonin",
+    "importFile": "Zgjidh skedarin CSV"
   },
   "lang": {
     "label": "Gjuha"
+  },
+  "ff": {
+    "continueEmail": "vazhdo me email",
+    "google": "Lidhu me Google",
+    "facebook": "Lidhu me Facebook",
+    "apple": "Lidhu me Apple-ID",
+    "terms": "Duke vazhduar pranon kushtet dhe privatësinë.",
+    "welcome": "Mirë se erdhe!",
+    "comingSoon": "Aplikacioni është në ndërtim — së shpejti këtu.",
+    "magicSent": "Të dërguam një link hyrjeje në email."
   }
 }

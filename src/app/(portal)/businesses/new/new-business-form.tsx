@@ -88,11 +88,13 @@ export function NewBusinessForm({
   categories,
   businessId,
   initial,
+  adminMode,
 }: {
   cities: City[];
   categories: Category[];
   businessId?: string;
   initial?: BusinessInitial;
+  adminMode?: boolean;
 }) {
   const t = useTranslations("form");
   const tc = useTranslations("common");
@@ -236,7 +238,11 @@ export function NewBusinessForm({
       if (businessId) {
         const { error: updateError } = await supabase
           .from("businesses")
-          .update({ ...values, status: "pending", review_note: null })
+          .update(
+            adminMode
+              ? values
+              : { ...values, status: "pending", review_note: null },
+          )
           .eq("id", businessId);
         if (updateError) throw updateError;
         await supabase
@@ -248,9 +254,9 @@ export function NewBusinessForm({
           .from("businesses")
           .insert({
             ...values,
-            status: "pending",
-            source: "scout",
-            scout_id: user.id,
+            status: adminMode ? "approved" : "pending",
+            source: adminMode ? "admin" : "scout",
+            scout_id: adminMode ? null : user.id,
             created_by: user.id,
           })
           .select("id")
