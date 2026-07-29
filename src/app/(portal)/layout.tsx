@@ -38,8 +38,8 @@ export default async function PortalLayout({
         isAdmin={profile?.role === "admin"}
         greetingName={profile?.full_name}
       />
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-2 sm:pb-10 sm:pt-6">
-        {children}
+      <main className="w-full flex-1 bg-surface pb-28 sm:pb-10">
+        <div className="mx-auto max-w-5xl px-4 pt-4 sm:pt-6">{children}</div>
       </main>
       <BottomNav />
     </>

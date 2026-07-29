@@ -16,7 +16,7 @@ export async function PortalHeader({
   const td = await getTranslations("dashboard");
 
   return (
-    <header className="bg-background">
+    <header className="bg-white">
       <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3">
         {/* Mobil: Begrüßung wie im Design; Desktop: Wortmarke + Links */}
         <div className="flex-1 min-w-0">
