@@ -40,7 +40,8 @@
     "invalidCredentials": "E-Mail oder Passwort falsch.",
     "forgotPassword": "Passwort vergessen?",
     "resetSent": "Wir haben dir eine E-Mail zum Zurücksetzen geschickt.",
-    "runnersOnly": "Nur für autorisierte Runner"
+    "runnersOnly": "Nur für autorisierte Runner",
+    "emailPh": "deine E-Mail"
   },
   "nav": {
     "dashboard": "Übersicht",
@@ -116,7 +117,9 @@
     "required": "Pflicht",
     "continue": "Weiter",
     "chooseCategory": "Kategorie wählen",
-    "addPhoto": "Foto hinzufügen"
+    "addPhoto": "Foto hinzufügen",
+    "addLocation": "Standort hinzufügen",
+    "locationSaved": "Standort gespeichert"
   },
   "list": {
     "title": "Meine Einträge",

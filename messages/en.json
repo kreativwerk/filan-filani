@@ -40,7 +40,8 @@
     "invalidCredentials": "Wrong email or password.",
     "forgotPassword": "Forgot your password?",
     "resetSent": "We sent you a password reset email.",
-    "runnersOnly": "Authorized runners only"
+    "runnersOnly": "Authorized runners only",
+    "emailPh": "your email"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -116,7 +117,9 @@
     "required": "required",
     "continue": "Continue",
     "chooseCategory": "Choose a category",
-    "addPhoto": "Add photo"
+    "addPhoto": "Add photo",
+    "addLocation": "Add location",
+    "locationSaved": "Location saved"
   },
   "list": {
     "title": "My entries",

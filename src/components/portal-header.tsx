@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ShieldCheck, User } from "lucide-react";
+import { Bell, ShieldCheck, User } from "lucide-react";
 import { LanguageSwitcher } from "./language-switcher";
 import { LogoutButton } from "./logout-button";
 import { Wordmark } from "./ui";
@@ -58,6 +58,9 @@ export async function PortalHeader({
           </Link>
         )}
         <LanguageSwitcher />
+        <div className="grid h-11 w-11 flex-none place-items-center rounded-full text-ink">
+          <Bell className="h-[23px] w-[23px]" />
+        </div>
         <div className="grid h-11 w-11 flex-none place-items-center rounded-full bg-surface text-ink-2">
           <User className="h-[22px] w-[22px]" />
         </div>

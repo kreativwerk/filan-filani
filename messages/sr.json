@@ -40,7 +40,8 @@
     "invalidCredentials": "Pogrešan email ili lozinka.",
     "forgotPassword": "Zaboravili ste lozinku?",
     "resetSent": "Poslali smo ti email za resetovanje lozinke.",
-    "runnersOnly": "Samo za ovlašćene runnere"
+    "runnersOnly": "Samo za ovlašćene runnere",
+    "emailPh": "tvoj email"
   },
   "nav": {
     "dashboard": "Pregled",
@@ -116,7 +117,9 @@
     "required": "obavezno",
     "continue": "Nastavi",
     "chooseCategory": "Izaberi kategoriju",
-    "addPhoto": "Dodaj fotografiju"
+    "addPhoto": "Dodaj fotografiju",
+    "addLocation": "Dodaj lokaciju",
+    "locationSaved": "Lokacija sačuvana"
   },
   "list": {
     "title": "Moji unosi",

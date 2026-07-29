@@ -40,7 +40,8 @@
     "invalidCredentials": "Email ose fjalëkalim i gabuar.",
     "forgotPassword": "Keni harruar fjalëkalimin?",
     "resetSent": "Të dërguam një email për ta rivendosur fjalëkalimin.",
-    "runnersOnly": "Vetëm për runner-at e autorizuar"
+    "runnersOnly": "Vetëm për runner-at e autorizuar",
+    "emailPh": "email-i yt"
   },
   "nav": {
     "dashboard": "Paneli",
@@ -116,7 +117,9 @@
     "required": "e detyrueshme",
     "continue": "Vazhdo",
     "chooseCategory": "Zgjidh kategorinë",
-    "addPhoto": "Shto foto"
+    "addPhoto": "Shto foto",
+    "addLocation": "Shto lokacionin",
+    "locationSaved": "Lokacioni u ruajt"
   },
   "list": {
     "title": "Regjistrimet e mia",

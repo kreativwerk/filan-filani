@@ -5,10 +5,12 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
   Camera,
+  Check,
   CheckCircle2,
   ChevronsRight,
   AtSign,
   Globe,
+  MapPin,
   Share2,
   Mail,
   MessageCircle,
@@ -93,6 +95,9 @@ export function NewBusinessForm({
     sunday: { ...defaultHours, closed: true },
   });
   const [photos, setPhotos] = useState<File[]>([]);
+  const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(
+    null,
+  );
   const [duplicateWarned, setDuplicateWarned] = useState(false);
   const [showDuplicateWarning, setShowDuplicateWarning] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -110,6 +115,15 @@ export function NewBusinessForm({
   function addPhotos(files: FileList | null) {
     if (!files) return;
     setPhotos((prev) => [...prev, ...Array.from(files)].slice(0, MAX_PHOTOS));
+  }
+
+  function captureLocation() {
+    navigator.geolocation?.getCurrentPosition(
+      (pos) =>
+        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      () => {},
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
   }
 
   const filledCount = Object.values(form).filter(Boolean).length;
@@ -177,6 +191,8 @@ export function NewBusinessForm({
           description: form.description.trim() || null,
           city_id: Number(form.cityId),
           address: form.address.trim() || null,
+          lat: coords?.lat ?? null,
+          lng: coords?.lng ?? null,
           phone: form.phone.trim(),
           whatsapp: form.whatsapp.trim() || null,
           viber: form.viber.trim() || null,
@@ -307,6 +323,36 @@ export function NewBusinessForm({
               value={form.description}
               onChange={(e) => set("description", e.target.value)}
             />
+            <div className="flex gap-2.5 pt-0.5">
+              <button
+                type="button"
+                onClick={captureLocation}
+                className={cn(
+                  "flex h-12 flex-1 items-center justify-center gap-2 rounded-full text-[15px] font-bold",
+                  coords
+                    ? "bg-[#DCEDEA] text-[#0B443E]"
+                    : "bg-primary text-white hover:bg-primary-dark",
+                )}
+              >
+                {coords ? (
+                  <Check className="h-[18px] w-[18px]" />
+                ) : (
+                  <MapPin className="h-[18px] w-[18px]" />
+                )}
+                {coords ? t("locationSaved") : t("addLocation")}
+              </button>
+              <label className="flex h-12 flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border-[1.5px] border-primary bg-white text-[15px] font-bold text-primary-dark hover:bg-primary-light/40">
+                <Camera className="h-[18px] w-[18px]" />
+                {t("addPhoto")}
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => addPhotos(e.target.files)}
+                />
+              </label>
+            </div>
             <div>
               <p className="mb-2 text-xs text-muted">{t("photosHint")}</p>
               <div className="flex flex-wrap gap-3">
@@ -329,19 +375,6 @@ export function NewBusinessForm({
                     </button>
                   </div>
                 ))}
-                {photos.length < MAX_PHOTOS && (
-                  <label className="flex h-12 cursor-pointer items-center gap-2 rounded-full border-[1.5px] border-primary bg-white px-5 text-[15px] font-bold text-primary-dark hover:bg-primary-light/40">
-                    <Camera className="h-[18px] w-[18px]" />
-                    {t("addPhoto")}
-                    <input
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      className="hidden"
-                      onChange={(e) => addPhotos(e.target.files)}
-                    />
-                  </label>
-                )}
               </div>
             </div>
           </div>

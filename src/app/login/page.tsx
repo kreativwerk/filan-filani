@@ -13,6 +13,7 @@ const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
 
 export default function LoginPage() {
   const t = useTranslations("auth");
+  const tf = useTranslations("form");
   const tc = useTranslations("common");
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -59,7 +60,7 @@ export default function LoginPage() {
 
       <div className="w-full max-w-md rounded-[28px] bg-white p-6 shadow-[0_8px_32px_rgba(16,25,23,0.08)]">
         <h1 className="text-center text-[22px] font-extrabold tracking-[0.06em] text-ink">
-          {t("loginTitle")}
+          LOGIN
         </h1>
         {!configured && (
           <p className="mt-3 rounded-[14px] bg-amber-50 p-3 text-sm text-amber-800">
@@ -75,6 +76,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
+              placeholder={t("emailPh")}
               className="h-[52px]"
             />
           </label>
@@ -100,7 +102,7 @@ export default function LoginPage() {
             className="mt-1 h-14 w-full text-[19px]"
             disabled={loading || !configured}
           >
-            {loading ? tc("loading") : t("submitLogin")}
+            {loading ? tc("loading") : tf("continue").toLowerCase()}
           </Button>
           <button
             type="button"
