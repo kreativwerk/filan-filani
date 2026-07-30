@@ -1,37 +1,99 @@
+import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
-import { getTranslations } from "next-intl/server";
-import { FFLogo } from "@/components/ff-logo";
-import { FFLogin } from "./ff-login";
+import type { Locale } from "@/i18n/config";
+import {
+  cityOption,
+  DEFAULT_CITY,
+  getCategories,
+  getCities,
+  getCookieCitySlug,
+  toFFBiz,
+  toFFCat,
+  type FFBizRow,
+} from "@/lib/ff-data";
+import { FFShell } from "@/components/ff/shell";
+import { FFHomeView, type FFHomeData } from "@/components/ff/home-view";
 
-export const metadata = {
-  title: "Filan Filani — Connect Kosovo",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("ff");
+  return { title: t("metaHome"), description: t("metaHomeDesc") };
+}
 
-export default async function FFAppPage() {
-  let signedIn = false;
+export default async function FFAppHome() {
+  const locale = (await getLocale()) as Locale;
+  const citySlug = await getCookieCitySlug();
+
+  const data: FFHomeData = {
+    signedIn: false,
+    userName: null,
+    city: { slug: citySlug, label: citySlug },
+    cities: [],
+    categories: [],
+    businesses: [],
+  };
+
   if (hasSupabaseEnv()) {
     const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    signedIn = Boolean(user);
-  }
+    const [
+      {
+        data: { user },
+      },
+      cities,
+      categories,
+    ] = await Promise.all([
+      supabase.auth.getUser(),
+      getCities(),
+      getCategories(),
+    ]);
 
-  if (signedIn) {
-    const t = await getTranslations("ff");
-    return (
-      <main className="flex flex-1 flex-col items-center justify-center gap-5 bg-ff-primary px-6 text-center">
-        <FFLogo variant="dark" className="h-24 w-24" />
-        <h1 className="text-2xl font-extrabold tracking-[-0.02em] text-white">
-          {t("welcome")}
-        </h1>
-        <p className="max-w-sm text-[15px] text-ff-teal-soft">
-          {t("comingSoon")}
-        </p>
-      </main>
+    const city =
+      cities.find((c) => c.slug === citySlug) ??
+      cities.find((c) => c.slug === DEFAULT_CITY) ??
+      cities[0] ??
+      null;
+
+    data.signedIn = Boolean(user);
+    data.cities = cities.map((c) => cityOption(c, locale));
+    data.categories = categories.map((c) => toFFCat(c, locale));
+    if (city) data.city = cityOption(city, locale);
+
+    const [profileRes, bizRes] = await Promise.all([
+      user
+        ? supabase
+            .from("profiles")
+            .select("full_name")
+            .eq("id", user.id)
+            .maybeSingle()
+        : Promise.resolve({ data: null }),
+      city
+        ? supabase
+            .from("businesses")
+            .select(
+              "*, business_categories(categories(*)), reviews(rating)",
+            )
+            .eq("status", "approved")
+            .eq("city_id", city.id)
+            .order("created_at", { ascending: false })
+            .limit(12)
+        : Promise.resolve({ data: null }),
+    ]);
+
+    if (user) {
+      data.userName =
+        profileRes.data?.full_name?.trim() ||
+        user.email?.split("@")[0] ||
+        null;
+    }
+    data.businesses = ((bizRes.data ?? []) as FFBizRow[]).map((row) =>
+      toFFBiz(row, locale, { city }),
     );
   }
 
-  return <FFLogin />;
+  return (
+    <FFShell citySlug={data.city.slug}>
+      <FFHomeView data={data} />
+    </FFShell>
+  );
 }
