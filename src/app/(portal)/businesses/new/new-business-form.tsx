@@ -188,12 +188,31 @@ export function NewBusinessForm({
         ? Boolean(form.phone)
         : Boolean(form.categoryId);
 
-  function next() {
+  async function next() {
     setError(null);
     if (!stepValid) {
       setError(t("errorRequired"));
       return;
     }
+    // Duplikate früh melden: nach Schritt 1 (Name+Stadt), nach Schritt 2 (+Telefon)
+    if (!businessId && !duplicateWarned && step < TOTAL_STEPS) {
+      setLoading(true);
+      const { data: isDuplicate } = await createClient().rpc(
+        "business_duplicate_exists",
+        {
+          p_name: form.name,
+          p_phone: step >= 2 ? form.phone : "",
+          p_city: Number(form.cityId),
+        },
+      );
+      setLoading(false);
+      if (isDuplicate) {
+        setDuplicateWarned(true);
+        setShowDuplicateWarning(true);
+        return;
+      }
+    }
+    setShowDuplicateWarning(false);
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
   }
 
