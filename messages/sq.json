@@ -164,7 +164,11 @@
     "osmChooseCity": "Zgjidh qytetin",
     "osmRun": "Importo bizneset",
     "osmRunning": "Duke importuar… (deri 1 min)",
-    "osmResult": "{found} u gjetën · {imported} u importuan · {skipped} u kapërcyen (dublikata/pa kategori)"
+    "osmResult": "{found} u gjetën · {imported} u importuan · {skipped} u kapërcyen (dublikata/pa kategori)",
+    "claimsTitle": "Kërkesat e pronësisë",
+    "claimsHint": "Prono­ri kërkon ta marrë biznesin e vet. Verifiko me një telefonatë në numrin e regjistruar të biznesit para se ta aprovosh — pas aprovimit ai e menaxhon profilin vetë.",
+    "claimsEmpty": "S'ka kërkesa në pritje.",
+    "claimsBusinessPhone": "Tel. i biznesit"
   },
   "lang": {
     "label": "Gjuha"

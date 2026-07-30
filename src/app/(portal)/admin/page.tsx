@@ -60,6 +60,12 @@ export default async function AdminPage() {
             OSM
           </Link>
           <Link
+            href="/admin/claims"
+            className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
+          >
+            {t("claimsTitle")}
+          </Link>
+          <Link
             href="/admin/runners"
             className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
           >

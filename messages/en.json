@@ -164,7 +164,11 @@
     "osmChooseCity": "Choose a city",
     "osmRun": "Import businesses",
     "osmRunning": "Importing… (up to 1 min)",
-    "osmResult": "{found} found · {imported} imported · {skipped} skipped (duplicates/no category)"
+    "osmResult": "{found} found · {imported} imported · {skipped} skipped (duplicates/no category)",
+    "claimsTitle": "Ownership claims",
+    "claimsHint": "A user claims their business. Verify by calling the business phone on file before approving — once approved they manage the profile themselves.",
+    "claimsEmpty": "No pending claims.",
+    "claimsBusinessPhone": "Business phone"
   },
   "lang": {
     "label": "Language"

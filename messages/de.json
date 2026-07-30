@@ -164,7 +164,11 @@
     "osmChooseCity": "Stadt wählen",
     "osmRun": "Betriebe importieren",
     "osmRunning": "Importiere… (bis zu 1 Min.)",
-    "osmResult": "{found} gefunden · {imported} importiert · {skipped} übersprungen (Duplikate/ohne Kategorie)"
+    "osmResult": "{found} gefunden · {imported} importiert · {skipped} übersprungen (Duplikate/ohne Kategorie)",
+    "claimsTitle": "Inhaberschafts-Anträge",
+    "claimsHint": "Ein Nutzer beansprucht seinen Betrieb. Vor der Freigabe per Anruf auf die im Eintrag hinterlegte Betriebsnummer verifizieren — nach der Freigabe verwaltet er das Profil selbst.",
+    "claimsEmpty": "Keine offenen Anträge.",
+    "claimsBusinessPhone": "Betriebs-Tel."
   },
   "lang": {
     "label": "Sprache"

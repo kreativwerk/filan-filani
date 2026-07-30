@@ -164,7 +164,11 @@
     "osmChooseCity": "Izaberi grad",
     "osmRun": "Uvezi firme",
     "osmRunning": "Uvoz u toku… (do 1 min)",
-    "osmResult": "{found} pronađeno · {imported} uvezeno · {skipped} preskočeno (duplikati/bez kategorije)"
+    "osmResult": "{found} pronađeno · {imported} uvezeno · {skipped} preskočeno (duplikati/bez kategorije)",
+    "claimsTitle": "Zahtevi za vlasništvo",
+    "claimsHint": "Korisnik traži svoju firmu. Pre odobrenja proveri pozivom na registrovani broj firme — nakon odobrenja sam upravlja profilom.",
+    "claimsEmpty": "Nema zahteva na čekanju.",
+    "claimsBusinessPhone": "Tel. firme"
   },
   "lang": {
     "label": "Jezik"
