@@ -6,7 +6,8 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ShieldCheck } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import { Button, Input, Wordmark } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
+import { KsDataLogo } from "@/components/ks-data-logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
@@ -55,7 +56,7 @@ export default function LoginPage() {
       </div>
 
       <Link href="/" className="pb-10 pt-10">
-        <Wordmark size="lg" />
+        <KsDataLogo size="lg" />
       </Link>
 
       <div className="w-full max-w-md rounded-[28px] bg-white p-6 shadow-[0_8px_32px_rgba(16,25,23,0.08)]">
