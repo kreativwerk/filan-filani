@@ -123,7 +123,9 @@
     "editTitle": "Fix entry",
     "resubmit": "Resubmit",
     "locating": "Getting location…",
-    "locationError": "Could not get your location — allow GPS in the browser and try again."
+    "locationError": "Could not get your location — allow GPS in the browser and try again.",
+    "locationDenied": "Location access is blocked. Open the browser menu (aA / 🔒 in the address bar) → Permissions → Location → Allow, then reload the page.",
+    "locationTimeout": "GPS did not respond — try again, ideally near a window or outside."
   },
   "list": {
     "title": "My entries",

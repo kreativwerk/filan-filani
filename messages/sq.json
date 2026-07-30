@@ -123,7 +123,9 @@
     "editTitle": "Korrigjo regjistrimin",
     "resubmit": "Dërgo përsëri",
     "locating": "Duke marrë lokacionin…",
-    "locationError": "Lokacioni nuk u mor dot — lejo GPS-in në shfletues dhe provo përsëri."
+    "locationError": "Lokacioni nuk u mor dot — lejo GPS-in në shfletues dhe provo përsëri.",
+    "locationDenied": "Qasja te lokacioni është e bllokuar. Hape menynë e shfletuesit (aA / 🔒 te adresa) → Lejet → Lokacioni → Lejo, pastaj rifresko faqen.",
+    "locationTimeout": "GPS-i nuk u përgjigj — provo përsëri, mundësisht afër dritares ose jashtë."
   },
   "list": {
     "title": "Regjistrimet e mia",

@@ -131,7 +131,9 @@ export function NewBusinessForm({
     null,
   );
   const [locating, setLocating] = useState(false);
-  const [locationError, setLocationError] = useState(false);
+  const [locationError, setLocationError] = useState<
+    "denied" | "timeout" | "generic" | null
+  >(null);
   const [duplicateWarned, setDuplicateWarned] = useState(false);
   const [showDuplicateWarning, setShowDuplicateWarning] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -152,9 +154,9 @@ export function NewBusinessForm({
   }
 
   function captureLocation() {
-    setLocationError(false);
+    setLocationError(null);
     if (!navigator.geolocation) {
-      setLocationError(true);
+      setLocationError("generic");
       return;
     }
     setLocating(true);
@@ -163,9 +165,15 @@ export function NewBusinessForm({
         setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setLocating(false);
       },
-      () => {
+      (err) => {
         setLocating(false);
-        setLocationError(true);
+        setLocationError(
+          err.code === err.PERMISSION_DENIED
+            ? "denied"
+            : err.code === err.TIMEOUT
+              ? "timeout"
+              : "generic",
+        );
       },
       { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 },
     );
@@ -593,7 +601,11 @@ export function NewBusinessForm({
 
         {locationError && (
           <p className="rounded-[14px] bg-amber-50 p-3 text-sm text-amber-800">
-            {t("locationError")}
+            {locationError === "denied"
+              ? t("locationDenied")
+              : locationError === "timeout"
+                ? t("locationTimeout")
+                : t("locationError")}
           </p>
         )}
         {showDuplicateWarning && (

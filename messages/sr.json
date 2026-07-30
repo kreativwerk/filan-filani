@@ -123,7 +123,9 @@
     "editTitle": "Ispravi unos",
     "resubmit": "Pošalji ponovo",
     "locating": "Preuzimanje lokacije…",
-    "locationError": "Lokacija nije preuzeta — dozvoli GPS u pregledaču i pokušaj ponovo."
+    "locationError": "Lokacija nije preuzeta — dozvoli GPS u pregledaču i pokušaj ponovo.",
+    "locationDenied": "Pristup lokaciji je blokiran. Otvori meni pregledača (aA / 🔒 u adresnoj traci) → Dozvole → Lokacija → Dozvoli, pa osveži stranicu.",
+    "locationTimeout": "GPS nije odgovorio — pokušaj ponovo, najbolje kraj prozora ili napolju."
   },
   "list": {
     "title": "Moji unosi",

@@ -123,7 +123,9 @@
     "editTitle": "Eintrag korrigieren",
     "resubmit": "Erneut einreichen",
     "locating": "Standort wird ermittelt…",
-    "locationError": "Standort konnte nicht ermittelt werden — bitte GPS im Browser erlauben und erneut versuchen."
+    "locationError": "Standort konnte nicht ermittelt werden — bitte GPS im Browser erlauben und erneut versuchen.",
+    "locationDenied": "Standort-Zugriff ist blockiert. Öffne das Browser-Menü (aA / 🔒 in der Adressleiste) → Berechtigungen → Standort → Erlauben, dann Seite neu laden.",
+    "locationTimeout": "GPS hat nicht geantwortet — versuch es noch einmal, am besten am Fenster oder draußen."
   },
   "list": {
     "title": "Meine Einträge",
