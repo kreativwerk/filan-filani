@@ -23,18 +23,26 @@ export function KsDataLogo({
   size = "lg",
   className,
 }: {
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
   className?: string;
 }) {
-  const text = size === "lg" ? "text-[46px]" : "text-[28px]";
-  const dot = size === "lg" ? "h-[11px] w-[11px]" : "h-2 w-2";
-  const map = size === "lg" ? "h-[120px] w-[103px]" : "h-[72px] w-[62px]";
+  const text =
+    size === "lg" ? "text-[46px]" : size === "md" ? "text-[28px]" : "text-[22px]";
+  const dot =
+    size === "lg" ? "h-[11px] w-[11px]" : size === "md" ? "h-2 w-2" : "h-1.5 w-1.5";
+  const map =
+    size === "lg"
+      ? "h-[120px] w-[103px]"
+      : size === "md"
+        ? "h-[72px] w-[62px]"
+        : "h-[52px] w-[45px]";
   return (
     <span className={cn("relative inline-flex items-center", className)}>
       <KosovoSilhouette
         className={cn(
           map,
-          "absolute -right-10 top-1/2 -translate-y-1/2 opacity-90",
+          "absolute top-1/2 -translate-y-1/2 opacity-90",
+          size === "sm" ? "-right-6" : "-right-10",
         )}
       />
       <span className="relative z-10 inline-flex items-baseline">

@@ -121,7 +121,9 @@
     "addLocation": "Shto lokacionin",
     "locationSaved": "Lokacioni u ruajt",
     "editTitle": "Korrigjo regjistrimin",
-    "resubmit": "Dërgo përsëri"
+    "resubmit": "Dërgo përsëri",
+    "locating": "Duke marrë lokacionin…",
+    "locationError": "Lokacioni nuk u mor dot — lejo GPS-in në shfletues dhe provo përsëri."
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -168,5 +170,9 @@
     "welcome": "Mirë se erdhe!",
     "comingSoon": "Aplikacioni është në ndërtim — së shpejti këtu.",
     "magicSent": "Të dërguam një link hyrjeje në email."
+  },
+  "profile": {
+    "title": "Profili im",
+    "saved": "U ruajt."
   }
 }

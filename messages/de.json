@@ -121,7 +121,9 @@
     "addLocation": "Standort hinzufügen",
     "locationSaved": "Standort gespeichert",
     "editTitle": "Eintrag korrigieren",
-    "resubmit": "Erneut einreichen"
+    "resubmit": "Erneut einreichen",
+    "locating": "Standort wird ermittelt…",
+    "locationError": "Standort konnte nicht ermittelt werden — bitte GPS im Browser erlauben und erneut versuchen."
   },
   "list": {
     "title": "Meine Einträge",
@@ -168,5 +170,9 @@
     "welcome": "Willkommen!",
     "comingSoon": "Die App ist im Aufbau — bald verfügbar.",
     "magicSent": "Wir haben dir einen Anmelde-Link per E-Mail geschickt."
+  },
+  "profile": {
+    "title": "Mein Profil",
+    "saved": "Gespeichert."
   }
 }

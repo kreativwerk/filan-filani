@@ -121,7 +121,9 @@
     "addLocation": "Add location",
     "locationSaved": "Location saved",
     "editTitle": "Fix entry",
-    "resubmit": "Resubmit"
+    "resubmit": "Resubmit",
+    "locating": "Getting location…",
+    "locationError": "Could not get your location — allow GPS in the browser and try again."
   },
   "list": {
     "title": "My entries",
@@ -168,5 +170,9 @@
     "welcome": "Welcome!",
     "comingSoon": "The app is under construction — coming soon.",
     "magicSent": "We sent you a sign-in link by email."
+  },
+  "profile": {
+    "title": "My profile",
+    "saved": "Saved."
   }
 }

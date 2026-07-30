@@ -3,7 +3,6 @@
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
 import { localeLabels, locales, type Locale } from "@/i18n/config";
 import { setLocaleCookie } from "@/i18n/set-locale";
 import { Flag } from "./flags";
@@ -33,22 +32,21 @@ export function LanguageSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-11 items-center gap-2 rounded-full border-[1.5px] border-line-strong bg-white px-3 text-sm font-bold text-ink hover:bg-surface"
+        aria-label={localeLabels[locale].label}
+        className="grid h-11 w-11 place-items-center rounded-full hover:bg-surface"
       >
-        <Flag locale={locale} />
-        <span className="hidden sm:inline">{localeLabels[locale].label}</span>
-        <ChevronDown className="h-4 w-4" />
+        <Flag locale={locale} className="h-7 w-7" />
       </button>
       {open && (
-        <div className="absolute right-0 z-20 mt-2 w-44 overflow-hidden rounded-[14px] border border-line bg-white shadow-lg">
+        <div className="absolute right-0 z-20 mt-1 w-44 overflow-hidden rounded-[14px] border border-line bg-white shadow-lg">
           {locales.map((l) => (
             <button
               key={l}
               type="button"
               onClick={() => setLocale(l)}
-              className="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm font-semibold text-ink hover:bg-surface"
+              className="flex w-full items-center gap-3 px-3.5 py-2.5 text-left text-sm font-semibold text-ink hover:bg-surface"
             >
-              <Flag locale={l} />
+              <Flag locale={l} className="h-6 w-6" />
               {localeLabels[l].label}
             </button>
           ))}

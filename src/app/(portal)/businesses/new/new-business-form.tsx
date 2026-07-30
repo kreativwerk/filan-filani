@@ -130,6 +130,8 @@ export function NewBusinessForm({
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(
     null,
   );
+  const [locating, setLocating] = useState(false);
+  const [locationError, setLocationError] = useState(false);
   const [duplicateWarned, setDuplicateWarned] = useState(false);
   const [showDuplicateWarning, setShowDuplicateWarning] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -150,11 +152,22 @@ export function NewBusinessForm({
   }
 
   function captureLocation() {
-    navigator.geolocation?.getCurrentPosition(
-      (pos) =>
-        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-      () => {},
-      { enableHighAccuracy: true, timeout: 10000 },
+    setLocationError(false);
+    if (!navigator.geolocation) {
+      setLocationError(true);
+      return;
+    }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setLocating(false);
+      },
+      () => {
+        setLocating(false);
+        setLocationError(true);
+      },
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 },
     );
   }
 
@@ -392,9 +405,15 @@ export function NewBusinessForm({
                 {coords ? (
                   <Check className="h-[18px] w-[18px]" />
                 ) : (
-                  <MapPin className="h-[18px] w-[18px]" />
+                  <MapPin
+                    className={cn("h-[18px] w-[18px]", locating && "animate-pulse")}
+                  />
                 )}
-                {coords ? t("locationSaved") : t("addLocation")}
+                {locating
+                  ? t("locating")
+                  : coords
+                    ? t("locationSaved")
+                    : t("addLocation")}
               </button>
               <label className="flex h-12 flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border-[1.5px] border-primary bg-white text-[15px] font-bold text-primary-dark hover:bg-primary-light/40">
                 <Camera className="h-[18px] w-[18px]" />
@@ -572,6 +591,11 @@ export function NewBusinessForm({
           </div>
         )}
 
+        {locationError && (
+          <p className="rounded-[14px] bg-amber-50 p-3 text-sm text-amber-800">
+            {t("locationError")}
+          </p>
+        )}
         {showDuplicateWarning && (
           <p className="rounded-[14px] bg-amber-50 p-4 text-sm text-amber-800">
             {t("duplicateWarning")}

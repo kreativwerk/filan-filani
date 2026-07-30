@@ -121,7 +121,9 @@
     "addLocation": "Dodaj lokaciju",
     "locationSaved": "Lokacija sačuvana",
     "editTitle": "Ispravi unos",
-    "resubmit": "Pošalji ponovo"
+    "resubmit": "Pošalji ponovo",
+    "locating": "Preuzimanje lokacije…",
+    "locationError": "Lokacija nije preuzeta — dozvoli GPS u pregledaču i pokušaj ponovo."
   },
   "list": {
     "title": "Moji unosi",
@@ -168,5 +170,9 @@
     "welcome": "Dobro došao!",
     "comingSoon": "Aplikacija je u izradi — uskoro ovde.",
     "magicSent": "Poslali smo ti link za prijavu na email."
+  },
+  "profile": {
+    "title": "Moj profil",
+    "saved": "Sačuvano."
   }
 }

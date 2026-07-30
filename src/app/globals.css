@@ -55,3 +55,26 @@ body {
   font-family: var(--font-manrope), -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Spürbares Klick-Feedback auf allen interaktiven Elementen (v. a. mobil) */
+@layer base {
+  a,
+  button,
+  label {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a,
+  button:not(:disabled),
+  label:has(input[type="file"]) {
+    transition:
+      transform 0.08s ease,
+      background-color 0.15s ease,
+      opacity 0.15s ease,
+      border-color 0.15s ease;
+  }
+  a:active,
+  button:not(:disabled):active,
+  label:has(input[type="file"]):active {
+    transform: scale(0.97);
+  }
+}
