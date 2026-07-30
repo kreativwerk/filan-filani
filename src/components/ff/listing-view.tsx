@@ -16,6 +16,7 @@ export function FFListingView({
   count,
   pills,
   items,
+  emptyLabel,
   children,
 }: {
   eyebrow: string;
@@ -23,6 +24,7 @@ export function FFListingView({
   count?: number;
   pills?: FFPill[];
   items: FFBiz[];
+  emptyLabel?: string;
   children?: React.ReactNode;
 }) {
   const t = useTranslations("ff");
@@ -78,14 +80,16 @@ export function FFListingView({
           </div>
         )}
 
-        <div className="flex flex-col gap-2.5 px-4 lg:px-0">
-          {count !== undefined && (
-            <div className="text-[13.5px] font-semibold text-muted">
-              {t("resultCount", { count })}
-            </div>
-          )}
-          <FFBusinessList items={items} />
-        </div>
+        {(count !== undefined || items.length > 0) && (
+          <div className="flex flex-col gap-2.5 px-4 lg:px-0">
+            {count !== undefined && (
+              <div className="text-[13.5px] font-semibold text-muted">
+                {t("resultCount", { count })}
+              </div>
+            )}
+            <FFBusinessList items={items} emptyLabel={emptyLabel} />
+          </div>
+        )}
       </main>
     </>
   );

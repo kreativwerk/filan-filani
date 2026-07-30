@@ -101,12 +101,18 @@ export function FFBusinessCard({
 }
 
 /** Vertikale Liste (mobil) / 3er-Raster (Desktop) für Listen-Seiten */
-export function FFBusinessList({ items }: { items: FFBiz[] }) {
+export function FFBusinessList({
+  items,
+  emptyLabel,
+}: {
+  items: FFBiz[];
+  emptyLabel?: string;
+}) {
   const t = useTranslations("ff");
   if (!items.length) {
     return (
       <p className="rounded-[18px] border border-line bg-white p-5 text-[15px] text-muted">
-        {t("noBusinesses")}
+        {emptyLabel ?? t("noBusinesses")}
       </p>
     );
   }
