@@ -81,4 +81,4 @@ src/
 - **Phase 0** — KS Data (dieses Portal) auf eigener Domain, Datenaufbau
 - **Phase 1** — Öffentliche Web-App: Verzeichnis, Suche, Betriebsprofile (SEO), Bewertungen
 - **Phase 2** — Anfragen an alle passenden Betriebe + In-App-Chat, Betriebs-Dashboard, Produktkataloge
-- **Phase 3** — iOS/Android (Capacitor oder Expo — Entscheidung bei App-Start), Monetarisierung (Leads, Premium, Werbung)
+- **Phase 3** — iOS/Android als **native Expo/React-Native-App** (entschieden: kein Capacitor — die App soll sich vollständig nativ anfühlen). Sie nutzt dasselbe Supabase-Backend und das Filan-Filani-Design-System; die Web-App bleibt für SEO und Desktop. Danach: Monetarisierung (Leads, Premium, Werbung)
