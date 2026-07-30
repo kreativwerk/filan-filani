@@ -158,7 +158,13 @@
     "importDone": "{ok} uvezeno, {failed} neuspešno",
     "importInvalid": "redova sa greškama (grad/kategorija nije pronađena)",
     "downloadTemplate": "Preuzmi šablon",
-    "importFile": "Izaberi CSV fajl"
+    "importFile": "Izaberi CSV fajl",
+    "osmTitle": "Uvezi iz OpenStreetMap",
+    "osmHint": "Učitava firme javno mapirane u OpenStreetMap za izabrani grad (naziv, kategorija, telefon, adresa, GPS, FB/IG ako postoji). Duplikati se automatski preskaču.",
+    "osmChooseCity": "Izaberi grad",
+    "osmRun": "Uvezi firme",
+    "osmRunning": "Uvoz u toku… (do 1 min)",
+    "osmResult": "{found} pronađeno · {imported} uvezeno · {skipped} preskočeno (duplikati/bez kategorije)"
   },
   "lang": {
     "label": "Jezik"

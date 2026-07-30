@@ -158,7 +158,13 @@
     "importDone": "{ok} imported, {failed} failed",
     "importInvalid": "rows with errors (city/category not found)",
     "downloadTemplate": "Download template",
-    "importFile": "Choose CSV file"
+    "importFile": "Choose CSV file",
+    "osmTitle": "Import from OpenStreetMap",
+    "osmHint": "Loads businesses publicly mapped in OpenStreetMap for the chosen city (name, category, phone, address, GPS, FB/IG if present). Duplicates are skipped automatically.",
+    "osmChooseCity": "Choose a city",
+    "osmRun": "Import businesses",
+    "osmRunning": "Importing… (up to 1 min)",
+    "osmResult": "{found} found · {imported} imported · {skipped} skipped (duplicates/no category)"
   },
   "lang": {
     "label": "Language"

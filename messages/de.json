@@ -158,7 +158,13 @@
     "importDone": "{ok} importiert, {failed} fehlgeschlagen",
     "importInvalid": "Zeilen mit Fehlern (Stadt/Kategorie nicht gefunden)",
     "downloadTemplate": "Vorlage herunterladen",
-    "importFile": "CSV-Datei wählen"
+    "importFile": "CSV-Datei wählen",
+    "osmTitle": "Aus OpenStreetMap importieren",
+    "osmHint": "Lädt die öffentlich in OpenStreetMap erfassten Betriebe der gewählten Stadt (Name, Kategorie, Telefon, Adresse, GPS, FB/IG falls vorhanden). Duplikate werden automatisch übersprungen.",
+    "osmChooseCity": "Stadt wählen",
+    "osmRun": "Betriebe importieren",
+    "osmRunning": "Importiere… (bis zu 1 Min.)",
+    "osmResult": "{found} gefunden · {imported} importiert · {skipped} übersprungen (Duplikate/ohne Kategorie)"
   },
   "lang": {
     "label": "Sprache"

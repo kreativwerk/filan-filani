@@ -1,0 +1,98 @@
+// OpenStreetMap-Import: Overpass-Abfrage + Zuordnung OSM-Tags -> unsere Kategorien
+// Daten © OpenStreetMap contributors, Lizenz ODbL (Quellenangabe erforderlich)
+
+export type OsmBusiness = {
+  name: string;
+  categorySlug: string;
+  phone: string | null;
+  website: string | null;
+  facebook: string | null;
+  instagram: string | null;
+  email: string | null;
+  address: string | null;
+  lat: number;
+  lng: number;
+};
+
+const AMENITIES =
+  "restaurant|cafe|fast_food|bar|pharmacy|dentist|doctors|clinic|veterinary|bank|driving_school|kindergarten|events_venue";
+const OFFICES = "lawyer|notary|accountant|estate_agent|insurance|it";
+const TOURISM = "hotel|guest_house|motel|hostel";
+
+export function overpassQuery(lat: number, lng: number, radius = 8000) {
+  const around = `around:${radius},${lat},${lng}`;
+  return `[out:json][timeout:50];
+(
+  nwr(${around})["name"]["shop"];
+  nwr(${around})["name"]["craft"];
+  nwr(${around})["name"]["amenity"~"^(${AMENITIES})$"];
+  nwr(${around})["name"]["office"~"^(${OFFICES})$"];
+  nwr(${around})["name"]["tourism"~"^(${TOURISM})$"];
+);
+out center tags 1500;`;
+}
+
+type Tags = Record<string, string>;
+
+function mapCategory(t: Tags): string | null {
+  const shop = t.shop, amenity = t.amenity, craft = t.craft, office = t.office, tourism = t.tourism;
+  if (shop === "car_repair" || shop === "car_parts" || shop === "tyres" || craft === "car_painter") return "auto-servis";
+  if (amenity === "restaurant" || amenity === "fast_food" || amenity === "bar") return "restorant";
+  if (amenity === "cafe" || shop === "bakery" || shop === "pastry" || shop === "confectionery") return "kafene";
+  if (shop === "hairdresser" || shop === "beauty" || shop === "cosmetics" || craft === "hairdresser") return "bukuri";
+  if (amenity === "dentist") return "stomatolog";
+  if (amenity === "pharmacy" || amenity === "doctors" || amenity === "clinic" || amenity === "veterinary" || shop === "optician" || shop === "medical_supply") return "shendetesi";
+  if (amenity === "bank" || office === "insurance") return "sigurime-financa";
+  if (office === "lawyer" || office === "notary") return "avokat";
+  if (office === "accountant") return "kontabilitet";
+  if (office === "estate_agent") return "patundshmeri";
+  if (office === "it" || shop === "computer" || shop === "electronics" || shop === "mobile_phone") return "teknologji";
+  if (tourism) return "hotel";
+  if (shop === "supermarket" || shop === "convenience" || shop === "greengrocer" || shop === "butcher" || shop === "grocery") return "shitore";
+  if (shop === "clothes" || shop === "shoes" || shop === "boutique" || shop === "fashion_accessories" || craft === "tailor") return "mode";
+  if (shop === "furniture" || shop === "interior_decoration" || shop === "curtain" || craft === "carpenter") return "mobileri";
+  if (craft === "electrician" || shop === "electrical") return "elektricist";
+  if (craft === "plumber" || craft === "hvac" || shop === "bathroom_furnishing") return "hidraulik";
+  if (craft === "painter" || craft === "tiler" || craft === "roofer" || craft === "builder" || craft === "scaffolder" || shop === "doityourself" || shop === "hardware" || shop === "trade") return "ndertim";
+  if (amenity === "driving_school" || amenity === "kindergarten" || shop === "books" || shop === "stationery") return "edukim";
+  if (amenity === "events_venue" || shop === "florist" || craft === "photographer" || shop === "photo") return "evente";
+  if (shop === "agrarian" || shop === "farm" || shop === "garden_centre") return "bujqesi";
+  if (shop === "laundry" || shop === "dry_cleaning" || craft === "cleaning") return "pastrim";
+  return null;
+}
+
+function cleanUrl(v: string | undefined): string | null {
+  if (!v) return null;
+  const first = v.split(";")[0].trim();
+  return first || null;
+}
+
+export function parseOverpass(json: {
+  elements?: Array<{ lat?: number; lon?: number; center?: { lat: number; lon: number }; tags?: Tags }>;
+}): OsmBusiness[] {
+  const out: OsmBusiness[] = [];
+  for (const el of json.elements ?? []) {
+    const t = el.tags ?? {};
+    const name = t.name?.trim();
+    const lat = el.lat ?? el.center?.lat;
+    const lng = el.lon ?? el.center?.lon;
+    if (!name || lat === undefined || lng === undefined) continue;
+    const categorySlug = mapCategory(t);
+    if (!categorySlug) continue;
+    const street = t["addr:street"];
+    const nr = t["addr:housenumber"];
+    out.push({
+      name,
+      categorySlug,
+      phone: (t.phone ?? t["contact:phone"] ?? "").split(";")[0].trim() || null,
+      website: cleanUrl(t.website ?? t["contact:website"]),
+      facebook: cleanUrl(t["contact:facebook"] ?? t.facebook),
+      instagram: cleanUrl(t["contact:instagram"] ?? t.instagram),
+      email: (t.email ?? t["contact:email"] ?? "").split(";")[0].trim() || null,
+      address: street ? `${street}${nr ? " " + nr : ""}` : null,
+      lat,
+      lng,
+    });
+  }
+  return out;
+}

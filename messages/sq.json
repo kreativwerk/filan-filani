@@ -158,7 +158,13 @@
     "importDone": "{ok} u importuan, {failed} dështuan",
     "importInvalid": "rreshta me gabime (qyteti/kategoria nuk u gjet)",
     "downloadTemplate": "Shkarko shabllonin",
-    "importFile": "Zgjidh skedarin CSV"
+    "importFile": "Zgjidh skedarin CSV",
+    "osmTitle": "Importo nga OpenStreetMap",
+    "osmHint": "Ngarkon bizneset e regjistruara publikisht në OpenStreetMap për qytetin e zgjedhur (emri, kategoria, telefoni, adresa, GPS, FB/IG nëse ka). Dublikatat kapërcehen automatikisht.",
+    "osmChooseCity": "Zgjidh qytetin",
+    "osmRun": "Importo bizneset",
+    "osmRunning": "Duke importuar… (deri 1 min)",
+    "osmResult": "{found} u gjetën · {imported} u importuan · {skipped} u kapërcyen (dublikata/pa kategori)"
   },
   "lang": {
     "label": "Gjuha"

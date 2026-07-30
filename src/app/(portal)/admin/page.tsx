@@ -54,6 +54,12 @@ export default async function AdminPage() {
             {t("importCsv")}
           </Link>
           <Link
+            href="/admin/import-osm"
+            className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
+          >
+            OSM
+          </Link>
+          <Link
             href="/admin/runners"
             className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
           >
