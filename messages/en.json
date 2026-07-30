@@ -166,9 +166,11 @@
     "osmRunning": "Importing… (up to 1 min)",
     "osmResult": "{found} found · {imported} imported · {skipped} skipped (duplicates/no category)",
     "claimsTitle": "Ownership claims",
-    "claimsHint": "A user claims their business. Verify by calling the business phone on file before approving — once approved they manage the profile themselves.",
+    "claimsHint": "A user claims their business. Review the documents (business registration + ID) and verify by phone before approving. Documents are deleted automatically after the decision.",
     "claimsEmpty": "No pending claims.",
-    "claimsBusinessPhone": "Business phone"
+    "claimsBusinessPhone": "Business phone",
+    "claimsDocs": "Documents",
+    "claimsNoDocs": "No documents"
   },
   "lang": {
     "label": "Language"

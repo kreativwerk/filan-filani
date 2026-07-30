@@ -166,9 +166,11 @@
     "osmRunning": "Importiere… (bis zu 1 Min.)",
     "osmResult": "{found} gefunden · {imported} importiert · {skipped} übersprungen (Duplikate/ohne Kategorie)",
     "claimsTitle": "Inhaberschafts-Anträge",
-    "claimsHint": "Ein Nutzer beansprucht seinen Betrieb. Vor der Freigabe per Anruf auf die im Eintrag hinterlegte Betriebsnummer verifizieren — nach der Freigabe verwaltet er das Profil selbst.",
+    "claimsHint": "Ein Nutzer beansprucht seinen Betrieb. Prüfe die Nachweise (Gewerbenachweis + Ausweis) und verifiziere per Anruf, bevor du freigibst. Nach der Entscheidung werden die Dokumente automatisch gelöscht.",
     "claimsEmpty": "Keine offenen Anträge.",
-    "claimsBusinessPhone": "Betriebs-Tel."
+    "claimsBusinessPhone": "Betriebs-Tel.",
+    "claimsDocs": "Nachweise",
+    "claimsNoDocs": "Keine Dokumente"
   },
   "lang": {
     "label": "Sprache"

@@ -24,12 +24,31 @@ export default async function AdminClaimsPage() {
   const { data: claims } = await supabase
     .from("business_claims")
     .select(
-      `id, message, contact_phone, created_at,
+      `id, message, contact_phone, created_at, document_paths,
        businesses(name, phone, cities(name_sq, name_de, name_en, name_sr)),
        claimant:profiles!business_claims_user_id_fkey(full_name, phone)`,
     )
     .eq("status", "pending")
     .order("created_at", { ascending: true });
+
+  // Signierte Links für die privaten Nachweis-Dokumente (1 Stunde gültig)
+  const docLinks = new Map<string, { label: string; url: string }[]>();
+  for (const c of claims ?? []) {
+    const paths = (c.document_paths as string[] | null) ?? [];
+    const links: { label: string; url: string }[] = [];
+    for (let i = 0; i < paths.length; i++) {
+      const { data } = await supabase.storage
+        .from("claim-documents")
+        .createSignedUrl(paths[i], 3600);
+      if (data?.signedUrl) {
+        links.push({
+          label: paths[i].split("/").pop() ?? `Dokument ${i + 1}`,
+          url: data.signedUrl,
+        });
+      }
+    }
+    docLinks.set(c.id, links);
+  }
 
   return (
     <div className="space-y-5">
@@ -78,6 +97,28 @@ export default async function AdminClaimsPage() {
                   <p className="text-xs text-faint">
                     {new Date(c.created_at).toLocaleDateString(locale)}
                   </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.06em] text-muted">
+                    {t("claimsDocs")}:
+                  </span>
+                  {(docLinks.get(c.id) ?? []).length === 0 ? (
+                    <span className="rounded-full bg-[#FBF0D6] px-2.5 py-1 text-xs font-extrabold text-[#6B4C07]">
+                      {t("claimsNoDocs")}
+                    </span>
+                  ) : (
+                    (docLinks.get(c.id) ?? []).map((d, i) => (
+                      <a
+                        key={i}
+                        href={d.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full bg-primary-light px-3 py-1 text-xs font-bold text-primary-dark hover:bg-primary-light/70"
+                      >
+                        {d.label}
+                      </a>
+                    ))
+                  )}
                 </div>
                 <div className="flex flex-wrap items-center gap-3 border-t border-divider pt-4">
                   <form action={approveClaim}>

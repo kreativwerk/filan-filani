@@ -166,9 +166,11 @@
     "osmRunning": "Uvoz u toku… (do 1 min)",
     "osmResult": "{found} pronađeno · {imported} uvezeno · {skipped} preskočeno (duplikati/bez kategorije)",
     "claimsTitle": "Zahtevi za vlasništvo",
-    "claimsHint": "Korisnik traži svoju firmu. Pre odobrenja proveri pozivom na registrovani broj firme — nakon odobrenja sam upravlja profilom.",
+    "claimsHint": "Korisnik traži svoju firmu. Pregledaj dokaze (registracija firme + lična karta) i proveri pozivom pre odobrenja. Dokumenti se automatski brišu nakon odluke.",
     "claimsEmpty": "Nema zahteva na čekanju.",
-    "claimsBusinessPhone": "Tel. firme"
+    "claimsBusinessPhone": "Tel. firme",
+    "claimsDocs": "Dokazi",
+    "claimsNoDocs": "Bez dokumenata"
   },
   "lang": {
     "label": "Jezik"
