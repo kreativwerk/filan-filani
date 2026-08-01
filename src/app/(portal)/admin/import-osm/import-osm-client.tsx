@@ -11,18 +11,19 @@ import { importOsmBusinesses, type OsmImportResult } from "./actions";
 
 // Die Abfrage läuft bewusst im Browser: die IP des Admins ist bei den
 // öffentlichen Overpass-Servern nicht ratenlimitiert, Vercel-IPs schon.
-const OVERPASS_ENDPOINTS = [
-  "https://overpass-api.de/api/interpreter",
-  "https://overpass.kumi.systems/api/interpreter",
-  "https://overpass.private.coffee/api/interpreter",
+const OVERPASS_ENDPOINTS: Array<[string, string]> = [
+  ["de", "https://overpass-api.de/api/interpreter"],
+  ["kumi", "https://overpass.kumi.systems/api/interpreter"],
+  ["fr", "https://overpass.openstreetmap.fr/api/interpreter"],
+  ["coffee", "https://overpass.private.coffee/api/interpreter"],
 ];
 
 async function fetchFromOverpass(
   lat: number,
   lng: number,
 ): Promise<{ elements?: OsmBusiness[]; error?: string }> {
-  let lastError = "overpass";
-  for (const endpoint of OVERPASS_ENDPOINTS) {
+  const errors: string[] = [];
+  for (const [label, endpoint] of OVERPASS_ENDPOINTS) {
     try {
       const res = await fetch(endpoint, {
         method: "POST",
@@ -31,15 +32,17 @@ async function fetchFromOverpass(
         signal: AbortSignal.timeout(45000),
       });
       if (!res.ok) {
-        lastError = `overpass ${res.status}`;
+        errors.push(`${label}:${res.status}`);
         continue;
       }
       return { elements: parseOverpass(await res.json()) };
-    } catch {
-      lastError = "overpass timeout";
+    } catch (e) {
+      errors.push(
+        `${label}:${e instanceof DOMException && e.name === "TimeoutError" ? "timeout" : "netz"}`,
+      );
     }
   }
-  return { error: lastError };
+  return { error: errors.join(" · ") };
 }
 
 export function ImportOsmClient({ cities }: { cities: City[] }) {
