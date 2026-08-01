@@ -62,7 +62,13 @@ export function ImportOsmClient({ cities }: { cities: City[] }) {
         setResult({ found: 0, imported: 0, skipped: 0, error: "no-coords" });
         return;
       }
-      const { elements, error } = await fetchFromOverpass(city.lat, city.lng);
+      // Bis zu 3 Anläufe mit Pause — die freien Overpass-Server sind oft nur kurzzeitig voll
+      let elements;
+      let error: string | undefined;
+      for (let round = 0; round < 3 && !elements; round++) {
+        if (round > 0) await new Promise((r) => setTimeout(r, 20000));
+        ({ elements, error } = await fetchFromOverpass(city.lat, city.lng));
+      }
       if (!elements) {
         setResult({ found: 0, imported: 0, skipped: 0, error });
         return;
