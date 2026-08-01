@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Installierte Agent-Skills sind Fremdcode
     ".agents/**",
+    // Arbeitskopien von Hintergrund-Agenten
+    ".claude/**",
   ]),
 ]);
 

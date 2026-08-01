@@ -77,6 +77,10 @@ export function parseOverpass(json: {
     const lat = el.lat ?? el.center?.lat;
     const lng = el.lon ?? el.center?.lon;
     if (!name || lat === undefined || lng === undefined) continue;
+    // In OSM als geschlossen/aufgegeben markierte Betriebe überspringen
+    if (t.disused === "yes" || t.abandoned === "yes" || t.ruins === "yes") continue;
+    if (t.end_date || t["opening_hours"] === "closed") continue;
+    if (Object.keys(t).some((k) => k.startsWith("disused:") || k.startsWith("abandoned:") || k.startsWith("was:"))) continue;
     const categorySlug = mapCategory(t);
     if (!categorySlug) continue;
     const street = t["addr:street"];
