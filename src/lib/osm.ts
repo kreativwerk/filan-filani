@@ -21,7 +21,7 @@ const TOURISM = "hotel|guest_house|motel|hostel";
 
 export function overpassQuery(lat: number, lng: number, radius = 8000) {
   const around = `around:${radius},${lat},${lng}`;
-  return `[out:json][timeout:25];
+  return `[out:json][timeout:60];
 (
   nwr(${around})["name"]["shop"];
   nwr(${around})["name"]["craft"];

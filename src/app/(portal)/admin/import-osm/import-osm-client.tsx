@@ -29,7 +29,7 @@ async function fetchFromOverpass(
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: "data=" + encodeURIComponent(overpassQuery(lat, lng)),
-        signal: AbortSignal.timeout(45000),
+        signal: AbortSignal.timeout(90000),
       });
       if (!res.ok) {
         errors.push(`${label}:${res.status}`);
