@@ -20,6 +20,8 @@ export type City = {
   name_sr: string;
   name_en: string;
   name_de: string;
+  lat?: number | null;
+  lng?: number | null;
 };
 
 export type Category = {

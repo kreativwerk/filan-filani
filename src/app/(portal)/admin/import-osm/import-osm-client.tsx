@@ -6,7 +6,41 @@ import { Map } from "lucide-react";
 import { localizedName, type City } from "@/lib/types";
 import type { Locale } from "@/i18n/config";
 import { Button, Card, Select } from "@/components/ui";
-import { importOsmForCity, type OsmImportResult } from "./actions";
+import { overpassQuery, parseOverpass, type OsmBusiness } from "@/lib/osm";
+import { importOsmBusinesses, type OsmImportResult } from "./actions";
+
+// Die Abfrage läuft bewusst im Browser: die IP des Admins ist bei den
+// öffentlichen Overpass-Servern nicht ratenlimitiert, Vercel-IPs schon.
+const OVERPASS_ENDPOINTS = [
+  "https://overpass-api.de/api/interpreter",
+  "https://overpass.kumi.systems/api/interpreter",
+  "https://overpass.private.coffee/api/interpreter",
+];
+
+async function fetchFromOverpass(
+  lat: number,
+  lng: number,
+): Promise<{ elements?: OsmBusiness[]; error?: string }> {
+  let lastError = "overpass";
+  for (const endpoint of OVERPASS_ENDPOINTS) {
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "data=" + encodeURIComponent(overpassQuery(lat, lng)),
+        signal: AbortSignal.timeout(45000),
+      });
+      if (!res.ok) {
+        lastError = `overpass ${res.status}`;
+        continue;
+      }
+      return { elements: parseOverpass(await res.json()) };
+    } catch {
+      lastError = "overpass timeout";
+    }
+  }
+  return { error: lastError };
+}
 
 export function ImportOsmClient({ cities }: { cities: City[] }) {
   const t = useTranslations("admin");
@@ -20,7 +54,17 @@ export function ImportOsmClient({ cities }: { cities: City[] }) {
     if (!cityId) return;
     setResult(null);
     startTransition(async () => {
-      setResult(await importOsmForCity(Number(cityId)));
+      const city = cities.find((c) => c.id === Number(cityId));
+      if (!city?.lat || !city?.lng) {
+        setResult({ found: 0, imported: 0, skipped: 0, error: "no-coords" });
+        return;
+      }
+      const { elements, error } = await fetchFromOverpass(city.lat, city.lng);
+      if (!elements) {
+        setResult({ found: 0, imported: 0, skipped: 0, error });
+        return;
+      }
+      setResult(await importOsmBusinesses(Number(cityId), elements));
     });
   }
 

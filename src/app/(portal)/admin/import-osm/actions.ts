@@ -1,7 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
-import { overpassQuery, parseOverpass } from "@/lib/osm";
+import type { OsmBusiness } from "@/lib/osm";
 
 export type OsmImportResult = {
   found: number;
@@ -10,7 +10,13 @@ export type OsmImportResult = {
   error?: string;
 };
 
-export async function importOsmForCity(cityId: number): Promise<OsmImportResult> {
+// Die Overpass-Abfrage läuft im Browser des Admins (Vercel-IPs sind bei den
+// öffentlichen Overpass-Servern dauerhaft ratenlimitiert) — hier nur noch
+// prüfen, deduplizieren und speichern.
+export async function importOsmBusinesses(
+  cityId: number,
+  elements: OsmBusiness[],
+): Promise<OsmImportResult> {
   const supabase = await createClient();
 
   const {
@@ -25,49 +31,19 @@ export async function importOsmForCity(cityId: number): Promise<OsmImportResult>
     return { found: 0, imported: 0, skipped: 0, error: "forbidden" };
   }
 
-  const [{ data: city }, { data: categories }, { data: existing }] =
-    await Promise.all([
-      supabase.from("cities").select("id, lat, lng").eq("id", cityId).single(),
-      supabase.from("categories").select("id, slug"),
-      supabase
-        .from("businesses")
-        .select("name, phone")
-        .eq("city_id", cityId)
-        .neq("status", "rejected"),
-    ]);
-  if (!city?.lat || !city?.lng) {
-    return { found: 0, imported: 0, skipped: 0, error: "no-coords" };
+  const found = elements.length;
+  if (found > 2000) {
+    return { found, imported: 0, skipped: 0, error: "too-many" };
   }
 
-  // Der zentrale Overpass-Server ist oft überlastet — mehrere Spiegel probieren
-  const endpoints = [
-    "https://overpass-api.de/api/interpreter",
-    "https://overpass.kumi.systems/api/interpreter",
-    "https://overpass.private.coffee/api/interpreter",
-  ];
-  let elements;
-  let lastError = "overpass";
-  for (const endpoint of endpoints) {
-    try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "data=" + encodeURIComponent(overpassQuery(city.lat, city.lng)),
-        signal: AbortSignal.timeout(30000),
-      });
-      if (!res.ok) {
-        lastError = `overpass ${res.status}`;
-        continue;
-      }
-      elements = parseOverpass(await res.json());
-      break;
-    } catch {
-      lastError = "overpass timeout";
-    }
-  }
-  if (!elements) {
-    return { found: 0, imported: 0, skipped: 0, error: lastError };
-  }
+  const [{ data: categories }, { data: existing }] = await Promise.all([
+    supabase.from("categories").select("id, slug"),
+    supabase
+      .from("businesses")
+      .select("name, phone")
+      .eq("city_id", cityId)
+      .neq("status", "rejected"),
+  ]);
 
   const catBySlug = new Map((categories ?? []).map((c) => [c.slug, c.id]));
   const seenNames = new Set(
@@ -81,7 +57,12 @@ export async function importOsmForCity(cityId: number): Promise<OsmImportResult>
   let skipped = 0;
 
   for (const b of elements) {
-    const nameKey = b.name.toLowerCase().trim();
+    const name = (b.name ?? "").trim();
+    if (!name || typeof b.lat !== "number" || typeof b.lng !== "number") {
+      skipped++;
+      continue;
+    }
+    const nameKey = name.toLowerCase();
     if (seenNames.has(nameKey) || (b.phone && seenPhones.has(b.phone))) {
       skipped++;
       continue;
@@ -94,7 +75,7 @@ export async function importOsmForCity(cityId: number): Promise<OsmImportResult>
     const { data: row, error } = await supabase
       .from("businesses")
       .insert({
-        name: b.name,
+        name,
         city_id: cityId,
         address: b.address,
         lat: b.lat,
@@ -122,5 +103,5 @@ export async function importOsmForCity(cityId: number): Promise<OsmImportResult>
     imported++;
   }
 
-  return { found: elements.length, imported, skipped };
+  return { found, imported, skipped };
 }
