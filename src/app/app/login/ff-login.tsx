@@ -21,7 +21,11 @@ export function FFLogin() {
   const t = useTranslations("ff");
   const ta = useTranslations("auth");
   const [splash, setSplash] = useState(true);
+  const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,9 +34,47 @@ export function FFLogin() {
     return () => clearTimeout(timer);
   }, []);
 
-  async function handleEmail(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!configured || !email) return;
+    if (!configured || !email || !password) return;
+    setError(null);
+    setLoading(true);
+    const supabase = createClient();
+    if (mode === "login") {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        setError(ta("invalidCredentials"));
+        setLoading(false);
+        return;
+      }
+      window.location.assign("/app");
+    } else {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${location.origin}/auth/callback?next=/app`,
+          data: { full_name: fullName.trim() || undefined },
+        },
+      });
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+      setInfo(ta("checkEmail"));
+    }
+  }
+
+  async function handleMagic() {
+    if (!configured) return;
+    if (!email) {
+      setError(t("enterEmail"));
+      return;
+    }
     setError(null);
     const { error } = await createClient().auth.signInWithOtp({
       email,
@@ -40,6 +82,19 @@ export function FFLogin() {
     });
     if (error) setError(error.message);
     else setInfo(t("magicSent"));
+  }
+
+  async function handleForgot() {
+    if (!configured) return;
+    if (!email) {
+      setError(t("enterEmail"));
+      return;
+    }
+    setError(null);
+    await createClient().auth.resetPasswordForEmail(email, {
+      redirectTo: `${location.origin}/auth/callback?next=/app/fjalekalimi`,
+    });
+    setInfo(ta("resetSent"));
   }
 
   async function handleOAuth(provider: "google" | "facebook" | "apple") {
@@ -106,7 +161,21 @@ export function FFLogin() {
             </p>
           ) : (
             <div className="flex flex-col gap-3">
-              <form onSubmit={handleEmail} className="flex flex-col gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                {mode === "register" && (
+                  <label className="flex flex-col gap-2">
+                    <span className="text-sm font-extrabold text-ink">
+                      {ta("fullName")}
+                    </span>
+                    <input
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      autoComplete="name"
+                      className="h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink placeholder:text-muted focus:border-ff-primary focus:outline-none"
+                    />
+                  </label>
+                )}
                 <label className="flex flex-col gap-2">
                   <span className="text-sm font-extrabold text-ink">
                     {ta("email")}
@@ -117,18 +186,69 @@ export function FFLogin() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Adresa juaj e email-it"
+                    autoComplete="email"
+                    className="h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink placeholder:text-muted focus:border-ff-primary focus:outline-none"
+                  />
+                </label>
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-extrabold text-ink">
+                    {ta("password")}
+                  </span>
+                  <input
+                    type="password"
+                    required
+                    minLength={6}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete={
+                      mode === "login" ? "current-password" : "new-password"
+                    }
                     className="h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink placeholder:text-muted focus:border-ff-primary focus:outline-none"
                   />
                 </label>
                 <button
                   type="submit"
-                  disabled={!configured}
+                  disabled={!configured || loading}
                   className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-ff-accent text-[19px] font-bold text-white hover:opacity-90 disabled:opacity-50"
                 >
-                  <Mail className="h-[22px] w-[22px]" />
-                  {t("continueEmail")}
+                  {mode === "login" ? ta("submitLogin") : ta("submitRegister")}
                 </button>
               </form>
+
+              <div className="flex items-center justify-between text-[13.5px] font-semibold">
+                {mode === "login" ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleForgot}
+                      className="text-muted hover:text-ink"
+                    >
+                      {ta("forgotPassword")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("register");
+                        setError(null);
+                      }}
+                      className="font-extrabold text-ff-primary"
+                    >
+                      {ta("noAccount")} {ta("submitRegister")}
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode("login");
+                      setError(null);
+                    }}
+                    className="ml-auto font-extrabold text-ff-primary"
+                  >
+                    {ta("hasAccount")} {ta("submitLogin")}
+                  </button>
+                )}
+              </div>
 
               <div className="flex items-center gap-3.5 py-1">
                 <div className="h-px flex-1 bg-line" />
@@ -137,6 +257,18 @@ export function FFLogin() {
                 </span>
                 <div className="h-px flex-1 bg-line" />
               </div>
+
+              <button
+                type="button"
+                onClick={handleMagic}
+                disabled={!configured}
+                className={providerBtn}
+              >
+                <Mail className="h-6 w-6 flex-none text-ff-primary" />
+                <span className="flex-1 pr-6 text-center">
+                  {t("continueEmail")}
+                </span>
+              </button>
 
               <button
                 type="button"

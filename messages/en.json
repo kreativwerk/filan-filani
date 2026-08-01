@@ -242,7 +242,11 @@
     "claimSuccessText": "We will review the documents and contact you for verification.",
     "claimExists": "You have already submitted a request for this business.",
     "claimLoginCta": "Sign in to continue",
-    "claimRequired": "Please fill in the message, the number and both documents."
+    "claimRequired": "Please fill in the message, the number and both documents.",
+    "enterEmail": "Enter your email first.",
+    "passwordNew": "New password",
+    "passwordSave": "Save password",
+    "passwordSaved": "Password saved. Redirecting…"
   },
   "profile": {
     "title": "My profile",

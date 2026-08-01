@@ -53,9 +53,11 @@ export default async function FFCategoryPage({ params }: Props) {
   if (!city || !category) notFound();
 
   const supabase = await createClient();
-  const { data: rows } = await supabase
+  const { data: rows, count } = await supabase
     .from("businesses")
-    .select("*, business_categories!inner(category_id), reviews(rating)")
+    .select("*, business_categories!inner(category_id), reviews(rating)", {
+      count: "exact",
+    })
     .eq("status", "approved")
     .eq("city_id", city.id)
     .eq("business_categories.category_id", category.id)
@@ -80,7 +82,7 @@ export default async function FFCategoryPage({ params }: Props) {
       <FFListingView
         eyebrow={localizedName(city, locale)}
         title={localizedName(category, locale)}
-        count={items.length}
+        count={count ?? items.length}
         pills={pills}
         items={items}
       />

@@ -242,7 +242,11 @@
     "claimSuccessText": "Wir prüfen die Nachweise und melden uns zur Verifizierung.",
     "claimExists": "Du hast für diesen Betrieb bereits einen Antrag gestellt.",
     "claimLoginCta": "Zum Fortfahren anmelden",
-    "claimRequired": "Bitte Nachricht, Nummer und beide Dokumente ausfüllen."
+    "claimRequired": "Bitte Nachricht, Nummer und beide Dokumente ausfüllen.",
+    "enterEmail": "Bitte zuerst deine E-Mail eintragen.",
+    "passwordNew": "Neues Passwort",
+    "passwordSave": "Passwort speichern",
+    "passwordSaved": "Passwort gespeichert. Du wirst weitergeleitet…"
   },
   "profile": {
     "title": "Mein Profil",

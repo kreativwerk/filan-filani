@@ -43,9 +43,11 @@ export default async function FFCityPage({ params }: Props) {
   if (!city) notFound();
 
   const supabase = await createClient();
-  const { data: rows } = await supabase
+  const { data: rows, count } = await supabase
     .from("businesses")
-    .select("*, business_categories(categories(*)), reviews(rating)")
+    .select("*, business_categories(categories(*)), reviews(rating)", {
+      count: "exact",
+    })
     .eq("status", "approved")
     .eq("city_id", city.id)
     .order("created_at", { ascending: false })
@@ -69,7 +71,7 @@ export default async function FFCityPage({ params }: Props) {
       <FFListingView
         eyebrow={localizedName(city, locale)}
         title={t("inYourCity")}
-        count={items.length}
+        count={count ?? items.length}
         pills={pills}
         items={items}
       />

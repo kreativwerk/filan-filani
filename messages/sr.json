@@ -242,7 +242,11 @@
     "claimSuccessText": "Proverićemo dokaze i kontaktirati te radi verifikacije.",
     "claimExists": "Već si poslao zahtev za ovaj biznis.",
     "claimLoginCta": "Prijavi se da nastaviš",
-    "claimRequired": "Popuni poruku, broj i oba dokumenta."
+    "claimRequired": "Popuni poruku, broj i oba dokumenta.",
+    "enterEmail": "Prvo unesi svoj email.",
+    "passwordNew": "Nova lozinka",
+    "passwordSave": "Sačuvaj lozinku",
+    "passwordSaved": "Lozinka je sačuvana. Preusmeravamo te…"
   },
   "profile": {
     "title": "Moj profil",

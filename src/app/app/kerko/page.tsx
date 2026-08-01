@@ -48,6 +48,8 @@ export default async function FFSearchPage({ searchParams }: Props) {
   const city = cities.find((c) => c.slug === citySlug) ?? null;
   const category = categories.find((c) => c.slug === catSlug) ?? null;
   const hasQuery = Boolean(q || city || category);
+  const cookieCitySlug = await getCookieCitySlug();
+  const homeCity = cities.find((c) => c.slug === cookieCitySlug) ?? null;
 
   let items: ReturnType<typeof toFFBiz>[] = [];
   if (hasSupabaseEnv() && hasQuery) {
@@ -56,9 +58,17 @@ export default async function FFSearchPage({ searchParams }: Props) {
       q,
       p_city: city?.id ?? null,
       p_category: category?.id ?? null,
+      p_limit: 100,
     });
 
-    const list = (rows ?? []) as FFBizRow[];
+    let list = (rows ?? []) as FFBizRow[];
+    // Ohne expliziten Stadt-Filter: die gewählte Heimatstadt zuerst, der Rest danach
+    if (!city && homeCity) {
+      list = [
+        ...list.filter((r) => r.city_id === homeCity.id),
+        ...list.filter((r) => r.city_id !== homeCity.id),
+      ];
+    }
     // Die RPC liefert nackte businesses-Zeilen — Kategorie je Betrieb nachladen
     const catByBiz = new Map<string, Category>();
     if (list.length) {
@@ -85,7 +95,7 @@ export default async function FFSearchPage({ searchParams }: Props) {
     );
   }
 
-  const defaultCity = citySlug || (await getCookieCitySlug());
+  const defaultCity = citySlug || cookieCitySlug;
 
   return (
     <FFShell citySlug={defaultCity}>
