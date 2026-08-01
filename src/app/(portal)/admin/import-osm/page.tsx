@@ -2,8 +2,8 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ImportOsmClient } from "./import-osm-client";
 
-// Overpass-Abfragen können lange dauern
-export const maxDuration = 60;
+// Overpass-Abfragen können lange dauern (inkl. Ausweich-Server + Inserts)
+export const maxDuration = 120;
 
 export default async function AdminImportOsmPage() {
   const supabase = await createClient();

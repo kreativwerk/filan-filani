@@ -39,18 +39,34 @@ export async function importOsmForCity(cityId: number): Promise<OsmImportResult>
     return { found: 0, imported: 0, skipped: 0, error: "no-coords" };
   }
 
+  // Der zentrale Overpass-Server ist oft überlastet — mehrere Spiegel probieren
+  const endpoints = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+  ];
   let elements;
-  try {
-    const res = await fetch("https://overpass-api.de/api/interpreter", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: "data=" + encodeURIComponent(overpassQuery(city.lat, city.lng)),
-      signal: AbortSignal.timeout(55000),
-    });
-    if (!res.ok) throw new Error(`overpass ${res.status}`);
-    elements = parseOverpass(await res.json());
-  } catch {
-    return { found: 0, imported: 0, skipped: 0, error: "overpass" };
+  let lastError = "overpass";
+  for (const endpoint of endpoints) {
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "data=" + encodeURIComponent(overpassQuery(city.lat, city.lng)),
+        signal: AbortSignal.timeout(30000),
+      });
+      if (!res.ok) {
+        lastError = `overpass ${res.status}`;
+        continue;
+      }
+      elements = parseOverpass(await res.json());
+      break;
+    } catch {
+      lastError = "overpass timeout";
+    }
+  }
+  if (!elements) {
+    return { found: 0, imported: 0, skipped: 0, error: lastError };
   }
 
   const catBySlug = new Map((categories ?? []).map((c) => [c.slug, c.id]));
