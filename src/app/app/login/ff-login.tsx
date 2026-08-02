@@ -11,13 +11,14 @@ import { createClient } from "@/lib/supabase/client";
 import { FFLogo } from "@/components/ff-logo";
 import { cn } from "@/components/ui";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { setCityCookie, type FFCityOption } from "@/components/ff/city-pill";
 
 const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
 
 const providerBtn =
   "flex h-14 w-full items-center gap-3.5 rounded-full border-[1.5px] border-line-strong bg-white px-[18px] text-[17px] font-bold text-ink disabled:opacity-50";
 
-export function FFLogin() {
+export function FFLogin({ cities }: { cities: FFCityOption[] }) {
   const t = useTranslations("ff");
   const ta = useTranslations("auth");
   const [splash, setSplash] = useState(true);
@@ -25,6 +26,7 @@ export function FFLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [citySlug, setCitySlug] = useState(cities[0]?.slug ?? "all");
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -65,6 +67,7 @@ export function FFLogin() {
         setLoading(false);
         return;
       }
+      setCityCookie(citySlug);
       setInfo(ta("checkEmail"));
     }
   }
@@ -163,18 +166,36 @@ export function FFLogin() {
             <div className="flex flex-col gap-3">
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 {mode === "register" && (
-                  <label className="flex flex-col gap-2">
-                    <span className="text-sm font-extrabold text-ink">
-                      {ta("fullName")}
-                    </span>
-                    <input
-                      type="text"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      autoComplete="name"
-                      className="h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink placeholder:text-muted focus:border-ff-primary focus:outline-none"
-                    />
-                  </label>
+                  <>
+                    <label className="flex flex-col gap-2">
+                      <span className="text-sm font-extrabold text-ink">
+                        {ta("fullName")}
+                      </span>
+                      <input
+                        type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        autoComplete="name"
+                        className="h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink placeholder:text-muted focus:border-ff-primary focus:outline-none"
+                      />
+                    </label>
+                    <label className="flex flex-col gap-2">
+                      <span className="text-sm font-extrabold text-ink">
+                        {t("yourCity")}
+                      </span>
+                      <select
+                        value={citySlug}
+                        onChange={(e) => setCitySlug(e.target.value)}
+                        className="h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink focus:border-ff-primary focus:outline-none"
+                      >
+                        {cities.map((c) => (
+                          <option key={c.slug} value={c.slug}>
+                            {c.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </>
                 )}
                 <label className="flex flex-col gap-2">
                   <span className="text-sm font-extrabold text-ink">

@@ -295,7 +295,10 @@
     "productActivate": "Activate",
     "productDeactivate": "Deactivate",
     "productDelete": "Delete",
-    "productDeleteConfirm": "Delete this product?"
+    "productDeleteConfirm": "Delete this product?",
+    "allKosovo": "All of Kosovo",
+    "otherCities": "From other cities",
+    "yourCity": "Your city"
   },
   "profile": {
     "title": "My profile",

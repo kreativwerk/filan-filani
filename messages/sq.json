@@ -295,7 +295,10 @@
     "productActivate": "Aktivizo",
     "productDeactivate": "Çaktivizo",
     "productDelete": "Fshije",
-    "productDeleteConfirm": "A do ta fshish këtë produkt?"
+    "productDeleteConfirm": "A do ta fshish këtë produkt?",
+    "allKosovo": "Gjithë Kosova",
+    "otherCities": "Nga qytetet e tjera",
+    "yourCity": "Qyteti yt"
   },
   "profile": {
     "title": "Profili im",

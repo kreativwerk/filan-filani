@@ -4,8 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Locale } from "@/i18n/config";
 import {
+  ALL_CITIES,
   cityOption,
-  DEFAULT_CITY,
   getCategories,
   getCities,
   getCookieCitySlug,
@@ -22,6 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function FFAppHome() {
   const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("ff");
   const citySlug = await getCookieCitySlug();
 
   const data: FFHomeData = {
@@ -47,16 +48,18 @@ export default async function FFAppHome() {
       getCategories(),
     ]);
 
-    const city =
-      cities.find((c) => c.slug === citySlug) ??
-      cities.find((c) => c.slug === DEFAULT_CITY) ??
-      cities[0] ??
-      null;
+    const isAll = citySlug === ALL_CITIES || !cities.some((c) => c.slug === citySlug);
+    const city = isAll ? null : cities.find((c) => c.slug === citySlug)!;
 
     data.signedIn = Boolean(user);
-    data.cities = cities.map((c) => cityOption(c, locale));
+    data.cities = [
+      { slug: ALL_CITIES, label: t("allKosovo") },
+      ...cities.map((c) => cityOption(c, locale)),
+    ];
     data.categories = categories.map((c) => toFFCat(c, locale));
-    if (city) data.city = cityOption(city, locale);
+    data.city = city
+      ? cityOption(city, locale)
+      : { slug: ALL_CITIES, label: t("allKosovo") };
 
     const [profileRes, bizRes] = await Promise.all([
       user
@@ -66,17 +69,17 @@ export default async function FFAppHome() {
             .eq("id", user.id)
             .maybeSingle()
         : Promise.resolve({ data: null }),
-      city
-        ? supabase
-            .from("businesses")
-            .select(
-              "*, business_categories(categories(*)), reviews(rating)",
-            )
-            .eq("status", "approved")
-            .eq("city_id", city.id)
-            .order("created_at", { ascending: false })
-            .limit(12)
-        : Promise.resolve({ data: null }),
+      (() => {
+        // "Ganz Kosovo": neueste Betriebe landesweit; sonst die der gewählten Stadt
+        let q = supabase
+          .from("businesses")
+          .select(
+            "*, cities(*), business_categories(categories(*)), reviews(rating)",
+          )
+          .eq("status", "approved");
+        if (city) q = q.eq("city_id", city.id);
+        return q.order("created_at", { ascending: false }).limit(12);
+      })(),
     ]);
 
     if (user) {

@@ -295,7 +295,10 @@
     "productActivate": "Aktivieren",
     "productDeactivate": "Deaktivieren",
     "productDelete": "Löschen",
-    "productDeleteConfirm": "Dieses Produkt wirklich löschen?"
+    "productDeleteConfirm": "Dieses Produkt wirklich löschen?",
+    "allKosovo": "Ganz Kosovo",
+    "otherCities": "Aus anderen Städten",
+    "yourCity": "Deine Stadt"
   },
   "profile": {
     "title": "Mein Profil",

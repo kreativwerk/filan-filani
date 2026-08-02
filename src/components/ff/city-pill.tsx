@@ -10,7 +10,7 @@ export const CITY_COOKIE = "ff_city";
 
 export type FFCityOption = { slug: string; label: string };
 
-function setCityCookie(slug: string) {
+export function setCityCookie(slug: string) {
   document.cookie = `${CITY_COOKIE}=${slug};path=/;max-age=31536000;samesite=lax`;
 }
 

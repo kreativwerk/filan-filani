@@ -17,7 +17,9 @@ import type { FFCat } from "@/components/ff/home-view";
 import type { FFCityOption } from "@/components/ff/city-pill";
 
 export const CITY_COOKIE = "ff_city";
-export const DEFAULT_CITY = "prishtina";
+/** Sonder-Slug: keine Stadt-Bevorzugung, ganz Kosovo */
+export const ALL_CITIES = "all";
+export const DEFAULT_CITY = ALL_CITIES;
 
 /** Betriebszeile inkl. der eingebetteten Relationen der Listen-Queries */
 export type FFBizRow = Business & {

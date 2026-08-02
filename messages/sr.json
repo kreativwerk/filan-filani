@@ -295,7 +295,10 @@
     "productActivate": "Aktiviraj",
     "productDeactivate": "Deaktiviraj",
     "productDelete": "Obriši",
-    "productDeleteConfirm": "Obrisati ovaj proizvod?"
+    "productDeleteConfirm": "Obrisati ovaj proizvod?",
+    "allKosovo": "Celo Kosovo",
+    "otherCities": "Iz drugih gradova",
+    "yourCity": "Tvoj grad"
   },
   "profile": {
     "title": "Moj profil",

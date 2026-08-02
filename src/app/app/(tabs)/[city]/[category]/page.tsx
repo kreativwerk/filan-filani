@@ -6,6 +6,7 @@ import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Locale } from "@/i18n/config";
 import { localizedName } from "@/lib/types";
 import {
+  ALL_CITIES,
   getCategories,
   getCities,
   toFFBiz,
@@ -23,10 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     getCities(),
     getCategories(),
   ]);
-  const city = cities.find((c) => c.slug === citySlug);
+  const city =
+    citySlug === ALL_CITIES ? null : cities.find((c) => c.slug === citySlug);
   const category = categories.find((c) => c.slug === catSlug);
-  if (!city || !category) return {};
-  const cityName = localizedName(city, locale);
+  if ((citySlug !== ALL_CITIES && !city) || !category) return {};
+  const cityName = city ? localizedName(city, locale) : t("allKosovo");
   const catName = localizedName(category, locale);
   return {
     title: t("metaCategoryCity", { category: catName, city: cityName }),
@@ -47,42 +49,60 @@ export default async function FFCategoryPage({ params }: Props) {
     getCities(),
     getCategories(),
   ]);
-  const city = cities.find((c) => c.slug === citySlug);
+  const isAll = citySlug === ALL_CITIES;
+  const city = isAll ? null : cities.find((c) => c.slug === citySlug);
   const category = categories.find((c) => c.slug === catSlug);
-  if (!city || !category) notFound();
+  if ((!isAll && !city) || !category) notFound();
 
   const supabase = await createClient();
-  const { data: rows, count } = await supabase
-    .from("businesses")
-    .select("*, business_categories!inner(category_id), reviews(rating)", {
-      count: "exact",
-    })
-    .eq("status", "approved")
-    .eq("city_id", city.id)
-    .eq("business_categories.category_id", category.id)
-    .order("created_at", { ascending: false })
-    .limit(60);
+  const base = () =>
+    supabase
+      .from("businesses")
+      .select(
+        "*, cities(*), business_categories!inner(category_id), reviews(rating)",
+        { count: "exact" },
+      )
+      .eq("status", "approved")
+      .eq("business_categories.category_id", category.id)
+      .order("created_at", { ascending: false })
+      .limit(60);
+
+  // Kategorie: eigene Stadt zuerst, danach dieselbe Kategorie im Rest des Landes
+  const [
+    { data: rows, count },
+    { data: otherRows, count: otherCount },
+  ] = await Promise.all([
+    city ? base().eq("city_id", city.id) : base(),
+    city
+      ? base().neq("city_id", city.id)
+      : Promise.resolve({ data: null, count: null }),
+  ]);
 
   const items = ((rows ?? []) as FFBizRow[]).map((row) =>
     toFFBiz(row, locale, { city, category }),
   );
+  const secondaryItems = ((otherRows ?? []) as FFBizRow[]).map((row) =>
+    toFFBiz(row, locale, { category }),
+  );
 
   const pills: FFPill[] = [
-    { href: `/app/${city.slug}`, label: t("all"), active: false },
+    { href: `/app/${citySlug}`, label: t("all"), active: false },
     ...categories.map((c) => ({
-      href: `/app/${city.slug}/${c.slug}`,
+      href: `/app/${citySlug}/${c.slug}`,
       label: localizedName(c, locale),
       active: c.id === category.id,
     })),
   ];
 
   return (
-      <FFListingView
-        eyebrow={localizedName(city, locale)}
-        title={localizedName(category, locale)}
-        count={count ?? items.length}
-        pills={pills}
-        items={items}
-      />
+    <FFListingView
+      eyebrow={city ? localizedName(city, locale) : t("allKosovo")}
+      title={localizedName(category, locale)}
+      count={count ?? items.length}
+      pills={pills}
+      items={items}
+      secondaryLabel={`${t("otherCities")}${otherCount ? ` · ${otherCount}` : ""}`}
+      secondaryItems={secondaryItems}
+    />
   );
 }

@@ -17,6 +17,8 @@ export function FFListingView({
   pills,
   items,
   emptyLabel,
+  secondaryLabel,
+  secondaryItems,
   children,
 }: {
   eyebrow: string;
@@ -25,6 +27,9 @@ export function FFListingView({
   pills?: FFPill[];
   items: FFBiz[];
   emptyLabel?: string;
+  /** Zweiter Abschnitt, z. B. "Aus anderen Städten" */
+  secondaryLabel?: string;
+  secondaryItems?: FFBiz[];
   children?: React.ReactNode;
 }) {
   const t = useTranslations("ff");
@@ -62,7 +67,7 @@ export function FFListingView({
         {children}
 
         {pills && pills.length > 0 && (
-          <div className="no-scrollbar flex gap-2 overflow-x-auto px-4 lg:flex-wrap lg:px-0">
+          <div className="no-scrollbar sticky top-0 z-20 -my-2 flex gap-2 overflow-x-auto bg-surface/95 px-4 py-2 backdrop-blur-md lg:flex-wrap lg:px-0">
             {pills.map((p) => (
               <Link
                 key={p.href}
@@ -88,6 +93,17 @@ export function FFListingView({
               </div>
             )}
             <FFBusinessList items={items} emptyLabel={emptyLabel} />
+          </div>
+        )}
+
+        {secondaryItems && secondaryItems.length > 0 && (
+          <div className="flex flex-col gap-2.5 px-4 pt-1 lg:px-0">
+            {secondaryLabel && (
+              <div className="text-[13.5px] font-semibold text-muted">
+                {secondaryLabel}
+              </div>
+            )}
+            <FFBusinessList items={secondaryItems} />
           </div>
         )}
       </main>
