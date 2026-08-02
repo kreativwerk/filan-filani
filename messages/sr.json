@@ -130,7 +130,9 @@
     "backToApp": "Nazad u aplikaciju",
     "exportTitle": "Usluge i proizvodi i u inostranstvu?",
     "exportHint": "Izaberi zemlje u koje firma isporučuje ili pruža usluge — osnova za B2B registar.",
-    "exportOtherPh": "Druge zemlje (odvoji zarezom)"
+    "exportOtherPh": "Druge zemlje (odvoji zarezom)",
+    "successOwner": "Izmene su sačuvane!",
+    "successOwnerText": "Podaci tvoje firme su ažurirani."
   },
   "list": {
     "title": "Moji unosi",
@@ -279,7 +281,21 @@
     "b2bHint": "Firme sa Kosova koje nude proizvode i usluge i u inostranstvu — filtriraj po zemlji.",
     "b2bAll": "Sve zemlje",
     "b2bEmpty": "B2B registar je u izradi — firme se stalno dodaju. Navrati uskoro.",
-    "b2bHome": "B2B — firme koje nude i u inostranstvu"
+    "b2bHome": "B2B — firme koje nude i u inostranstvu",
+    "manageEdit": "Uredi",
+    "manageProducts": "Proizvodi",
+    "productsHint": "Aktivni proizvodi se prikazuju na javnom profilu firme.",
+    "productsEmpty": "Još nema proizvoda — dodaj prvi iznad.",
+    "productNew": "Dodaj proizvod",
+    "productName": "Naziv proizvoda *",
+    "productPrice": "Cena u € (opciono)",
+    "productDesc": "Opis (opciono)",
+    "productActive": "Aktivan",
+    "productInactive": "Neaktivan",
+    "productActivate": "Aktiviraj",
+    "productDeactivate": "Deaktiviraj",
+    "productDelete": "Obriši",
+    "productDeleteConfirm": "Obrisati ovaj proizvod?"
   },
   "profile": {
     "title": "Moj profil",

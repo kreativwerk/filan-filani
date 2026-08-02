@@ -130,7 +130,9 @@
     "backToApp": "Back to the app",
     "exportTitle": "Services & products abroad?",
     "exportHint": "Select the countries this business serves — the basis for the B2B directory.",
-    "exportOtherPh": "Other countries (comma-separated)"
+    "exportOtherPh": "Other countries (comma-separated)",
+    "successOwner": "Changes saved!",
+    "successOwnerText": "Your business details were updated."
   },
   "list": {
     "title": "My entries",
@@ -279,7 +281,21 @@
     "b2bHint": "Kosovo businesses that also serve customers abroad — filter by country.",
     "b2bAll": "All countries",
     "b2bEmpty": "The B2B directory is under construction — businesses are being added continuously. Check back soon.",
-    "b2bHome": "B2B — businesses that also serve abroad"
+    "b2bHome": "B2B — businesses that also serve abroad",
+    "manageEdit": "Edit",
+    "manageProducts": "Products",
+    "productsHint": "Active products appear on the business's public profile.",
+    "productsEmpty": "No products yet — add the first one above.",
+    "productNew": "Add product",
+    "productName": "Product name *",
+    "productPrice": "Price in € (optional)",
+    "productDesc": "Description (optional)",
+    "productActive": "Active",
+    "productInactive": "Inactive",
+    "productActivate": "Activate",
+    "productDeactivate": "Deactivate",
+    "productDelete": "Delete",
+    "productDeleteConfirm": "Delete this product?"
   },
   "profile": {
     "title": "My profile",

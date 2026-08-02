@@ -95,6 +95,7 @@ export function NewBusinessForm({
   adminMode,
   variant,
   claimOwner,
+  ownerMode,
 }: {
   cities: City[];
   categories: Category[];
@@ -105,6 +106,8 @@ export function NewBusinessForm({
   variant?: "ff";
   /** Nutzer trägt sich direkt als Inhaber ein */
   claimOwner?: boolean;
+  /** Inhaber bearbeitet eigenen Betrieb: status/review_note bleiben unangetastet */
+  ownerMode?: boolean;
 }) {
   const t = useTranslations("form");
   const tc = useTranslations("common");
@@ -298,7 +301,7 @@ export function NewBusinessForm({
         const { error: updateError } = await supabase
           .from("businesses")
           .update(
-            adminMode
+            adminMode || ownerMode
               ? values
               : { ...values, status: "pending", review_note: null },
           )
@@ -375,13 +378,19 @@ export function NewBusinessForm({
       <div className="mx-auto max-w-lg rounded-[28px] bg-white p-8 text-center shadow-[0_8px_32px_rgba(16,25,23,0.08)]">
         <CheckCircle2 className="mx-auto h-14 w-14 text-primary" />
         <h1 className="mt-4 text-2xl font-extrabold tracking-[-0.02em] text-ink">
-          {t("success")}
+          {ownerMode ? t("successOwner") : t("success")}
         </h1>
         <p className="mt-2 text-ink-2">
-          {variant === "ff" ? t("successTextSelf") : t("successText")}
+          {ownerMode
+            ? t("successOwnerText")
+            : variant === "ff"
+              ? t("successTextSelf")
+              : t("successText")}
         </p>
         <div className="mt-6 flex justify-center gap-3">
-          <Button onClick={() => location.reload()}>{t("addAnother")}</Button>
+          {!ownerMode && (
+            <Button onClick={() => location.reload()}>{t("addAnother")}</Button>
+          )}
           <Link
             href={variant === "ff" ? "/app/biznesi" : "/businesses"}
             className="inline-flex h-[52px] items-center rounded-full border-[1.5px] border-line-strong bg-white px-6 text-[16px] font-bold text-ink hover:bg-surface"
@@ -748,7 +757,9 @@ export function NewBusinessForm({
             : step < TOTAL_STEPS
               ? t("continue")
               : businessId
-                ? t("resubmit")
+                ? ownerMode
+                  ? tc("save")
+                  : t("resubmit")
                 : t("submit")}
           {!loading && step < TOTAL_STEPS && (
             <ChevronsRight className="h-5 w-5" />

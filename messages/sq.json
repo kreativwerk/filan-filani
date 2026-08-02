@@ -130,7 +130,9 @@
     "backToApp": "Kthehu te aplikacioni",
     "exportTitle": "Shërbime & produkte edhe jashtë vendit?",
     "exportHint": "Zgjidh vendet ku biznesi ofron produkte ose shërbime — baza për regjistrin B2B.",
-    "exportOtherPh": "Vende të tjera (ndaji me presje)"
+    "exportOtherPh": "Vende të tjera (ndaji me presje)",
+    "successOwner": "Ndryshimet u ruajtën!",
+    "successOwnerText": "Të dhënat e biznesit tënd u përditësuan."
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -279,7 +281,21 @@
     "b2bHint": "Biznese nga Kosova që ofrojnë produkte e shërbime edhe jashtë vendit — filtro sipas vendit.",
     "b2bAll": "Të gjitha",
     "b2bEmpty": "Regjistri B2B është në ndërtim — bizneset po shtohen vazhdimisht. Kthehu së shpejti.",
-    "b2bHome": "B2B — Biznese që ofrojnë edhe jashtë vendit"
+    "b2bHome": "B2B — Biznese që ofrojnë edhe jashtë vendit",
+    "manageEdit": "Përpuno",
+    "manageProducts": "Produktet",
+    "productsHint": "Produktet aktive shfaqen në profilin publik të biznesit.",
+    "productsEmpty": "Ende s'ka produkte — shto të parin më lart.",
+    "productNew": "Shto produkt",
+    "productName": "Emri i produktit *",
+    "productPrice": "Çmimi në € (opsionale)",
+    "productDesc": "Përshkrimi (opsionale)",
+    "productActive": "Aktiv",
+    "productInactive": "Joaktiv",
+    "productActivate": "Aktivizo",
+    "productDeactivate": "Çaktivizo",
+    "productDelete": "Fshije",
+    "productDeleteConfirm": "A do ta fshish këtë produkt?"
   },
   "profile": {
     "title": "Profili im",

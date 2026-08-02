@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Plus, Search, Store } from "lucide-react";
+import { Package, Pencil, Plus, Search, Store } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Locale } from "@/i18n/config";
 import { getCities, getCategories, toFFBiz, type FFBizRow } from "@/lib/ff-data";
-import { FFBusinessList } from "@/components/ff/business-card";
+import { FFBusinessCard } from "@/components/ff/business-card";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("ff");
@@ -95,7 +95,30 @@ export default async function FFMyBusinessPage() {
           <div className="text-[13.5px] font-semibold text-muted">
             {t("myBizYours")}
           </div>
-          <FFBusinessList items={items} />
+          {/* Eigene Betriebe: Karte + Inhaber-Aktionen (Bearbeiten, Produkte) */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
+            {items.map((b) => (
+              <div key={b.key} className="flex flex-col gap-1.5">
+                <FFBusinessCard biz={b} />
+                <div className="grid grid-cols-2 gap-1.5">
+                  <Link
+                    href={`/app/biznesi/${b.key}/edit`}
+                    className="flex h-10 items-center justify-center gap-1.5 rounded-full border-[1.5px] border-line bg-white text-[13.5px] font-bold text-ink hover:bg-surface"
+                  >
+                    <Pencil className="h-4 w-4 text-ff-primary" />
+                    {t("manageEdit")}
+                  </Link>
+                  <Link
+                    href={`/app/biznesi/${b.key}/produkte`}
+                    className="flex h-10 items-center justify-center gap-1.5 rounded-full border-[1.5px] border-line bg-white text-[13.5px] font-bold text-ink hover:bg-surface"
+                  >
+                    <Package className="h-4 w-4 text-ff-primary" />
+                    {t("manageProducts")}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
           <Link
             href="/app/shto?imi=1"
             className="mt-2 flex h-12 w-fit items-center gap-2 rounded-full border-[1.5px] border-line bg-white px-6 text-[15px] font-extrabold text-ink hover:bg-surface"

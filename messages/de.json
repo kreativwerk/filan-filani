@@ -130,7 +130,9 @@
     "backToApp": "Zurück zur App",
     "exportTitle": "Leistungen & Produkte auch im Ausland?",
     "exportHint": "Wähle die Länder, in die der Betrieb liefert oder leistet — Grundlage für das B2B-Verzeichnis.",
-    "exportOtherPh": "Weitere Länder (mit Komma trennen)"
+    "exportOtherPh": "Weitere Länder (mit Komma trennen)",
+    "successOwner": "Änderungen gespeichert!",
+    "successOwnerText": "Die Daten deines Betriebs wurden aktualisiert."
   },
   "list": {
     "title": "Meine Einträge",
@@ -279,7 +281,21 @@
     "b2bHint": "Betriebe aus dem Kosovo, die auch ins Ausland liefern oder dort leisten — nach Land filterbar.",
     "b2bAll": "Alle Länder",
     "b2bEmpty": "Das B2B-Verzeichnis ist im Aufbau — Betriebe werden laufend ergänzt. Schau bald wieder vorbei.",
-    "b2bHome": "B2B — Betriebe, die auch im Ausland anbieten"
+    "b2bHome": "B2B — Betriebe, die auch im Ausland anbieten",
+    "manageEdit": "Bearbeiten",
+    "manageProducts": "Produkte",
+    "productsHint": "Aktive Produkte erscheinen auf dem öffentlichen Profil des Betriebs.",
+    "productsEmpty": "Noch keine Produkte — lege oben das erste an.",
+    "productNew": "Produkt anlegen",
+    "productName": "Produktname *",
+    "productPrice": "Preis in € (optional)",
+    "productDesc": "Beschreibung (optional)",
+    "productActive": "Aktiv",
+    "productInactive": "Inaktiv",
+    "productActivate": "Aktivieren",
+    "productDeactivate": "Deaktivieren",
+    "productDelete": "Löschen",
+    "productDeleteConfirm": "Dieses Produkt wirklich löschen?"
   },
   "profile": {
     "title": "Mein Profil",
