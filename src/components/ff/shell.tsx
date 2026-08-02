@@ -6,6 +6,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   Compass,
   FileText,
@@ -28,6 +29,9 @@ export function FFShell({
 }) {
   const t = useTranslations("ff");
   const pathname = usePathname();
+  // Nach dem Mount aufklappen — so animiert der aktive Tab bei jedem Seitenwechsel
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const onHome = pathname === "/app" || pathname.startsWith("/preview");
   const onSearch = pathname.startsWith("/app/kerko");
@@ -98,32 +102,43 @@ export function FFShell({
       </aside>
 
       {/* Inhalt */}
-      <div className="flex min-w-0 flex-1 flex-col pb-[76px] lg:pb-0">
+      <div className="flex min-w-0 flex-1 flex-col pb-[104px] lg:pb-0">
         {children}
       </div>
 
-      {/* Bottom-Tabs (mobil) */}
-      <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t border-line bg-white/95 px-1 pb-[22px] pt-[9px] backdrop-blur-xl lg:hidden">
-        {tabs.map((tab, i) => (
-          <Link
-            key={i}
-            href={tab.href}
-            className={cn(
-              "flex flex-1 flex-col items-center gap-1",
-              tab.active ? "text-ff-primary" : "text-muted",
-            )}
-          >
-            <tab.icon className="h-[27px] w-[27px]" />
-            <span
-              className={cn(
-                "text-[11px]",
-                tab.active ? "font-extrabold" : "font-semibold",
-              )}
-            >
-              {tab.label}
-            </span>
-          </Link>
-        ))}
+      {/* Schwebende Bottom-Pille (mobil): aktiver Tab klappt mit Titel auf */}
+      <nav
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 lg:hidden"
+        style={{ paddingBottom: "max(18px, env(safe-area-inset-bottom))" }}
+      >
+        <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/10 bg-[#101917]/95 p-1.5 shadow-[0_10px_36px_rgba(16,25,23,0.38)] backdrop-blur-xl">
+          {tabs.map((tab, i) => {
+            const open = tab.active && mounted;
+            return (
+              <Link
+                key={i}
+                href={tab.href}
+                aria-label={tab.label}
+                className={cn(
+                  "flex h-12 items-center rounded-full transition-all duration-300 ease-out",
+                  tab.active
+                    ? "bg-white/[0.16] px-4 text-white"
+                    : "px-3.5 text-white/60 hover:text-white/90 active:text-white",
+                )}
+              >
+                <tab.icon className="h-6 w-6 flex-none" />
+                <span
+                  className={cn(
+                    "overflow-hidden whitespace-nowrap text-[13.5px] font-extrabold transition-all duration-300 ease-out",
+                    open ? "ml-2 max-w-[120px] opacity-100" : "ml-0 max-w-0 opacity-0",
+                  )}
+                >
+                  {tab.label}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
       </nav>
     </div>
   );
