@@ -254,7 +254,11 @@
     "myBizHint": "Gjej biznesin tënd në kërkim dhe shtyp «Ky është biznesi im» — pas verifikimit shfaqet këtu.",
     "myBizYours": "Bizneset e tua",
     "addMine": "Regjistro biznesin tënd",
-    "thisIsMine": "Ky është biznesi im (unë jam pronari)"
+    "thisIsMine": "Ky është biznesi im (unë jam pronari)",
+    "savedEmpty": "Ende s'ke ruajtur asnjë biznes.",
+    "savedHint": "Shtyp zemrën te një biznes për ta ruajtur këtu.",
+    "saveBiz": "Ruaje",
+    "savedBiz": "U ruajt"
   },
   "profile": {
     "title": "Profili im",

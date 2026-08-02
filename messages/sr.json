@@ -254,7 +254,11 @@
     "myBizHint": "Pronađi svoju firmu u pretrazi i klikni „Ovo je moja firma“ — nakon provere pojaviće se ovde.",
     "myBizYours": "Tvoje firme",
     "addMine": "Registruj svoju firmu",
-    "thisIsMine": "Ovo je moja firma (ja sam vlasnik)"
+    "thisIsMine": "Ovo je moja firma (ja sam vlasnik)",
+    "savedEmpty": "Još nisi sačuvao nijednu firmu.",
+    "savedHint": "Klikni srce kod firme da je sačuvaš ovde.",
+    "saveBiz": "Sačuvaj",
+    "savedBiz": "Sačuvano"
   },
   "profile": {
     "title": "Moj profil",

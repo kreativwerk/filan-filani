@@ -24,6 +24,7 @@ import {
   type OpeningHours,
 } from "@/lib/types";
 import { FFCover, VerifiedBadge } from "@/components/ff/business-card";
+import { FavButton } from "@/components/ff/fav-button";
 import { FacebookIcon, InstagramIcon } from "@/components/ff/social-icons";
 import { cn } from "@/components/ui";
 import { ClaimForm } from "./claim-form";
@@ -128,14 +129,27 @@ export default async function FFBizPage({ params }: Props) {
     .filter(Boolean)
     .join(" · ");
 
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // Favoriten-Status des Besuchers
+  let isFavorite = false;
+  if (user) {
+    const { data: fav } = await supabase
+      .from("favorites")
+      .select("business_id")
+      .eq("business_id", biz.id)
+      .eq("user_id", user.id)
+      .maybeSingle();
+    isFavorite = Boolean(fav);
+  }
+
   // Inhaberschafts-Antrag: nur ohne Inhaber; Status des Besuchers serverseitig prüfen
   let claim: "hidden" | "login" | "form" | "exists" = "hidden";
   if (!verified) {
     claim = "login";
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
     if (user) {
       const { data: existing } = await supabase
         .from("business_claims")
@@ -166,6 +180,11 @@ export default async function FFBizPage({ params }: Props) {
           >
             <ChevronLeft className="h-6 w-6" />
           </Link>
+          <FavButton
+            businessId={biz.id}
+            initialSaved={isFavorite}
+            signedIn={Boolean(user)}
+          />
         </div>
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 pt-4">

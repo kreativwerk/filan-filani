@@ -254,7 +254,11 @@
     "myBizHint": "Finde deinen Betrieb in der Suche und tippe auf „Das ist mein Betrieb\" — nach der Prüfung erscheint er hier.",
     "myBizYours": "Deine Betriebe",
     "addMine": "Deinen Betrieb registrieren",
-    "thisIsMine": "Das ist mein Betrieb (ich bin Inhaber)"
+    "thisIsMine": "Das ist mein Betrieb (ich bin Inhaber)",
+    "savedEmpty": "Du hast noch keine Betriebe gespeichert.",
+    "savedHint": "Tippe beim Betrieb auf das Herz, um ihn hier zu speichern.",
+    "saveBiz": "Speichern",
+    "savedBiz": "Gespeichert"
   },
   "profile": {
     "title": "Mein Profil",

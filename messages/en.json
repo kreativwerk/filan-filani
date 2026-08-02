@@ -254,7 +254,11 @@
     "myBizHint": "Find your business in search and tap “This is my business” — after verification it appears here.",
     "myBizYours": "Your businesses",
     "addMine": "Register your business",
-    "thisIsMine": "This is my business (I'm the owner)"
+    "thisIsMine": "This is my business (I'm the owner)",
+    "savedEmpty": "You haven't saved any businesses yet.",
+    "savedHint": "Tap the heart on a business to save it here.",
+    "saveBiz": "Save",
+    "savedBiz": "Saved"
   },
   "profile": {
     "title": "My profile",

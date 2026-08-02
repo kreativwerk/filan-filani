@@ -39,13 +39,23 @@ export function FFShell({
   const onHome = pathname === "/app" || pathname.startsWith("/preview");
   const onSearch = pathname.startsWith("/app/kerko");
   const onBusiness = pathname.startsWith("/app/biznesi");
+  const onSaved = pathname.startsWith("/app/ruajtura");
   const onDiscover =
-    !onHome && !onSearch && !onBusiness && !pathname.startsWith("/app/login");
+    !onHome &&
+    !onSearch &&
+    !onBusiness &&
+    !onSaved &&
+    !pathname.startsWith("/app/login");
 
   const tabs = [
     { href: "/app", icon: Home, label: t("tabHome"), active: onHome },
     { href: "/app/kerko", icon: Search, label: t("tabSearch"), active: onSearch },
-    { href: "/app/login", icon: Heart, label: t("tabSaved"), active: false },
+    {
+      href: "/app/ruajtura",
+      icon: Heart,
+      label: t("tabSaved"),
+      active: onSaved,
+    },
     {
       href: "/app/biznesi",
       icon: Store,
@@ -62,7 +72,12 @@ export function FFShell({
       label: t("navDiscover"),
       active: onDiscover,
     },
-    { href: "/app/login", icon: Heart, label: t("tabSaved"), active: false },
+    {
+      href: "/app/ruajtura",
+      icon: Heart,
+      label: t("tabSaved"),
+      active: onSaved,
+    },
     { href: "/app/login", icon: FileText, label: t("navRequests"), active: false },
     {
       href: "/app/biznesi",
