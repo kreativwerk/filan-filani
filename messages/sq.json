@@ -127,7 +127,10 @@
     "locationDenied": "Qasja te lokacioni është e bllokuar. Hape menynë e shfletuesit (aA / 🔒 te adresa) → Lejet → Lokacioni → Lejo, pastaj rifresko faqen.",
     "locationTimeout": "GPS-i nuk u përgjigj — provo përsëri, mundësisht afër dritares ose jashtë.",
     "successTextSelf": "Faleminderit! Ekipi ynë do ta shqyrtojë së shpejti.",
-    "backToApp": "Kthehu te aplikacioni"
+    "backToApp": "Kthehu te aplikacioni",
+    "exportTitle": "Shërbime & produkte edhe jashtë vendit?",
+    "exportHint": "Zgjidh vendet ku biznesi ofron produkte ose shërbime — baza për regjistrin B2B.",
+    "exportOtherPh": "Vende të tjera (ndaji me presje)"
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -258,10 +261,20 @@
     "savedEmpty": "Ende s'ke ruajtur asnjë biznes.",
     "savedHint": "Shtyp zemrën te një biznes për ta ruajtur këtu.",
     "saveBiz": "Ruaje",
-    "savedBiz": "U ruajt"
+    "savedBiz": "U ruajt",
+    "exportsTo": "Ofron edhe në"
   },
   "profile": {
     "title": "Profili im",
     "saved": "U ruajt."
+  },
+  "countries": {
+    "de": "Gjermani",
+    "at": "Austri",
+    "ch": "Zvicër",
+    "se": "Suedi",
+    "fi": "Finlandë",
+    "it": "Itali",
+    "al": "Shqipëri"
   }
 }

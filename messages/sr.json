@@ -127,7 +127,10 @@
     "locationDenied": "Pristup lokaciji je blokiran. Otvori meni pregledača (aA / 🔒 u adresnoj traci) → Dozvole → Lokacija → Dozvoli, pa osveži stranicu.",
     "locationTimeout": "GPS nije odgovorio — pokušaj ponovo, najbolje kraj prozora ili napolju.",
     "successTextSelf": "Hvala! Naš tim će uskoro pregledati unos.",
-    "backToApp": "Nazad u aplikaciju"
+    "backToApp": "Nazad u aplikaciju",
+    "exportTitle": "Usluge i proizvodi i u inostranstvu?",
+    "exportHint": "Izaberi zemlje u koje firma isporučuje ili pruža usluge — osnova za B2B registar.",
+    "exportOtherPh": "Druge zemlje (odvoji zarezom)"
   },
   "list": {
     "title": "Moji unosi",
@@ -258,10 +261,20 @@
     "savedEmpty": "Još nisi sačuvao nijednu firmu.",
     "savedHint": "Klikni srce kod firme da je sačuvaš ovde.",
     "saveBiz": "Sačuvaj",
-    "savedBiz": "Sačuvano"
+    "savedBiz": "Sačuvano",
+    "exportsTo": "Posluje i u"
   },
   "profile": {
     "title": "Moj profil",
     "saved": "Sačuvano."
+  },
+  "countries": {
+    "de": "Nemačka",
+    "at": "Austrija",
+    "ch": "Švajcarska",
+    "se": "Švedska",
+    "fi": "Finska",
+    "it": "Italija",
+    "al": "Albanija"
   }
 }

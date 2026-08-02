@@ -129,6 +129,13 @@ export default async function FFBizPage({ params }: Props) {
     .filter(Boolean)
     .join(" · ");
 
+  // Export-Länder: bekannte Codes übersetzen, freie Einträge unverändert zeigen
+  const tco = await getTranslations("countries");
+  const knownCodes = ["DE", "AT", "CH", "SE", "FI", "IT", "AL"];
+  const exportLabels = (
+    (biz as { export_countries?: string[] | null }).export_countries ?? []
+  ).map((c) => (knownCodes.includes(c) ? tco(c.toLowerCase()) : c));
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -304,6 +311,26 @@ export default async function FFBizPage({ params }: Props) {
               <p className="whitespace-pre-line text-[15px] leading-relaxed text-ink-2">
                 {biz.description}
               </p>
+            </section>
+          )}
+
+          {/* B2B: bedient auch diese Länder */}
+          {exportLabels.length > 0 && (
+            <section className="flex flex-col gap-2.5 rounded-[18px] border border-line bg-white p-5">
+              <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
+                <Globe className="h-4 w-4 text-ff-primary" />
+                {t("exportsTo")}
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {exportLabels.map((label) => (
+                  <span
+                    key={label}
+                    className="flex h-9 items-center rounded-full bg-ff-mint px-3.5 text-[13.5px] font-bold text-ff-primary-dark"
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
             </section>
           )}
 

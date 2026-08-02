@@ -59,6 +59,7 @@ export type Business = {
   facebook: string | null;
   instagram: string | null;
   logo_url: string | null;
+  export_countries?: string[] | null;
   cover_url: string | null;
   opening_hours: OpeningHours | null;
   status: BusinessStatus;

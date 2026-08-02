@@ -127,7 +127,10 @@
     "locationDenied": "Location access is blocked. Open the browser menu (aA / 🔒 in the address bar) → Permissions → Location → Allow, then reload the page.",
     "locationTimeout": "GPS did not respond — try again, ideally near a window or outside.",
     "successTextSelf": "Thank you! Our team will review it shortly.",
-    "backToApp": "Back to the app"
+    "backToApp": "Back to the app",
+    "exportTitle": "Services & products abroad?",
+    "exportHint": "Select the countries this business serves — the basis for the B2B directory.",
+    "exportOtherPh": "Other countries (comma-separated)"
   },
   "list": {
     "title": "My entries",
@@ -258,10 +261,20 @@
     "savedEmpty": "You haven't saved any businesses yet.",
     "savedHint": "Tap the heart on a business to save it here.",
     "saveBiz": "Save",
-    "savedBiz": "Saved"
+    "savedBiz": "Saved",
+    "exportsTo": "Also serves"
   },
   "profile": {
     "title": "My profile",
     "saved": "Saved."
+  },
+  "countries": {
+    "de": "Germany",
+    "at": "Austria",
+    "ch": "Switzerland",
+    "se": "Sweden",
+    "fi": "Finland",
+    "it": "Italy",
+    "al": "Albania"
   }
 }

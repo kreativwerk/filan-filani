@@ -127,7 +127,10 @@
     "locationDenied": "Standort-Zugriff ist blockiert. Öffne das Browser-Menü (aA / 🔒 in der Adressleiste) → Berechtigungen → Standort → Erlauben, dann Seite neu laden.",
     "locationTimeout": "GPS hat nicht geantwortet — versuch es noch einmal, am besten am Fenster oder draußen.",
     "successTextSelf": "Danke! Unser Team prüft den Eintrag in Kürze.",
-    "backToApp": "Zurück zur App"
+    "backToApp": "Zurück zur App",
+    "exportTitle": "Leistungen & Produkte auch im Ausland?",
+    "exportHint": "Wähle die Länder, in die der Betrieb liefert oder leistet — Grundlage für das B2B-Verzeichnis.",
+    "exportOtherPh": "Weitere Länder (mit Komma trennen)"
   },
   "list": {
     "title": "Meine Einträge",
@@ -258,10 +261,20 @@
     "savedEmpty": "Du hast noch keine Betriebe gespeichert.",
     "savedHint": "Tippe beim Betrieb auf das Herz, um ihn hier zu speichern.",
     "saveBiz": "Speichern",
-    "savedBiz": "Gespeichert"
+    "savedBiz": "Gespeichert",
+    "exportsTo": "Liefert/leistet auch nach"
   },
   "profile": {
     "title": "Mein Profil",
     "saved": "Gespeichert."
+  },
+  "countries": {
+    "de": "Deutschland",
+    "at": "Österreich",
+    "ch": "Schweiz",
+    "se": "Schweden",
+    "fi": "Finnland",
+    "it": "Italien",
+    "al": "Albanien"
   }
 }

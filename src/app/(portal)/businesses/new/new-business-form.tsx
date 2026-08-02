@@ -37,6 +37,9 @@ import {
 const MAX_PHOTOS = 6;
 const TOTAL_STEPS = 3;
 
+/** Vordefinierte Export-Länder (B2B): Diaspora-Kernmärkte + Nachbarland */
+const EXPORT_CODES = ["DE", "AT", "CH", "SE", "FI", "IT", "AL"];
+
 type HoursRow = { open: string; close: string; closed: boolean };
 
 const defaultHours: HoursRow = { open: "08:00", close: "18:00", closed: false };
@@ -81,6 +84,7 @@ export type BusinessInitial = {
   instagram: string;
   description: string;
   openingHours: OpeningHours | null;
+  exportCountries?: string[];
 };
 
 export function NewBusinessForm({
@@ -104,6 +108,7 @@ export function NewBusinessForm({
 }) {
   const t = useTranslations("form");
   const tc = useTranslations("common");
+  const tco = useTranslations("countries");
   const locale = useLocale() as Locale;
 
   const [step, setStep] = useState(1);
@@ -132,6 +137,14 @@ export function NewBusinessForm({
       fromSaved(initial?.openingHours?.sunday) ??
       { ...defaultHours, closed: true },
   });
+  const [exportCountries, setExportCountries] = useState<string[]>(
+    (initial?.exportCountries ?? []).filter((c) => EXPORT_CODES.includes(c)),
+  );
+  const [exportOther, setExportOther] = useState(
+    (initial?.exportCountries ?? [])
+      .filter((c) => !EXPORT_CODES.includes(c))
+      .join(", "),
+  );
   const [photos, setPhotos] = useState<File[]>([]);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(
     null,
@@ -316,6 +329,22 @@ export function NewBusinessForm({
         business_id: id,
         category_id: Number(form.categoryId),
       });
+
+      // Export-Länder separat speichern — Fehler bewusst ignorieren, solange
+      // Migration 0011 (Spalte export_countries) noch nicht eingespielt ist
+      const exportList = [
+        ...exportCountries,
+        ...exportOther
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean),
+      ];
+      if (exportList.length || businessId) {
+        await supabase
+          .from("businesses")
+          .update({ export_countries: exportList })
+          .eq("id", id);
+      }
 
       for (let i = 0; i < photos.length; i++) {
         const file = photos[i];
@@ -623,6 +652,48 @@ export function NewBusinessForm({
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* B2B: Leistungen/Produkte auch im Ausland */}
+            <div className="rounded-[18px] border border-line bg-white p-4">
+              <div className="text-[15px] font-extrabold text-ink">
+                {t("exportTitle")}
+              </div>
+              <p className="mt-1 text-[13px] text-muted">{t("exportHint")}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {EXPORT_CODES.map((code) => {
+                  const active = exportCountries.includes(code);
+                  return (
+                    <button
+                      type="button"
+                      key={code}
+                      aria-pressed={active}
+                      onClick={() =>
+                        setExportCountries((list) =>
+                          active
+                            ? list.filter((c) => c !== code)
+                            : [...list, code],
+                        )
+                      }
+                      className={cn(
+                        "flex h-10 items-center gap-1.5 rounded-full px-3.5 text-[13.5px] font-bold",
+                        active
+                          ? "bg-primary text-white"
+                          : "border-[1.5px] border-line-strong bg-white text-ink-2",
+                      )}
+                    >
+                      {active && <Check className="h-4 w-4" />}
+                      {tco(code.toLowerCase())}
+                    </button>
+                  );
+                })}
+              </div>
+              <Input
+                value={exportOther}
+                onChange={(e) => setExportOther(e.target.value)}
+                placeholder={t("exportOtherPh")}
+                className="mt-3 h-11"
+              />
             </div>
           </div>
         )}

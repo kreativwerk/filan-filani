@@ -41,6 +41,7 @@ export default async function EditBusinessPage({
     instagram: business.instagram ?? "",
     description: business.description ?? "",
     openingHours: (business.opening_hours as OpeningHours) ?? null,
+    exportCountries: (business.export_countries as string[] | null) ?? [],
   };
 
   return (
