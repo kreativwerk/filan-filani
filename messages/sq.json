@@ -246,7 +246,11 @@
     "enterEmail": "Shkruaj email-in tënd më parë.",
     "passwordNew": "Fjalëkalimi i ri",
     "passwordSave": "Ruaj fjalëkalimin",
-    "passwordSaved": "Fjalëkalimi u ruajt. Po të ridrejtojmë…"
+    "passwordSaved": "Fjalëkalimi u ruajt. Po të ridrejtojmë…",
+    "myBizLogin": "Kyçu për të parë dhe menaxhuar biznesin tënd.",
+    "myBizEmpty": "Ende s'ke asnjë biznes të lidhur me llogarinë tënde.",
+    "myBizHint": "Gjej biznesin tënd në kërkim dhe shtyp «Ky është biznesi im» — pas verifikimit shfaqet këtu.",
+    "myBizYours": "Bizneset e tua"
   },
   "profile": {
     "title": "Profili im",

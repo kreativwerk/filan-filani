@@ -13,7 +13,6 @@ import {
   toFFCat,
   type FFBizRow,
 } from "@/lib/ff-data";
-import { FFShell } from "@/components/ff/shell";
 import { FFHomeView, type FFHomeData } from "@/components/ff/home-view";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -91,9 +90,5 @@ export default async function FFAppHome() {
     );
   }
 
-  return (
-    <FFShell citySlug={data.city.slug}>
-      <FFHomeView data={data} />
-    </FFShell>
-  );
+  return <FFHomeView data={data} />;
 }

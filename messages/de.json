@@ -246,7 +246,11 @@
     "enterEmail": "Bitte zuerst deine E-Mail eintragen.",
     "passwordNew": "Neues Passwort",
     "passwordSave": "Passwort speichern",
-    "passwordSaved": "Passwort gespeichert. Du wirst weitergeleitet…"
+    "passwordSaved": "Passwort gespeichert. Du wirst weitergeleitet…",
+    "myBizLogin": "Melde dich an, um deinen Betrieb zu sehen und zu verwalten.",
+    "myBizEmpty": "Mit deinem Konto ist noch kein Betrieb verknüpft.",
+    "myBizHint": "Finde deinen Betrieb in der Suche und tippe auf „Das ist mein Betrieb\" — nach der Prüfung erscheint er hier.",
+    "myBizYours": "Deine Betriebe"
   },
   "profile": {
     "title": "Mein Profil",

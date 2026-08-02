@@ -11,26 +11,34 @@ import {
   toFFBiz,
   type FFBizRow,
 } from "@/lib/ff-data";
-import { FFShell } from "@/components/ff/shell";
 import { FFListingView, type FFPill } from "@/components/ff/listing-view";
 
-type Props = { params: Promise<{ city: string }> };
+type Props = { params: Promise<{ city: string; category: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { city: citySlug } = await params;
+  const { city: citySlug, category: catSlug } = await params;
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("ff");
-  const city = (await getCities()).find((c) => c.slug === citySlug);
-  if (!city) return {};
-  const name = localizedName(city, locale);
+  const [cities, categories] = await Promise.all([
+    getCities(),
+    getCategories(),
+  ]);
+  const city = cities.find((c) => c.slug === citySlug);
+  const category = categories.find((c) => c.slug === catSlug);
+  if (!city || !category) return {};
+  const cityName = localizedName(city, locale);
+  const catName = localizedName(category, locale);
   return {
-    title: t("metaCity", { city: name }),
-    description: t("metaCityDesc", { city: name }),
+    title: t("metaCategoryCity", { category: catName, city: cityName }),
+    description: t("metaCategoryCityDesc", {
+      category: catName,
+      city: cityName,
+    }),
   };
 }
 
-export default async function FFCityPage({ params }: Props) {
-  const { city: citySlug } = await params;
+export default async function FFCategoryPage({ params }: Props) {
+  const { city: citySlug, category: catSlug } = await params;
   if (!hasSupabaseEnv()) notFound();
 
   const locale = (await getLocale()) as Locale;
@@ -40,41 +48,41 @@ export default async function FFCityPage({ params }: Props) {
     getCategories(),
   ]);
   const city = cities.find((c) => c.slug === citySlug);
-  if (!city) notFound();
+  const category = categories.find((c) => c.slug === catSlug);
+  if (!city || !category) notFound();
 
   const supabase = await createClient();
   const { data: rows, count } = await supabase
     .from("businesses")
-    .select("*, business_categories(categories(*)), reviews(rating)", {
+    .select("*, business_categories!inner(category_id), reviews(rating)", {
       count: "exact",
     })
     .eq("status", "approved")
     .eq("city_id", city.id)
+    .eq("business_categories.category_id", category.id)
     .order("created_at", { ascending: false })
     .limit(60);
 
   const items = ((rows ?? []) as FFBizRow[]).map((row) =>
-    toFFBiz(row, locale, { city }),
+    toFFBiz(row, locale, { city, category }),
   );
 
   const pills: FFPill[] = [
-    { href: `/app/${city.slug}`, label: t("all"), active: true },
+    { href: `/app/${city.slug}`, label: t("all"), active: false },
     ...categories.map((c) => ({
       href: `/app/${city.slug}/${c.slug}`,
       label: localizedName(c, locale),
-      active: false,
+      active: c.id === category.id,
     })),
   ];
 
   return (
-    <FFShell citySlug={city.slug}>
       <FFListingView
         eyebrow={localizedName(city, locale)}
-        title={t("inYourCity")}
+        title={localizedName(category, locale)}
         count={count ?? items.length}
         pills={pills}
         items={items}
       />
-    </FFShell>
   );
 }

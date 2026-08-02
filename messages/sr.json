@@ -246,7 +246,11 @@
     "enterEmail": "Prvo unesi svoj email.",
     "passwordNew": "Nova lozinka",
     "passwordSave": "Sačuvaj lozinku",
-    "passwordSaved": "Lozinka je sačuvana. Preusmeravamo te…"
+    "passwordSaved": "Lozinka je sačuvana. Preusmeravamo te…",
+    "myBizLogin": "Prijavi se da vidiš i upravljaš svojom firmom.",
+    "myBizEmpty": "Još nijedna firma nije povezana sa tvojim nalogom.",
+    "myBizHint": "Pronađi svoju firmu u pretrazi i klikni „Ovo je moja firma“ — nakon provere pojaviće se ovde.",
+    "myBizYours": "Tvoje firme"
   },
   "profile": {
     "title": "Moj profil",

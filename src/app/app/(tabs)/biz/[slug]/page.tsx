@@ -23,10 +23,8 @@ import {
   type City,
   type OpeningHours,
 } from "@/lib/types";
-import { FFShell } from "@/components/ff/shell";
 import { FFCover, VerifiedBadge } from "@/components/ff/business-card";
 import { FacebookIcon, InstagramIcon } from "@/components/ff/social-icons";
-import { DEFAULT_CITY } from "@/lib/ff-data";
 import { cn } from "@/components/ui";
 import { ClaimForm } from "./claim-form";
 
@@ -153,7 +151,6 @@ export default async function FFBizPage({ params }: Props) {
     "flex h-12 items-center justify-center gap-2 rounded-full text-[15px] font-bold";
 
   return (
-    <FFShell citySlug={city?.slug ?? DEFAULT_CITY}>
       <main className="flex flex-1 flex-col bg-surface pb-6">
         {/* Cover mit Zurück-Pfeil */}
         <div className="relative">
@@ -414,6 +411,5 @@ export default async function FFBizPage({ params }: Props) {
           )}
         </div>
       </main>
-    </FFShell>
   );
 }

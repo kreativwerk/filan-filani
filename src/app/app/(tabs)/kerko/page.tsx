@@ -12,7 +12,6 @@ import {
   toFFBiz,
   type FFBizRow,
 } from "@/lib/ff-data";
-import { FFShell } from "@/components/ff/shell";
 import { FFListingView } from "@/components/ff/listing-view";
 
 type Props = {
@@ -95,10 +94,7 @@ export default async function FFSearchPage({ searchParams }: Props) {
     );
   }
 
-  const defaultCity = citySlug || cookieCitySlug;
-
   return (
-    <FFShell citySlug={defaultCity}>
       <FFListingView
         eyebrow="Filan Filani"
         title={t("searchTitle")}
@@ -157,6 +153,5 @@ export default async function FFSearchPage({ searchParams }: Props) {
           </button>
         </form>
       </FFListingView>
-    </FFShell>
   );
 }

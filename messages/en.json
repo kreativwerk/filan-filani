@@ -246,7 +246,11 @@
     "enterEmail": "Enter your email first.",
     "passwordNew": "New password",
     "passwordSave": "Save password",
-    "passwordSaved": "Password saved. Redirecting…"
+    "passwordSaved": "Password saved. Redirecting…",
+    "myBizLogin": "Sign in to see and manage your business.",
+    "myBizEmpty": "No business is linked to your account yet.",
+    "myBizHint": "Find your business in search and tap “This is my business” — after verification it appears here.",
+    "myBizYours": "Your businesses"
   },
   "profile": {
     "title": "My profile",

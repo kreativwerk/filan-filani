@@ -29,20 +29,29 @@ export function FFShell({
 }) {
   const t = useTranslations("ff");
   const pathname = usePathname();
-  // Nach dem Mount aufklappen — so animiert der aktive Tab bei jedem Seitenwechsel
+  // Erst nach dem ersten Frame aufklappen, damit der Titel sichtbar animiert
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   const onHome = pathname === "/app" || pathname.startsWith("/preview");
   const onSearch = pathname.startsWith("/app/kerko");
+  const onBusiness = pathname.startsWith("/app/biznesi");
   const onDiscover =
-    !onHome && !onSearch && !pathname.startsWith("/app/login");
+    !onHome && !onSearch && !onBusiness && !pathname.startsWith("/app/login");
 
   const tabs = [
     { href: "/app", icon: Home, label: t("tabHome"), active: onHome },
     { href: "/app/kerko", icon: Search, label: t("tabSearch"), active: onSearch },
     { href: "/app/login", icon: Heart, label: t("tabSaved"), active: false },
-    { href: "/app/login", icon: Store, label: t("tabBusiness"), active: false },
+    {
+      href: "/app/biznesi",
+      icon: Store,
+      label: t("tabBusiness"),
+      active: onBusiness,
+    },
   ];
 
   const sidebar = [
@@ -55,7 +64,12 @@ export function FFShell({
     },
     { href: "/app/login", icon: Heart, label: t("tabSaved"), active: false },
     { href: "/app/login", icon: FileText, label: t("navRequests"), active: false },
-    { href: "/app/login", icon: Store, label: t("tabBusiness"), active: false },
+    {
+      href: "/app/biznesi",
+      icon: Store,
+      label: t("tabBusiness"),
+      active: onBusiness,
+    },
   ];
 
   return (

@@ -86,3 +86,23 @@ body {
     transform: scale(0.97);
   }
 }
+
+/* Seitenwechsel in der Filan-Filani-App: Inhalt slidet weich herein */
+@keyframes ff-page-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.ff-page-in {
+  animation: ff-page-in 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ff-page-in {
+    animation: none;
+  }
+}
