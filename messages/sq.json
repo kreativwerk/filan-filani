@@ -262,7 +262,18 @@
     "savedHint": "Shtyp zemrën te një biznes për ta ruajtur këtu.",
     "saveBiz": "Ruaje",
     "savedBiz": "U ruajt",
-    "exportsTo": "Ofron edhe në"
+    "exportsTo": "Ofron edhe në",
+    "reviewsTitle": "Vlerësimet",
+    "reviewEmpty": "Ende s'ka vlerësime — bëhu i pari.",
+    "reviewAnon": "Përdorues",
+    "reviewWrite": "Shkruaj një vlerësim",
+    "reviewYours": "Vlerësimi yt",
+    "reviewStars": "{n} nga 5 yje",
+    "reviewPlaceholder": "Si ishte përvoja jote? (opsionale)",
+    "reviewChoose": "Zgjidh numrin e yjeve.",
+    "reviewSend": "Dërgo vlerësimin",
+    "reviewThanks": "Faleminderit për vlerësimin!",
+    "reviewLogin": "Kyçu për të shkruar një vlerësim."
   },
   "profile": {
     "title": "Profili im",

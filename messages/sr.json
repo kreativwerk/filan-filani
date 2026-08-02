@@ -262,7 +262,18 @@
     "savedHint": "Klikni srce kod firme da je sačuvaš ovde.",
     "saveBiz": "Sačuvaj",
     "savedBiz": "Sačuvano",
-    "exportsTo": "Posluje i u"
+    "exportsTo": "Posluje i u",
+    "reviewsTitle": "Recenzije",
+    "reviewEmpty": "Još nema recenzija — budi prvi.",
+    "reviewAnon": "Korisnik",
+    "reviewWrite": "Napiši recenziju",
+    "reviewYours": "Tvoja recenzija",
+    "reviewStars": "{n} od 5 zvezdica",
+    "reviewPlaceholder": "Kakvo je bilo tvoje iskustvo? (opciono)",
+    "reviewChoose": "Prvo izaberi broj zvezdica.",
+    "reviewSend": "Pošalji recenziju",
+    "reviewThanks": "Hvala na recenziji!",
+    "reviewLogin": "Prijavi se da napišeš recenziju."
   },
   "profile": {
     "title": "Moj profil",

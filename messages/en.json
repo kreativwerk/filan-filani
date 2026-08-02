@@ -262,7 +262,18 @@
     "savedHint": "Tap the heart on a business to save it here.",
     "saveBiz": "Save",
     "savedBiz": "Saved",
-    "exportsTo": "Also serves"
+    "exportsTo": "Also serves",
+    "reviewsTitle": "Reviews",
+    "reviewEmpty": "No reviews yet — be the first.",
+    "reviewAnon": "User",
+    "reviewWrite": "Write a review",
+    "reviewYours": "Your review",
+    "reviewStars": "{n} out of 5 stars",
+    "reviewPlaceholder": "How was your experience? (optional)",
+    "reviewChoose": "Choose a star rating first.",
+    "reviewSend": "Submit review",
+    "reviewThanks": "Thanks for your review!",
+    "reviewLogin": "Sign in to write a review."
   },
   "profile": {
     "title": "My profile",

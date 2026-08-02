@@ -262,7 +262,18 @@
     "savedHint": "Tippe beim Betrieb auf das Herz, um ihn hier zu speichern.",
     "saveBiz": "Speichern",
     "savedBiz": "Gespeichert",
-    "exportsTo": "Liefert/leistet auch nach"
+    "exportsTo": "Liefert/leistet auch nach",
+    "reviewsTitle": "Bewertungen",
+    "reviewEmpty": "Noch keine Bewertungen — sei der Erste.",
+    "reviewAnon": "Nutzer",
+    "reviewWrite": "Bewertung schreiben",
+    "reviewYours": "Deine Bewertung",
+    "reviewStars": "{n} von 5 Sternen",
+    "reviewPlaceholder": "Wie war deine Erfahrung? (optional)",
+    "reviewChoose": "Wähle zuerst die Sterne aus.",
+    "reviewSend": "Bewertung absenden",
+    "reviewThanks": "Danke für deine Bewertung!",
+    "reviewLogin": "Melde dich an, um eine Bewertung zu schreiben."
   },
   "profile": {
     "title": "Mein Profil",

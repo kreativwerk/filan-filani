@@ -28,6 +28,7 @@ import { FavButton } from "@/components/ff/fav-button";
 import { FacebookIcon, InstagramIcon } from "@/components/ff/social-icons";
 import { cn } from "@/components/ui";
 import { ClaimForm } from "./claim-form";
+import { ReviewForm } from "./review-form";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -39,6 +40,15 @@ type Product = {
   currency: string;
   photo_url: string | null;
   active: boolean;
+};
+
+type ReviewRow = {
+  id: string;
+  rating: number;
+  body: string | null;
+  created_at: string;
+  user_id: string;
+  profiles: { full_name: string } | { full_name: string }[] | null;
 };
 
 type BizDetail = Business & {
@@ -152,6 +162,19 @@ export default async function FFBizPage({ params }: Props) {
       .maybeSingle();
     isFavorite = Boolean(fav);
   }
+
+  // Bewertungen: RLS zeigt sichtbare + die eigene; Verfassername nur wenn
+  // das Profil per RLS lesbar ist (sonst anonym)
+  const { data: reviewRows } = await supabase
+    .from("reviews")
+    .select("id, rating, body, created_at, user_id, profiles(full_name)")
+    .eq("business_id", biz.id)
+    .order("created_at", { ascending: false });
+  const reviewList = (reviewRows ?? []) as ReviewRow[];
+  const ownReview = user
+    ? (reviewList.find((r) => r.user_id === user.id) ?? null)
+    : null;
+  const dateFmt = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
 
   // Inhaberschafts-Antrag: nur ohne Inhaber; Status des Besuchers serverseitig prüfen
   let claim: "hidden" | "login" | "form" | "exists" = "hidden";
@@ -455,6 +478,77 @@ export default async function FFBizPage({ params }: Props) {
               {claim === "form" && <ClaimForm businessId={biz.id} />}
             </section>
           )}
+
+          {/* Bewertungen: Liste + Formular (eingeloggt) bzw. Login-Hinweis */}
+          <section className="flex flex-col gap-4 rounded-[18px] border border-line bg-white p-5">
+            <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
+              <Star className="h-4 w-4 text-[#C79A2B]" />
+              {t("reviewsTitle")}
+            </h2>
+
+            {reviewList.length === 0 ? (
+              <p className="text-[14.5px] text-muted">{t("reviewEmpty")}</p>
+            ) : (
+              <ul className="flex flex-col gap-4">
+                {reviewList.map((r) => (
+                  <li
+                    key={r.id}
+                    className="flex flex-col gap-1.5 border-b border-divider pb-4 last:border-b-0 last:pb-0"
+                  >
+                    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                      <span className="text-[14.5px] font-extrabold text-ink">
+                        {one(r.profiles)?.full_name || t("reviewAnon")}
+                      </span>
+                      <span
+                        className="flex items-center gap-0.5"
+                        aria-label={t("reviewStars", { n: r.rating })}
+                      >
+                        {[1, 2, 3, 4, 5].map((n) => (
+                          <Star
+                            key={n}
+                            className={cn(
+                              "h-[15px] w-[15px]",
+                              n <= r.rating
+                                ? "fill-[#C79A2B] text-[#C79A2B]"
+                                : "text-line-strong",
+                            )}
+                          />
+                        ))}
+                      </span>
+                      <span className="text-[12.5px] text-faint">
+                        {dateFmt.format(new Date(r.created_at))}
+                      </span>
+                    </div>
+                    {r.body && (
+                      <p className="whitespace-pre-line text-[14.5px] leading-relaxed text-ink-2">
+                        {r.body}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {user ? (
+              <ReviewForm
+                businessId={biz.id}
+                initialRating={ownReview?.rating ?? null}
+                initialBody={ownReview?.body ?? ""}
+              />
+            ) : (
+              <div className="flex flex-col gap-3">
+                <p className="text-[13.5px] leading-relaxed text-muted">
+                  {t("reviewLogin")}
+                </p>
+                <Link
+                  href="/app/login"
+                  className="flex h-12 items-center justify-center rounded-full bg-ff-primary text-[15px] font-extrabold text-white"
+                >
+                  {t("claimLoginCta")}
+                </Link>
+              </div>
+            )}
+          </section>
         </div>
       </main>
   );
