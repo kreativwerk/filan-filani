@@ -106,3 +106,10 @@ body {
     animation: none;
   }
 }
+
+/* FF-Farbschema für wiederverwendete Portal-Bausteine (z. B. Erfassungs-Wizard) */
+.ff-brand {
+  --primary: #12574f;
+  --primary-dark: #0b443e;
+  --primary-light: #dcedea;
+}

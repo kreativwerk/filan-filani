@@ -125,7 +125,9 @@
     "locating": "Standort wird ermittelt…",
     "locationError": "Standort konnte nicht ermittelt werden — bitte GPS im Browser erlauben und erneut versuchen.",
     "locationDenied": "Standort-Zugriff ist blockiert. Öffne das Browser-Menü (aA / 🔒 in der Adressleiste) → Berechtigungen → Standort → Erlauben, dann Seite neu laden.",
-    "locationTimeout": "GPS hat nicht geantwortet — versuch es noch einmal, am besten am Fenster oder draußen."
+    "locationTimeout": "GPS hat nicht geantwortet — versuch es noch einmal, am besten am Fenster oder draußen.",
+    "successTextSelf": "Danke! Unser Team prüft den Eintrag in Kürze.",
+    "backToApp": "Zurück zur App"
   },
   "list": {
     "title": "Meine Einträge",
@@ -250,7 +252,9 @@
     "myBizLogin": "Melde dich an, um deinen Betrieb zu sehen und zu verwalten.",
     "myBizEmpty": "Mit deinem Konto ist noch kein Betrieb verknüpft.",
     "myBizHint": "Finde deinen Betrieb in der Suche und tippe auf „Das ist mein Betrieb\" — nach der Prüfung erscheint er hier.",
-    "myBizYours": "Deine Betriebe"
+    "myBizYours": "Deine Betriebe",
+    "addMine": "Deinen Betrieb registrieren",
+    "thisIsMine": "Das ist mein Betrieb (ich bin Inhaber)"
   },
   "profile": {
     "title": "Mein Profil",

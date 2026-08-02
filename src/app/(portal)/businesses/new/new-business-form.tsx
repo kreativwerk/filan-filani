@@ -89,12 +89,18 @@ export function NewBusinessForm({
   businessId,
   initial,
   adminMode,
+  variant,
+  claimOwner,
 }: {
   cities: City[];
   categories: Category[];
   businessId?: string;
   initial?: BusinessInitial;
   adminMode?: boolean;
+  /** "ff": Selbst-Registrierung in der Filan-Filani-App (source 'self', keine Vergütung) */
+  variant?: "ff";
+  /** Nutzer trägt sich direkt als Inhaber ein */
+  claimOwner?: boolean;
 }) {
   const t = useTranslations("form");
   const tc = useTranslations("common");
@@ -295,8 +301,9 @@ export function NewBusinessForm({
           .insert({
             ...values,
             status: adminMode ? "approved" : "pending",
-            source: adminMode ? "admin" : "scout",
-            scout_id: adminMode ? null : user.id,
+            source: adminMode ? "admin" : variant === "ff" ? "self" : "scout",
+            scout_id: adminMode || variant === "ff" ? null : user.id,
+            owner_id: variant === "ff" && claimOwner ? user.id : null,
             created_by: user.id,
           })
           .select("id")
@@ -341,14 +348,16 @@ export function NewBusinessForm({
         <h1 className="mt-4 text-2xl font-extrabold tracking-[-0.02em] text-ink">
           {t("success")}
         </h1>
-        <p className="mt-2 text-ink-2">{t("successText")}</p>
+        <p className="mt-2 text-ink-2">
+          {variant === "ff" ? t("successTextSelf") : t("successText")}
+        </p>
         <div className="mt-6 flex justify-center gap-3">
           <Button onClick={() => location.reload()}>{t("addAnother")}</Button>
           <Link
-            href="/businesses"
+            href={variant === "ff" ? "/app/biznesi" : "/businesses"}
             className="inline-flex h-[52px] items-center rounded-full border-[1.5px] border-line-strong bg-white px-6 text-[16px] font-bold text-ink hover:bg-surface"
           >
-            {t("backToList")}
+            {variant === "ff" ? t("backToApp") : t("backToList")}
           </Link>
         </div>
       </div>

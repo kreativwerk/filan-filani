@@ -125,7 +125,9 @@
     "locating": "Duke marrë lokacionin…",
     "locationError": "Lokacioni nuk u mor dot — lejo GPS-in në shfletues dhe provo përsëri.",
     "locationDenied": "Qasja te lokacioni është e bllokuar. Hape menynë e shfletuesit (aA / 🔒 te adresa) → Lejet → Lokacioni → Lejo, pastaj rifresko faqen.",
-    "locationTimeout": "GPS-i nuk u përgjigj — provo përsëri, mundësisht afër dritares ose jashtë."
+    "locationTimeout": "GPS-i nuk u përgjigj — provo përsëri, mundësisht afër dritares ose jashtë.",
+    "successTextSelf": "Faleminderit! Ekipi ynë do ta shqyrtojë së shpejti.",
+    "backToApp": "Kthehu te aplikacioni"
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -250,7 +252,9 @@
     "myBizLogin": "Kyçu për të parë dhe menaxhuar biznesin tënd.",
     "myBizEmpty": "Ende s'ke asnjë biznes të lidhur me llogarinë tënde.",
     "myBizHint": "Gjej biznesin tënd në kërkim dhe shtyp «Ky është biznesi im» — pas verifikimit shfaqet këtu.",
-    "myBizYours": "Bizneset e tua"
+    "myBizYours": "Bizneset e tua",
+    "addMine": "Regjistro biznesin tënd",
+    "thisIsMine": "Ky është biznesi im (unë jam pronari)"
   },
   "profile": {
     "title": "Profili im",

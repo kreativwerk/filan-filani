@@ -125,7 +125,9 @@
     "locating": "Preuzimanje lokacije…",
     "locationError": "Lokacija nije preuzeta — dozvoli GPS u pregledaču i pokušaj ponovo.",
     "locationDenied": "Pristup lokaciji je blokiran. Otvori meni pregledača (aA / 🔒 u adresnoj traci) → Dozvole → Lokacija → Dozvoli, pa osveži stranicu.",
-    "locationTimeout": "GPS nije odgovorio — pokušaj ponovo, najbolje kraj prozora ili napolju."
+    "locationTimeout": "GPS nije odgovorio — pokušaj ponovo, najbolje kraj prozora ili napolju.",
+    "successTextSelf": "Hvala! Naš tim će uskoro pregledati unos.",
+    "backToApp": "Nazad u aplikaciju"
   },
   "list": {
     "title": "Moji unosi",
@@ -250,7 +252,9 @@
     "myBizLogin": "Prijavi se da vidiš i upravljaš svojom firmom.",
     "myBizEmpty": "Još nijedna firma nije povezana sa tvojim nalogom.",
     "myBizHint": "Pronađi svoju firmu u pretrazi i klikni „Ovo je moja firma“ — nakon provere pojaviće se ovde.",
-    "myBizYours": "Tvoje firme"
+    "myBizYours": "Tvoje firme",
+    "addMine": "Registruj svoju firmu",
+    "thisIsMine": "Ovo je moja firma (ja sam vlasnik)"
   },
   "profile": {
     "title": "Moj profil",

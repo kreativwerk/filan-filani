@@ -125,7 +125,9 @@
     "locating": "Getting location…",
     "locationError": "Could not get your location — allow GPS in the browser and try again.",
     "locationDenied": "Location access is blocked. Open the browser menu (aA / 🔒 in the address bar) → Permissions → Location → Allow, then reload the page.",
-    "locationTimeout": "GPS did not respond — try again, ideally near a window or outside."
+    "locationTimeout": "GPS did not respond — try again, ideally near a window or outside.",
+    "successTextSelf": "Thank you! Our team will review it shortly.",
+    "backToApp": "Back to the app"
   },
   "list": {
     "title": "My entries",
@@ -250,7 +252,9 @@
     "myBizLogin": "Sign in to see and manage your business.",
     "myBizEmpty": "No business is linked to your account yet.",
     "myBizHint": "Find your business in search and tap “This is my business” — after verification it appears here.",
-    "myBizYours": "Your businesses"
+    "myBizYours": "Your businesses",
+    "addMine": "Register your business",
+    "thisIsMine": "This is my business (I'm the owner)"
   },
   "profile": {
     "title": "My profile",

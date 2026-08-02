@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Search, Store } from "lucide-react";
+import { Plus, Search, Store } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
@@ -76,6 +76,13 @@ export default async function FFMyBusinessPage() {
             {t("myBizHint")}
           </p>
           <Link
+            href="/app/shto?imi=1"
+            className="flex h-12 items-center justify-center gap-2 rounded-full bg-ff-accent px-8 text-[16px] font-extrabold text-white hover:opacity-90"
+          >
+            <Plus className="h-[18px] w-[18px]" />
+            {t("addMine")}
+          </Link>
+          <Link
             href="/app/kerko"
             className="flex h-12 items-center justify-center gap-2 rounded-full bg-ff-primary px-8 text-[16px] font-extrabold text-white hover:opacity-90"
           >
@@ -89,6 +96,13 @@ export default async function FFMyBusinessPage() {
             {t("myBizYours")}
           </div>
           <FFBusinessList items={items} />
+          <Link
+            href="/app/shto?imi=1"
+            className="mt-2 flex h-12 w-fit items-center gap-2 rounded-full border-[1.5px] border-line bg-white px-6 text-[15px] font-extrabold text-ink hover:bg-surface"
+          >
+            <Plus className="h-[18px] w-[18px]" />
+            {t("addMine")}
+          </Link>
         </div>
       )}
     </main>

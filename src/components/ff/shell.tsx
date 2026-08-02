@@ -107,7 +107,7 @@ export function FFShell({
           ))}
         </nav>
         <Link
-          href="/app/login"
+          href="/app/shto"
           className="mt-auto flex h-12 items-center justify-center gap-2 rounded-full bg-ff-accent text-[17px] font-extrabold text-white hover:opacity-90"
         >
           <Plus className="h-[19px] w-[19px]" />
