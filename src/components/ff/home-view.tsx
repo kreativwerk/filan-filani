@@ -3,7 +3,7 @@
    Petrol-Banner. Rein präsentational — Preview und echte Seite teilen die UI. */
 
 import Link from "next/link";
-import { Bell, Search, User } from "lucide-react";
+import { Bell, ChevronRight, Globe, Search, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/components/ui";
 import { categoryIcon } from "./icons";
@@ -164,6 +164,22 @@ export function FFHomeView({ data }: { data: FFHomeData }) {
               {t("bannerCta")}
             </Link>
           </div>
+        </section>
+
+        {/* Dezenter B2B-Hinweis unter dem Zejtarët-Banner */}
+        <section className="px-4 lg:px-0">
+          <Link
+            href="/app/b2b"
+            className="flex items-center gap-3 rounded-[20px] border border-line bg-white p-4 hover:bg-ff-mint-light"
+          >
+            <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-ff-mint text-ff-primary">
+              <Globe className="h-5 w-5" />
+            </span>
+            <span className="min-w-0 flex-1 text-[14.5px] font-bold leading-snug text-ink">
+              {t("b2bHome")}
+            </span>
+            <ChevronRight className="h-5 w-5 flex-none text-muted" />
+          </Link>
         </section>
       </main>
     </>

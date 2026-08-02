@@ -273,7 +273,13 @@
     "reviewChoose": "Wähle zuerst die Sterne aus.",
     "reviewSend": "Bewertung absenden",
     "reviewThanks": "Danke für deine Bewertung!",
-    "reviewLogin": "Melde dich an, um eine Bewertung zu schreiben."
+    "reviewLogin": "Melde dich an, um eine Bewertung zu schreiben.",
+    "b2bNav": "B2B",
+    "b2bTitle": "B2B-Verzeichnis",
+    "b2bHint": "Betriebe aus dem Kosovo, die auch ins Ausland liefern oder dort leisten — nach Land filterbar.",
+    "b2bAll": "Alle Länder",
+    "b2bEmpty": "Das B2B-Verzeichnis ist im Aufbau — Betriebe werden laufend ergänzt. Schau bald wieder vorbei.",
+    "b2bHome": "B2B — Betriebe, die auch im Ausland anbieten"
   },
   "profile": {
     "title": "Mein Profil",

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import {
   Compass,
   FileText,
+  Globe,
   Heart,
   Home,
   Plus,
@@ -40,11 +41,13 @@ export function FFShell({
   const onSearch = pathname.startsWith("/app/kerko");
   const onBusiness = pathname.startsWith("/app/biznesi");
   const onSaved = pathname.startsWith("/app/ruajtura");
+  const onB2B = pathname.startsWith("/app/b2b");
   const onDiscover =
     !onHome &&
     !onSearch &&
     !onBusiness &&
     !onSaved &&
+    !onB2B &&
     !pathname.startsWith("/app/login");
 
   const tabs = [
@@ -78,6 +81,7 @@ export function FFShell({
       label: t("tabSaved"),
       active: onSaved,
     },
+    { href: "/app/b2b", icon: Globe, label: t("b2bNav"), active: onB2B },
     { href: "/app/login", icon: FileText, label: t("navRequests"), active: false },
     {
       href: "/app/biznesi",

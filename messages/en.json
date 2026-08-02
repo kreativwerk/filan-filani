@@ -273,7 +273,13 @@
     "reviewChoose": "Choose a star rating first.",
     "reviewSend": "Submit review",
     "reviewThanks": "Thanks for your review!",
-    "reviewLogin": "Sign in to write a review."
+    "reviewLogin": "Sign in to write a review.",
+    "b2bNav": "B2B",
+    "b2bTitle": "B2B directory",
+    "b2bHint": "Kosovo businesses that also serve customers abroad — filter by country.",
+    "b2bAll": "All countries",
+    "b2bEmpty": "The B2B directory is under construction — businesses are being added continuously. Check back soon.",
+    "b2bHome": "B2B — businesses that also serve abroad"
   },
   "profile": {
     "title": "My profile",

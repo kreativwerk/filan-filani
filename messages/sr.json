@@ -273,7 +273,13 @@
     "reviewChoose": "Prvo izaberi broj zvezdica.",
     "reviewSend": "Pošalji recenziju",
     "reviewThanks": "Hvala na recenziji!",
-    "reviewLogin": "Prijavi se da napišeš recenziju."
+    "reviewLogin": "Prijavi se da napišeš recenziju.",
+    "b2bNav": "B2B",
+    "b2bTitle": "B2B registar",
+    "b2bHint": "Firme sa Kosova koje nude proizvode i usluge i u inostranstvu — filtriraj po zemlji.",
+    "b2bAll": "Sve zemlje",
+    "b2bEmpty": "B2B registar je u izradi — firme se stalno dodaju. Navrati uskoro.",
+    "b2bHome": "B2B — firme koje nude i u inostranstvu"
   },
   "profile": {
     "title": "Moj profil",

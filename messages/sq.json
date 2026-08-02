@@ -273,7 +273,13 @@
     "reviewChoose": "Zgjidh numrin e yjeve.",
     "reviewSend": "Dërgo vlerësimin",
     "reviewThanks": "Faleminderit për vlerësimin!",
-    "reviewLogin": "Kyçu për të shkruar një vlerësim."
+    "reviewLogin": "Kyçu për të shkruar një vlerësim.",
+    "b2bNav": "B2B",
+    "b2bTitle": "Regjistri B2B",
+    "b2bHint": "Biznese nga Kosova që ofrojnë produkte e shërbime edhe jashtë vendit — filtro sipas vendit.",
+    "b2bAll": "Të gjitha",
+    "b2bEmpty": "Regjistri B2B është në ndërtim — bizneset po shtohen vazhdimisht. Kthehu së shpejti.",
+    "b2bHome": "B2B — Biznese që ofrojnë edhe jashtë vendit"
   },
   "profile": {
     "title": "Profili im",
