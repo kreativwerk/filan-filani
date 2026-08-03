@@ -6,10 +6,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, Star } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { FFStar } from "@/components/ff/star";
 import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { cn } from "@/components/ui";
 
 export function ReviewForm({
   businessId,
@@ -89,13 +89,9 @@ export function ReviewForm({
             onClick={() => setRating(n)}
             className="grid h-11 w-11 place-items-center rounded-full hover:bg-surface"
           >
-            <Star
-              className={cn(
-                "h-7 w-7 transition-colors",
-                rating >= n
-                  ? "fill-[#C79A2B] text-[#C79A2B]"
-                  : "text-line-strong",
-              )}
+            <FFStar
+              filled={rating >= n}
+              className="h-7 w-7 text-line-strong transition-transform active:scale-90"
             />
           </button>
         ))}

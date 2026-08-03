@@ -10,7 +10,6 @@ import {
   Package,
   Pencil,
   Phone,
-  Star,
   Store,
 } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -27,6 +26,7 @@ import {
 } from "@/lib/types";
 import { FFCover, VerifiedBadge } from "@/components/ff/business-card";
 import { FavButton } from "@/components/ff/fav-button";
+import { FFStar, FFStars } from "@/components/ff/star";
 import { EXPORT_CODES } from "@/lib/export-countries";
 import { FacebookIcon, InstagramIcon } from "@/components/ff/social-icons";
 import { cn } from "@/components/ui";
@@ -282,7 +282,7 @@ export default async function FFBizPage({ params }: Props) {
             {meta && <div className="text-[14.5px] text-muted">{meta}</div>}
             {rating !== null && (
               <div className="flex items-center gap-1.5 text-[14.5px] font-bold text-ink-2">
-                <Star className="h-4 w-4 fill-[#C79A2B] text-[#C79A2B]" />
+                <FFStar className="h-4 w-4" />
                 {rating.toFixed(1)}
                 <span className="font-medium text-muted">
                   · {ratings.length}
@@ -522,7 +522,7 @@ export default async function FFBizPage({ params }: Props) {
           {/* Bewertungen: Liste + Formular (eingeloggt) bzw. Login-Hinweis */}
           <section className="flex flex-col gap-4 rounded-[18px] border border-line bg-white p-5">
             <h2 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">
-              <Star className="h-4 w-4 text-[#C79A2B]" />
+              <FFStar className="h-4 w-4" />
               {t("reviewsTitle")}
             </h2>
 
@@ -543,17 +543,7 @@ export default async function FFBizPage({ params }: Props) {
                         className="flex items-center gap-0.5"
                         aria-label={t("reviewStars", { n: r.rating })}
                       >
-                        {[1, 2, 3, 4, 5].map((n) => (
-                          <Star
-                            key={n}
-                            className={cn(
-                              "h-[15px] w-[15px]",
-                              n <= r.rating
-                                ? "fill-[#C79A2B] text-[#C79A2B]"
-                                : "text-line-strong",
-                            )}
-                          />
-                        ))}
+                        <FFStars value={r.rating} starClassName="h-[15px] w-[15px]" />
                       </span>
                       <span className="text-[12.5px] text-faint">
                         {dateFmt.format(new Date(r.created_at))}

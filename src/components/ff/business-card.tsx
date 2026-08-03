@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { BadgeCheck, Star } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
+import { FFStar } from "./star";
 import { useTranslations } from "next-intl";
 import { cn } from "@/components/ui";
 
@@ -86,7 +87,7 @@ export function FFBusinessCard({
         <div className="truncate text-[13.5px] text-muted">{biz.meta}</div>
         {biz.rating !== null && (
           <div className="flex items-center gap-1.5 text-[13.5px] font-bold text-ink-2">
-            <Star className="h-[15px] w-[15px] fill-[#C79A2B] text-[#C79A2B]" />
+            <FFStar className="h-[15px] w-[15px]" />
             {biz.rating.toFixed(1)}
             {biz.ratingCount > 0 && (
               <span className="font-medium text-muted">
