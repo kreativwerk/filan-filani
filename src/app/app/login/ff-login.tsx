@@ -344,7 +344,18 @@ export function FFLogin({ cities }: { cities: FFCityOption[] }) {
 
               {error && <p className="text-sm text-alert">{error}</p>}
               <p className="mt-0.5 text-center text-[12.5px] leading-relaxed text-muted">
-                {t("terms")}
+                {t("termsPre")}{" "}
+                <a href="/kushtet" className="font-bold text-ff-primary underline">
+                  {t("termsLink")}
+                </a>{" "}
+                &{" "}
+                <a
+                  href="/privatesia"
+                  className="font-bold text-ff-primary underline"
+                >
+                  {t("privacyLink")}
+                </a>
+                .
               </p>
             </div>
           )}

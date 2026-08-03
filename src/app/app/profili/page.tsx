@@ -62,6 +62,26 @@ export default async function FFProfilePage() {
           </div>
           <FFLogout />
         </div>
+
+        {/* Rechtliches */}
+        <div className="mt-4 flex flex-col gap-1 rounded-[20px] border border-line bg-white p-2">
+          <Link
+            href="/kushtet"
+            className="rounded-[14px] px-4 py-3 text-[15px] font-semibold text-ink-2 hover:bg-surface"
+          >
+            {t("termsLink")}
+          </Link>
+          <Link
+            href="/privatesia"
+            className="rounded-[14px] px-4 py-3 text-[15px] font-semibold text-ink-2 hover:bg-surface"
+          >
+            {t("privacyLink")}
+          </Link>
+        </div>
+        <p className="mt-3 px-2 text-center text-[12px] leading-relaxed text-faint">
+          Filan Filani Sh.p.k. · Prishtinë, Republika e Kosovës ·
+          info@filan-filani.com
+        </p>
       </div>
     </main>
   );

@@ -307,7 +307,10 @@
     "otherCities": "From other cities",
     "yourCity": "Your city",
     "pendingNote": "This business is still under review — only you can see it.",
-    "ownerActions": "Manage business"
+    "ownerActions": "Manage business",
+    "termsLink": "Terms of Use",
+    "privacyLink": "Privacy",
+    "termsPre": "By continuing you accept the"
   },
   "profile": {
     "title": "My profile",

@@ -307,7 +307,10 @@
     "otherCities": "Iz drugih gradova",
     "yourCity": "Tvoj grad",
     "pendingNote": "Ova firma je još na proveri — samo je ti vidiš.",
-    "ownerActions": "Upravljaj firmom"
+    "ownerActions": "Upravljaj firmom",
+    "termsLink": "Uslovi korišćenja",
+    "privacyLink": "Zaštita podataka",
+    "termsPre": "Nastavkom prihvataš"
   },
   "profile": {
     "title": "Moj profil",

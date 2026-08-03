@@ -307,7 +307,10 @@
     "otherCities": "Aus anderen Städten",
     "yourCity": "Deine Stadt",
     "pendingNote": "Dieser Betrieb ist noch in Prüfung — nur du kannst ihn sehen.",
-    "ownerActions": "Betrieb verwalten"
+    "ownerActions": "Betrieb verwalten",
+    "termsLink": "Nutzungsbedingungen",
+    "privacyLink": "Datenschutz",
+    "termsPre": "Mit dem Fortfahren akzeptierst du"
   },
   "profile": {
     "title": "Mein Profil",

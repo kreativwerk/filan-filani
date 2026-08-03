@@ -307,7 +307,10 @@
     "otherCities": "Nga qytetet e tjera",
     "yourCity": "Qyteti yt",
     "pendingNote": "Ky biznes është ende në shqyrtim — vetëm ti mund ta shohësh.",
-    "ownerActions": "Menaxho biznesin"
+    "ownerActions": "Menaxho biznesin",
+    "termsLink": "Kushtet e Përdorimit",
+    "privacyLink": "Mbrojtja e të Dhënave",
+    "termsPre": "Duke vazhduar pranon"
   },
   "profile": {
     "title": "Profili im",
