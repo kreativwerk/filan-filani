@@ -313,7 +313,21 @@
     "termsPre": "By continuing you accept the",
     "profileScore": "Profile {pct}% complete",
     "profileScoreHint": "The more complete the profile, the higher the business ranks.",
-    "missingData": "Still missing:"
+    "missingData": "Still missing:",
+    "claimPageTitle": "Claim your business",
+    "claimWhy1Title": "Manage your own data",
+    "claimWhy1": "Opening hours, phone, photos and products — you manage them directly, without waiting for anyone.",
+    "claimWhy2Title": "“Verified” badge",
+    "claimWhy2": "Verified businesses get the badge and rank higher in lists and search.",
+    "claimWhy3Title": "Respond to customers",
+    "claimWhy3": "Requests and reviews reach you directly — and you reply.",
+    "claimHowTitle": "How it works",
+    "claimStep1": "Fill in the form and upload two documents: business registration and an ID document.",
+    "claimStep2": "We verify them — usually within 1–2 business days, sometimes with a verification call.",
+    "claimStep3": "Once approved, the business appears under “Biznesi im” and you can manage it.",
+    "claimPrivacy": "Documents are stored privately, seen only by our verification team and deleted automatically after the decision.",
+    "claimStart": "Start the request",
+    "claimBack": "Back to the business"
   },
   "profile": {
     "title": "My profile",

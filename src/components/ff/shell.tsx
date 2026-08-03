@@ -154,7 +154,7 @@ export function FFShell({
                 className={cn(
                   "flex h-12 items-center rounded-full transition-all duration-300 ease-out",
                   tab.active
-                    ? "bg-white/[0.16] px-4 text-white"
+                    ? "bg-white/[0.16] px-4 text-ff-accent"
                     : "px-3.5 text-white/60 hover:text-white/90 active:text-white",
                 )}
               >

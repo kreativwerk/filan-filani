@@ -313,7 +313,21 @@
     "termsPre": "Duke vazhduar pranon",
     "profileScore": "Profili {pct}% i plotësuar",
     "profileScoreHint": "Sa më i plotë profili, aq më lart shfaqet biznesi.",
-    "missingData": "Mungon:"
+    "missingData": "Mungon:",
+    "claimPageTitle": "Merr biznesin tënd",
+    "claimWhy1Title": "Përditëso të dhënat vetë",
+    "claimWhy1": "Orari, telefoni, fotot dhe produktet — ti i menaxhon drejtpërdrejt, pa pritur askënd.",
+    "claimWhy2Title": "Shenja «I verifikuar»",
+    "claimWhy2": "Bizneset e verifikuara marrin distinktivin dhe shfaqen më lart në lista dhe kërkim.",
+    "claimWhy3Title": "Përgjigju klientëve",
+    "claimWhy3": "Kërkesat dhe vlerësimet vijnë te ti — dhe ti u përgjigjesh.",
+    "claimHowTitle": "Si funksionon",
+    "claimStep1": "Plotëso formularin dhe ngarko dy dokumente: regjistrimin e biznesit dhe një dokument identifikimi.",
+    "claimStep2": "Ne i verifikojmë — zakonisht brenda 1–2 ditësh pune, ndonjëherë me një telefonatë kontrolli.",
+    "claimStep3": "Pas miratimit biznesi shfaqet te «Biznesi im» dhe mund ta menaxhosh.",
+    "claimPrivacy": "Dokumentet ruhen në një hapësirë private, shihen vetëm nga ekipi ynë i verifikimit dhe fshihen automatikisht pas vendimit.",
+    "claimStart": "Fillo kërkesën",
+    "claimBack": "Kthehu te biznesi"
   },
   "profile": {
     "title": "Profili im",

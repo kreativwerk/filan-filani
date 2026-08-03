@@ -313,7 +313,21 @@
     "termsPre": "Nastavkom prihvataš",
     "profileScore": "Profil {pct}% popunjen",
     "profileScoreHint": "Što je profil potpuniji, to se firma prikazuje više.",
-    "missingData": "Nedostaje:"
+    "missingData": "Nedostaje:",
+    "claimPageTitle": "Preuzmi svoju firmu",
+    "claimWhy1Title": "Sam uređuj podatke",
+    "claimWhy1": "Radno vreme, telefon, fotografije i proizvodi — ti ih uređuješ direktno, bez čekanja.",
+    "claimWhy2Title": "Oznaka „Verifikovano“",
+    "claimWhy2": "Verifikovane firme dobijaju oznaku i prikazuju se više u listama i pretrazi.",
+    "claimWhy3Title": "Odgovaraj klijentima",
+    "claimWhy3": "Upiti i recenzije stižu tebi — i ti odgovaraš.",
+    "claimHowTitle": "Kako funkcioniše",
+    "claimStep1": "Popuni formular i priloži dva dokumenta: registraciju firme i lični dokument.",
+    "claimStep2": "Mi ih proveravamo — obično u roku od 1–2 radna dana, ponekad uz kontrolni poziv.",
+    "claimStep3": "Nakon odobrenja firma se pojavljuje pod „Biznesi im“ i možeš je uređivati.",
+    "claimPrivacy": "Dokumenti se čuvaju u privatnom prostoru, vidi ih samo naš tim za proveru i automatski se brišu nakon odluke.",
+    "claimStart": "Pokreni zahtev",
+    "claimBack": "Nazad na firmu"
   },
   "profile": {
     "title": "Moj profil",

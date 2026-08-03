@@ -30,7 +30,6 @@ import { FFStar, FFStars } from "@/components/ff/star";
 import { EXPORT_CODES } from "@/lib/export-countries";
 import { FacebookIcon, InstagramIcon } from "@/components/ff/social-icons";
 import { cn } from "@/components/ui";
-import { ClaimForm } from "./claim-form";
 import { ReviewForm } from "./review-form";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -490,32 +489,25 @@ export default async function FFBizPage({ params }: Props) {
             </section>
           )}
 
-          {/* Inhaberschafts-Antrag */}
+          {/* Inhaberschaft: nur ein Knopf — Erklärung und Antrag auf eigener Seite */}
           {claim !== "hidden" && (
             <section className="flex flex-col gap-3 rounded-[18px] border border-line bg-white p-5">
               <h2 className="flex items-center gap-2 text-[17px] font-extrabold tracking-[-0.015em] text-ink">
                 <Store className="h-5 w-5 text-ff-primary" />
                 {t("claimCta")}
               </h2>
-              {claim === "login" && (
-                <>
-                  <p className="text-[13.5px] leading-relaxed text-muted">
-                    {t("claimIntro")}
-                  </p>
-                  <Link
-                    href="/app/login"
-                    className="flex h-12 items-center justify-center rounded-full bg-ff-primary text-[15px] font-extrabold text-white"
-                  >
-                    {t("claimLoginCta")}
-                  </Link>
-                </>
-              )}
-              {claim === "exists" && (
+              {claim === "exists" ? (
                 <p className="rounded-[14px] bg-ff-mint-light p-4 text-[14px] font-semibold text-ff-primary-dark">
                   {t("claimExists")}
                 </p>
+              ) : (
+                <Link
+                  href={`/app/biz/${biz.slug ?? biz.id}/pronesia`}
+                  className="flex h-12 items-center justify-center rounded-full bg-ff-primary text-[15px] font-extrabold text-white hover:opacity-90"
+                >
+                  {t("claimCta")}
+                </Link>
               )}
-              {claim === "form" && <ClaimForm businessId={biz.id} />}
             </section>
           )}
 

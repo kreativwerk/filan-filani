@@ -16,7 +16,8 @@ export type OsmBusiness = {
 
 const AMENITIES =
   "restaurant|cafe|fast_food|bar|pharmacy|dentist|doctors|clinic|veterinary|bank|driving_school|kindergarten|events_venue";
-const OFFICES = "lawyer|notary|accountant|estate_agent|insurance|it";
+const OFFICES =
+  "lawyer|notary|accountant|estate_agent|insurance|it|employment_agency";
 const TOURISM = "hotel|guest_house|motel|hostel";
 
 export function overpassQuery(lat: number, lng: number, radius = 8000) {
@@ -45,6 +46,7 @@ function mapCategory(t: Tags): string | null {
   if (amenity === "bank" || office === "insurance") return "sigurime-financa";
   if (office === "lawyer" || office === "notary") return "avokat";
   if (office === "accountant") return "kontabilitet";
+  if (office === "employment_agency") return "agjenci-punesimi";
   if (office === "estate_agent") return "patundshmeri";
   if (office === "it" || shop === "computer" || shop === "electronics" || shop === "mobile_phone") return "teknologji";
   if (tourism) return "hotel";

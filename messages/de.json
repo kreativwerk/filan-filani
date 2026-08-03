@@ -313,7 +313,21 @@
     "termsPre": "Mit dem Fortfahren akzeptierst du",
     "profileScore": "Profil zu {pct}% vollständig",
     "profileScoreHint": "Je vollständiger das Profil, desto weiter oben erscheint der Betrieb.",
-    "missingData": "Fehlt noch:"
+    "missingData": "Fehlt noch:",
+    "claimPageTitle": "Betrieb übernehmen",
+    "claimWhy1Title": "Daten selbst pflegen",
+    "claimWhy1": "Öffnungszeiten, Telefon, Fotos und Produkte — du verwaltest sie direkt, ohne auf jemanden zu warten.",
+    "claimWhy2Title": "„Verifiziert\"-Siegel",
+    "claimWhy2": "Verifizierte Betriebe bekommen das Abzeichen und erscheinen in Listen und Suche weiter oben.",
+    "claimWhy3Title": "Auf Kunden reagieren",
+    "claimWhy3": "Anfragen und Bewertungen kommen bei dir an — und du antwortest darauf.",
+    "claimHowTitle": "So läuft es ab",
+    "claimStep1": "Formular ausfüllen und zwei Dokumente hochladen: Gewerbenachweis und ein Ausweisdokument.",
+    "claimStep2": "Wir prüfen sie — meist innerhalb von 1–2 Werktagen, manchmal mit einem Kontrollanruf.",
+    "claimStep3": "Nach der Freigabe erscheint der Betrieb unter „Biznesi im\" und du kannst ihn verwalten.",
+    "claimPrivacy": "Die Dokumente liegen in einem privaten Speicher, werden nur von unserem Prüfteam gesehen und nach der Entscheidung automatisch gelöscht.",
+    "claimStart": "Antrag starten",
+    "claimBack": "Zurück zum Betrieb"
   },
   "profile": {
     "title": "Mein Profil",
