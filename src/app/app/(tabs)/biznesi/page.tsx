@@ -7,6 +7,7 @@ import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Locale } from "@/i18n/config";
 import { getCities, getCategories, toFFBiz, type FFBizRow } from "@/lib/ff-data";
 import { FFBusinessCard } from "@/components/ff/business-card";
+import { CompletenessBar } from "@/components/ff/completeness-bar";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("ff");
@@ -18,8 +19,10 @@ export default async function FFMyBusinessPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("ff");
 
+  const tf = await getTranslations("form");
   let signedIn = false;
   let items: ReturnType<typeof toFFBiz>[] = [];
+  const scores = new Map<string, { score: number; missing: string[] }>();
 
   if (hasSupabaseEnv()) {
     const supabase = await createClient();
@@ -39,9 +42,22 @@ export default async function FFMyBusinessPage() {
       ]);
       const cityById = new Map(cities.map((c) => [c.id, c]));
       await getCategories(); // Cache für localizedName-Fallbacks warmhalten
-      items = ((rows ?? []) as FFBizRow[]).map((row) =>
+      const list = (rows ?? []) as FFBizRow[];
+      items = list.map((row) =>
         toFFBiz(row, locale, { city: cityById.get(row.city_id) ?? null }),
       );
+      // Vollständigkeit je Betrieb (für den Fortschrittsbalken)
+      for (const row of list) {
+        const r = row as FFBizRow & { completeness?: number };
+        const missing: string[] = [];
+        if (!row.cover_url) missing.push(tf("photos"));
+        if (!row.phone) missing.push(tf("phone").replace(" *", ""));
+        if (!row.opening_hours) missing.push(tf("hours"));
+        if (!row.description) missing.push(tf("description"));
+        if (!row.email) missing.push(tf("email"));
+        if (!row.website) missing.push(tf("website"));
+        scores.set(row.id, { score: r.completeness ?? 0, missing });
+      }
     }
   }
 
@@ -100,6 +116,12 @@ export default async function FFMyBusinessPage() {
             {items.map((b) => (
               <div key={b.key} className="flex flex-col gap-1.5">
                 <FFBusinessCard biz={b} />
+                {scores.has(b.key) && (
+                  <CompletenessBar
+                    score={scores.get(b.key)!.score}
+                    missing={scores.get(b.key)!.missing}
+                  />
+                )}
                 <div className="grid grid-cols-2 gap-1.5">
                   <Link
                     href={`/app/biznesi/${b.key}/edit`}

@@ -55,6 +55,7 @@ export default async function FFCityPage({ params }: Props) {
         { count: "exact" },
       )
       .eq("status", "approved")
+      .order("completeness", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(60);
 

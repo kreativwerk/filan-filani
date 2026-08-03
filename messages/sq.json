@@ -310,7 +310,10 @@
     "ownerActions": "Menaxho biznesin",
     "termsLink": "Kushtet e Përdorimit",
     "privacyLink": "Mbrojtja e të Dhënave",
-    "termsPre": "Duke vazhduar pranon"
+    "termsPre": "Duke vazhduar pranon",
+    "profileScore": "Profili {pct}% i plotësuar",
+    "profileScoreHint": "Sa më i plotë profili, aq më lart shfaqet biznesi.",
+    "missingData": "Mungon:"
   },
   "profile": {
     "title": "Profili im",

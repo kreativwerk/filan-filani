@@ -310,7 +310,10 @@
     "ownerActions": "Manage business",
     "termsLink": "Terms of Use",
     "privacyLink": "Privacy",
-    "termsPre": "By continuing you accept the"
+    "termsPre": "By continuing you accept the",
+    "profileScore": "Profile {pct}% complete",
+    "profileScoreHint": "The more complete the profile, the higher the business ranks.",
+    "missingData": "Still missing:"
   },
   "profile": {
     "title": "My profile",

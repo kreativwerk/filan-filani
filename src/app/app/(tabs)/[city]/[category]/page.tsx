@@ -64,6 +64,7 @@ export default async function FFCategoryPage({ params }: Props) {
       )
       .eq("status", "approved")
       .eq("business_categories.category_id", category.id)
+      .order("completeness", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(60);
 

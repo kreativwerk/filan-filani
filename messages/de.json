@@ -310,7 +310,10 @@
     "ownerActions": "Betrieb verwalten",
     "termsLink": "Nutzungsbedingungen",
     "privacyLink": "Datenschutz",
-    "termsPre": "Mit dem Fortfahren akzeptierst du"
+    "termsPre": "Mit dem Fortfahren akzeptierst du",
+    "profileScore": "Profil zu {pct}% vollständig",
+    "profileScoreHint": "Je vollständiger das Profil, desto weiter oben erscheint der Betrieb.",
+    "missingData": "Fehlt noch:"
   },
   "profile": {
     "title": "Mein Profil",

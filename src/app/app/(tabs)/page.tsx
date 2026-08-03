@@ -78,7 +78,10 @@ export default async function FFAppHome() {
           )
           .eq("status", "approved");
         if (city) q = q.eq("city_id", city.id);
-        return q.order("created_at", { ascending: false }).limit(12);
+        return q
+          .order("completeness", { ascending: false })
+          .order("created_at", { ascending: false })
+          .limit(12);
       })(),
     ]);
 

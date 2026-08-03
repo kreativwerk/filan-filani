@@ -43,6 +43,7 @@ export default async function FFB2BPage({ searchParams }: Props) {
       })
       .eq("status", "approved")
       .neq("export_countries", "{}")
+      .order("completeness", { ascending: false })
       .order("name");
     if (code) query = query.contains("export_countries", [code]);
 

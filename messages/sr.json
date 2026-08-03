@@ -310,7 +310,10 @@
     "ownerActions": "Upravljaj firmom",
     "termsLink": "Uslovi korišćenja",
     "privacyLink": "Zaštita podataka",
-    "termsPre": "Nastavkom prihvataš"
+    "termsPre": "Nastavkom prihvataš",
+    "profileScore": "Profil {pct}% popunjen",
+    "profileScoreHint": "Što je profil potpuniji, to se firma prikazuje više.",
+    "missingData": "Nedostaje:"
   },
   "profile": {
     "title": "Moj profil",
