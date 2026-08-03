@@ -82,7 +82,7 @@ export function FFShell({
       active: onSaved,
     },
     { href: "/app/b2b", icon: Globe, label: t("b2bNav"), active: onB2B },
-    { href: "/app/login", icon: FileText, label: t("navRequests"), active: false },
+    // "Kërkesat" (Anfragen) kommt zurück, sobald das Feature gebaut ist
     {
       href: "/app/biznesi",
       icon: Store,

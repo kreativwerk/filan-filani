@@ -56,9 +56,9 @@ export function FFHomeView({ data }: { data: FFHomeData }) {
             </div>
           </div>
           <CityPill current={data.city} cities={data.cities} />
+          {/* Glocke ohne falschen Ungelesen-Punkt — aktiv, sobald Benachrichtigungen existieren */}
           <div className="relative grid h-11 w-11 flex-none place-items-center text-ink">
             <Bell className="h-[23px] w-[23px]" />
-            <span className="absolute right-[9px] top-2 h-[9px] w-[9px] rounded-full border-2 border-white bg-ff-accent" />
           </div>
         </div>
         <Link
