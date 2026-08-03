@@ -305,7 +305,9 @@
     "productDeleteConfirm": "Dieses Produkt wirklich löschen?",
     "allKosovo": "Ganz Kosovo",
     "otherCities": "Aus anderen Städten",
-    "yourCity": "Deine Stadt"
+    "yourCity": "Deine Stadt",
+    "pendingNote": "Dieser Betrieb ist noch in Prüfung — nur du kannst ihn sehen.",
+    "ownerActions": "Betrieb verwalten"
   },
   "profile": {
     "title": "Mein Profil",

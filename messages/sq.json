@@ -305,7 +305,9 @@
     "productDeleteConfirm": "A do ta fshish këtë produkt?",
     "allKosovo": "Gjithë Kosova",
     "otherCities": "Nga qytetet e tjera",
-    "yourCity": "Qyteti yt"
+    "yourCity": "Qyteti yt",
+    "pendingNote": "Ky biznes është ende në shqyrtim — vetëm ti mund ta shohësh.",
+    "ownerActions": "Menaxho biznesin"
   },
   "profile": {
     "title": "Profili im",

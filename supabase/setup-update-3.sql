@@ -87,3 +87,15 @@ create index if not exists businesses_export_countries_idx
 -- Inhaber dürfen ihren übernommenen Betrieb selbst bearbeiten
 create policy "businesses: inhaber bearbeitet eigenen" on public.businesses
   for update using (owner_id = auth.uid()) with check (owner_id = auth.uid());
+
+-- ============================================================
+-- Nachbesserung: fehlende Kartenbilder aus dem ersten Betriebsfoto setzen
+-- ============================================================
+update public.businesses b
+set cover_url = p.url
+from (
+  select distinct on (business_id) business_id, url
+  from public.business_photos
+  order by business_id, sort
+) p
+where p.business_id = b.id and b.cover_url is null;

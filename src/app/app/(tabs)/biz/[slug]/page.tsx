@@ -7,6 +7,8 @@ import {
   Globe,
   MapPin,
   MessageCircle,
+  Package,
+  Pencil,
   Phone,
   Star,
   Store,
@@ -72,7 +74,6 @@ async function getBusiness(slug: string): Promise<BizDetail | null> {
     .from("businesses")
     .select(select)
     .eq("slug", slug)
-    .eq("status", "approved")
     .maybeSingle();
   if (data) return data as BizDetail;
   if (UUID_RE.test(slug)) {
@@ -80,7 +81,6 @@ async function getBusiness(slug: string): Promise<BizDetail | null> {
       .from("businesses")
       .select(select)
       .eq("id", slug)
-      .eq("status", "approved")
       .maybeSingle();
     return (byId as BizDetail) ?? null;
   }
@@ -244,6 +244,33 @@ export default async function FFBizPage({ params }: Props) {
         </div>
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 pt-4">
+          {/* Hinweis: noch in Prüfung (sieht nur, wer den Eintrag sehen darf) */}
+          {biz.status !== "approved" && (
+            <p className="rounded-[14px] bg-[#FBF0D6] p-3.5 text-sm font-semibold text-[#6B4C07]">
+              {t("pendingNote")}
+            </p>
+          )}
+
+          {/* Inhaber-Aktionen: Bearbeiten + Produkte direkt vom Profil aus */}
+          {user && biz.owner_id === user.id && (
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                href={`/app/biznesi/${biz.id}/edit`}
+                className="flex h-11 items-center justify-center gap-1.5 rounded-full border-[1.5px] border-line-strong bg-white text-[14px] font-bold text-ink hover:bg-surface"
+              >
+                <Pencil className="h-4 w-4 text-ff-primary" />
+                {t("manageEdit")}
+              </Link>
+              <Link
+                href={`/app/biznesi/${biz.id}/produkte`}
+                className="flex h-11 items-center justify-center gap-1.5 rounded-full border-[1.5px] border-line-strong bg-white text-[14px] font-bold text-ink hover:bg-surface"
+              >
+                <Package className="h-4 w-4 text-ff-primary" />
+                {t("manageProducts")}
+              </Link>
+            </div>
+          )}
+
           {/* Kopf */}
           <section className="flex flex-col gap-2 rounded-[18px] border border-line bg-white p-5">
             <div className="flex flex-wrap items-center gap-2.5">

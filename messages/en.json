@@ -305,7 +305,9 @@
     "productDeleteConfirm": "Delete this product?",
     "allKosovo": "All of Kosovo",
     "otherCities": "From other cities",
-    "yourCity": "Your city"
+    "yourCity": "Your city",
+    "pendingNote": "This business is still under review — only you can see it.",
+    "ownerActions": "Manage business"
   },
   "profile": {
     "title": "My profile",

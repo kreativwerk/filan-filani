@@ -305,7 +305,9 @@
     "productDeleteConfirm": "Obrisati ovaj proizvod?",
     "allKosovo": "Celo Kosovo",
     "otherCities": "Iz drugih gradova",
-    "yourCity": "Tvoj grad"
+    "yourCity": "Tvoj grad",
+    "pendingNote": "Ova firma je još na proveri — samo je ti vidiš.",
+    "ownerActions": "Upravljaj firmom"
   },
   "profile": {
     "title": "Moj profil",

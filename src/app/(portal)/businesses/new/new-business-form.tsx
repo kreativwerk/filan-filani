@@ -372,6 +372,7 @@ export function NewBusinessForm({
           .eq("id", id);
       }
 
+      let firstPhotoUrl: string | null = null;
       for (let i = 0; i < photos.length; i++) {
         const file = photos[i];
         const ext = file.name.split(".").pop() ?? "jpg";
@@ -386,6 +387,15 @@ export function NewBusinessForm({
         await supabase
           .from("business_photos")
           .insert({ business_id: id, url: publicUrl, sort: i });
+        if (!firstPhotoUrl) firstPhotoUrl = publicUrl;
+      }
+      // Erstes Foto als Kartenbild übernehmen (falls noch keins gesetzt ist)
+      if (firstPhotoUrl) {
+        await supabase
+          .from("businesses")
+          .update({ cover_url: firstPhotoUrl })
+          .eq("id", id)
+          .is("cover_url", null);
       }
 
       setDone(true);
