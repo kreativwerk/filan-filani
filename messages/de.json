@@ -7,7 +7,8 @@
     "cancel": "Abbrechen",
     "back": "Zurück",
     "optional": "optional",
-    "error": "Es ist ein Fehler aufgetreten. Bitte erneut versuchen."
+    "error": "Es ist ein Fehler aufgetreten. Bitte erneut versuchen.",
+    "ok": "Fertig"
   },
   "landing": {
     "heroTitle": "Verdiene Geld, indem du Kosovos Geschäfte erfasst",
@@ -132,7 +133,13 @@
     "exportHint": "Wähle die Länder, in die der Betrieb liefert oder leistet — Grundlage für das B2B-Verzeichnis.",
     "exportOtherPh": "Weitere Länder (mit Komma trennen)",
     "successOwner": "Änderungen gespeichert!",
-    "successOwnerText": "Die Daten deines Betriebs wurden aktualisiert."
+    "successOwnerText": "Die Daten deines Betriebs wurden aktualisiert.",
+    "sameWeekdays": "Montag – Freitag gleich",
+    "dayMon": "Montag",
+    "dayTue": "Dienstag",
+    "dayWed": "Mittwoch",
+    "dayThu": "Donnerstag",
+    "dayFri": "Freitag"
   },
   "list": {
     "title": "Meine Einträge",
@@ -311,6 +318,17 @@
     "se": "Schweden",
     "fi": "Finnland",
     "it": "Italien",
-    "al": "Albanien"
+    "al": "Albanien",
+    "fr": "Frankreich",
+    "be": "Belgien",
+    "nl": "Niederlande",
+    "gb": "Großbritannien",
+    "no": "Norwegen",
+    "dk": "Dänemark",
+    "us": "USA",
+    "mk": "Nordmazedonien",
+    "me": "Montenegro",
+    "hr": "Kroatien",
+    "si": "Slowenien"
   }
 }

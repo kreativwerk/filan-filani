@@ -7,7 +7,8 @@
     "cancel": "Cancel",
     "back": "Back",
     "optional": "optional",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "ok": "Done"
   },
   "landing": {
     "heroTitle": "Earn money by registering Kosovo's businesses",
@@ -132,7 +133,13 @@
     "exportHint": "Select the countries this business serves — the basis for the B2B directory.",
     "exportOtherPh": "Other countries (comma-separated)",
     "successOwner": "Changes saved!",
-    "successOwnerText": "Your business details were updated."
+    "successOwnerText": "Your business details were updated.",
+    "sameWeekdays": "Monday – Friday the same",
+    "dayMon": "Monday",
+    "dayTue": "Tuesday",
+    "dayWed": "Wednesday",
+    "dayThu": "Thursday",
+    "dayFri": "Friday"
   },
   "list": {
     "title": "My entries",
@@ -311,6 +318,17 @@
     "se": "Sweden",
     "fi": "Finland",
     "it": "Italy",
-    "al": "Albania"
+    "al": "Albania",
+    "fr": "France",
+    "be": "Belgium",
+    "nl": "Netherlands",
+    "gb": "United Kingdom",
+    "no": "Norway",
+    "dk": "Denmark",
+    "us": "USA",
+    "mk": "North Macedonia",
+    "me": "Montenegro",
+    "hr": "Croatia",
+    "si": "Slovenia"
   }
 }

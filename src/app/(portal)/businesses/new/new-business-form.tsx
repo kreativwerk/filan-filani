@@ -33,14 +33,21 @@ import {
   Textarea,
   cn,
 } from "@/components/ui";
+import { EXPORT_CODES } from "@/lib/export-countries";
+import { TimeWheelButton } from "@/components/time-wheel";
 
 const MAX_PHOTOS = 6;
 const TOTAL_STEPS = 3;
 
-/** Vordefinierte Export-Länder (B2B): Diaspora-Kernmärkte + Nachbarland */
-const EXPORT_CODES = ["DE", "AT", "CH", "SE", "FI", "IT", "AL"];
 
 type HoursRow = { open: string; close: string; closed: boolean };
+
+const WEEKDAY_KEYS = ["mon", "tue", "wed", "thu", "fri"] as const;
+type HoursKey =
+  | "weekdays"
+  | (typeof WEEKDAY_KEYS)[number]
+  | "saturday"
+  | "sunday";
 
 const defaultHours: HoursRow = { open: "08:00", close: "18:00", closed: false };
 
@@ -129,16 +136,22 @@ export function NewBusinessForm({
     instagram: initial?.instagram ?? "",
     description: initial?.description ?? "",
   });
-  const [hours, setHours] = useState<{
-    weekdays: HoursRow;
-    saturday: HoursRow;
-    sunday: HoursRow;
-  }>({
-    weekdays: fromSaved(initial?.openingHours?.weekdays) ?? { ...defaultHours },
-    saturday: fromSaved(initial?.openingHours?.saturday) ?? { ...defaultHours },
-    sunday:
-      fromSaved(initial?.openingHours?.sunday) ??
-      { ...defaultHours, closed: true },
+  const savedHours = initial?.openingHours;
+  const weekdayFallback =
+    fromSaved(savedHours?.weekdays) ?? { ...defaultHours };
+  // Mo–Fr gruppiert, außer die gespeicherten Zeiten enthalten Einzeltage
+  const [sameWeekdays, setSameWeekdays] = useState(
+    !WEEKDAY_KEYS.some((k) => savedHours?.[k] !== undefined),
+  );
+  const [hours, setHours] = useState<Record<HoursKey, HoursRow>>({
+    weekdays: { ...weekdayFallback },
+    mon: fromSaved(savedHours?.mon) ?? { ...weekdayFallback },
+    tue: fromSaved(savedHours?.tue) ?? { ...weekdayFallback },
+    wed: fromSaved(savedHours?.wed) ?? { ...weekdayFallback },
+    thu: fromSaved(savedHours?.thu) ?? { ...weekdayFallback },
+    fri: fromSaved(savedHours?.fri) ?? { ...weekdayFallback },
+    saturday: fromSaved(savedHours?.saturday) ?? { ...defaultHours },
+    sunday: fromSaved(savedHours?.sunday) ?? { ...defaultHours, closed: true },
   });
   const [exportCountries, setExportCountries] = useState<string[]>(
     (initial?.exportCountries ?? []).filter((c) => EXPORT_CODES.includes(c)),
@@ -272,11 +285,21 @@ export function NewBusinessForm({
 
       const toRow = (r: HoursRow) =>
         r.closed ? null : { open: r.open, close: r.close };
-      const opening_hours: OpeningHours = {
-        weekdays: toRow(hours.weekdays),
-        saturday: toRow(hours.saturday),
-        sunday: toRow(hours.sunday),
-      };
+      const opening_hours: OpeningHours = sameWeekdays
+        ? {
+            weekdays: toRow(hours.weekdays),
+            saturday: toRow(hours.saturday),
+            sunday: toRow(hours.sunday),
+          }
+        : {
+            mon: toRow(hours.mon),
+            tue: toRow(hours.tue),
+            wed: toRow(hours.wed),
+            thu: toRow(hours.thu),
+            fri: toRow(hours.fri),
+            saturday: toRow(hours.saturday),
+            sunday: toRow(hours.sunday),
+          };
 
       const values = {
         name: form.name.trim(),
@@ -409,8 +432,16 @@ export function NewBusinessForm({
         ? t("sectionContacts")
         : t("sectionCategory");
 
-  const hourRows: { key: keyof typeof hours; label: string }[] = [
-    { key: "weekdays", label: t("hoursWeekdays") },
+  const hourRows: { key: HoursKey; label: string }[] = [
+    ...(sameWeekdays
+      ? ([{ key: "weekdays", label: t("hoursWeekdays") }] as const)
+      : ([
+          { key: "mon", label: t("dayMon") },
+          { key: "tue", label: t("dayTue") },
+          { key: "wed", label: t("dayWed") },
+          { key: "thu", label: t("dayThu") },
+          { key: "fri", label: t("dayFri") },
+        ] as const)),
     { key: "saturday", label: t("hoursSaturday") },
     { key: "sunday", label: t("hoursSunday") },
   ];
@@ -610,54 +641,67 @@ export function NewBusinessForm({
             </Select>
 
             <div className="rounded-[18px] border border-line bg-white p-4">
-              <div className="mb-3 text-[15px] font-extrabold text-ink">
+              <div className="mb-2 text-[15px] font-extrabold text-ink">
                 {t("hours")}
               </div>
+              <label className="mb-3 flex w-fit cursor-pointer items-center gap-2 text-[14px] font-semibold text-ink-2">
+                <input
+                  type="checkbox"
+                  checked={sameWeekdays}
+                  onChange={(e) => setSameWeekdays(e.target.checked)}
+                  className="h-[18px] w-[18px] accent-[var(--primary)]"
+                />
+                {t("sameWeekdays")}
+              </label>
               <div className="space-y-3">
                 {hourRows.map(({ key, label }) => (
                   <div
                     key={key}
-                    className="flex flex-wrap items-center gap-3 text-sm"
+                    className="flex flex-col gap-2 border-b border-line pb-3 last:border-b-0 last:pb-0"
                   >
-                    <span className="w-32 text-ink-2">{label}</span>
-                    <Input
-                      type="time"
-                      className="h-11 w-28"
-                      disabled={hours[key].closed}
-                      value={hours[key].open}
-                      onChange={(e) =>
-                        setHours((h) => ({
-                          ...h,
-                          [key]: { ...h[key], open: e.target.value },
-                        }))
-                      }
-                    />
-                    <span className="text-faint">–</span>
-                    <Input
-                      type="time"
-                      className="h-11 w-28"
-                      disabled={hours[key].closed}
-                      value={hours[key].close}
-                      onChange={(e) =>
-                        setHours((h) => ({
-                          ...h,
-                          [key]: { ...h[key], close: e.target.value },
-                        }))
-                      }
-                    />
-                    <label className="flex items-center gap-1.5 text-ink-2">
-                      <input
-                        type="checkbox"
-                        checked={hours[key].closed}
-                        onChange={(e) =>
-                          setHours((h) => ({
-                            ...h,
-                            [key]: { ...h[key], closed: e.target.checked },
-                          }))
-                        }
-                      />
-                      {t("closed")}
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[14px] font-bold text-ink-2">
+                        {label}
+                      </span>
+                      <label className="flex cursor-pointer items-center gap-1.5 text-[13.5px] text-ink-2">
+                        <input
+                          type="checkbox"
+                          checked={hours[key].closed}
+                          onChange={(e) =>
+                            setHours((h) => ({
+                              ...h,
+                              [key]: { ...h[key], closed: e.target.checked },
+                            }))
+                          }
+                        />
+                        {t("closed")}
+                      </label>
+                    </div>
+                    {!hours[key].closed && (
+                      <div className="flex items-center gap-2.5">
+                        <TimeWheelButton
+                          value={hours[key].open}
+                          ariaLabel={label}
+                          onChange={(v) =>
+                            setHours((h) => ({
+                              ...h,
+                              [key]: { ...h[key], open: v },
+                            }))
+                          }
+                        />
+                        <span className="text-faint">–</span>
+                        <TimeWheelButton
+                          value={hours[key].close}
+                          ariaLabel={label}
+                          onChange={(v) =>
+                            setHours((h) => ({
+                              ...h,
+                              [key]: { ...h[key], close: v },
+                            }))
+                          }
+                        />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

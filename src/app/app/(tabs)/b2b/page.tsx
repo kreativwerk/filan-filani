@@ -9,8 +9,7 @@ import { getCities, toFFBiz, type FFBizRow } from "@/lib/ff-data";
 import { FFBusinessCard } from "@/components/ff/business-card";
 import { cn } from "@/components/ui";
 
-/** Vordefinierte B2B-Länder (Diaspora-Kernmärkte + Nachbarland), vgl. Wizard */
-const B2B_CODES = ["DE", "AT", "CH", "SE", "FI", "IT", "AL"];
+import { EXPORT_CODES as B2B_CODES } from "@/lib/export-countries";
 
 type Props = { searchParams: Promise<{ vendi?: string | string[] }> };
 

@@ -25,6 +25,7 @@ import {
 } from "@/lib/types";
 import { FFCover, VerifiedBadge } from "@/components/ff/business-card";
 import { FavButton } from "@/components/ff/fav-button";
+import { EXPORT_CODES } from "@/lib/export-countries";
 import { FacebookIcon, InstagramIcon } from "@/components/ff/social-icons";
 import { cn } from "@/components/ui";
 import { ClaimForm } from "./claim-form";
@@ -129,7 +130,13 @@ export default async function FFBizPage({ params }: Props) {
   );
   const products = (biz.products ?? []).filter((p) => p.active);
   const hours = (biz.opening_hours ?? null) as OpeningHours | null;
-  const hasHours = Boolean(hours?.weekdays || hours?.saturday || hours?.sunday);
+  const hasHours = Boolean(
+    hours &&
+      (hours.weekdays !== undefined ||
+        hours.mon !== undefined ||
+        hours.saturday !== undefined ||
+        hours.sunday !== undefined),
+  );
   const verified = biz.owner_id !== null;
 
   const meta = [
@@ -139,12 +146,31 @@ export default async function FFBizPage({ params }: Props) {
     .filter(Boolean)
     .join(" · ");
 
+  // Öffnungszeiten: gruppiert (Mo–Fr) oder Einzeltage, je nachdem was gespeichert ist
+  type HourRow = { open: string; close: string } | null | undefined;
+  const hourDisplayRows: [string, HourRow][] = (
+    hours && ["mon", "tue", "wed", "thu", "fri"].some((k) => (hours as Record<string, HourRow>)[k] !== undefined)
+      ? ([
+          [tf("dayMon"), hours?.mon],
+          [tf("dayTue"), hours?.tue],
+          [tf("dayWed"), hours?.wed],
+          [tf("dayThu"), hours?.thu],
+          [tf("dayFri"), hours?.fri],
+          [tf("hoursSaturday"), hours?.saturday],
+          [tf("hoursSunday"), hours?.sunday],
+        ] as [string, HourRow][])
+      : ([
+          [tf("hoursWeekdays"), hours?.weekdays],
+          [tf("hoursSaturday"), hours?.saturday],
+          [tf("hoursSunday"), hours?.sunday],
+        ] as [string, HourRow][])
+  ).filter(([, row]) => row !== undefined);
+
   // Export-Länder: bekannte Codes übersetzen, freie Einträge unverändert zeigen
   const tco = await getTranslations("countries");
-  const knownCodes = ["DE", "AT", "CH", "SE", "FI", "IT", "AL"];
   const exportLabels = (
     (biz as { export_countries?: string[] | null }).export_countries ?? []
-  ).map((c) => (knownCodes.includes(c) ? tco(c.toLowerCase()) : c));
+  ).map((c) => (EXPORT_CODES.includes(c) ? tco(c.toLowerCase()) : c));
 
   const supabase = await createClient();
   const {
@@ -392,30 +418,17 @@ export default async function FFBizPage({ params }: Props) {
                 {t("hours")}
               </h2>
               <div className="flex flex-col gap-1.5">
-                <div className="flex items-center justify-between text-[14.5px]">
-                  <span className="text-muted">{tf("hoursWeekdays")}</span>
-                  <span className="font-bold text-ink">
-                    {hours.weekdays
-                      ? `${hours.weekdays.open}–${hours.weekdays.close}`
-                      : tf("closed")}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[14.5px]">
-                  <span className="text-muted">{tf("hoursSaturday")}</span>
-                  <span className="font-bold text-ink">
-                    {hours.saturday
-                      ? `${hours.saturday.open}–${hours.saturday.close}`
-                      : tf("closed")}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[14.5px]">
-                  <span className="text-muted">{tf("hoursSunday")}</span>
-                  <span className="font-bold text-ink">
-                    {hours.sunday
-                      ? `${hours.sunday.open}–${hours.sunday.close}`
-                      : tf("closed")}
-                  </span>
-                </div>
+                {hourDisplayRows.map(([label, row]) => (
+                  <div
+                    key={label}
+                    className="flex items-center justify-between text-[14.5px]"
+                  >
+                    <span className="text-muted">{label}</span>
+                    <span className="font-bold text-ink">
+                      {row ? `${row.open}–${row.close}` : tf("closed")}
+                    </span>
+                  </div>
+                ))}
               </div>
             </section>
           )}

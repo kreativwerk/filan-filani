@@ -7,7 +7,8 @@
     "cancel": "Otkaži",
     "back": "Nazad",
     "optional": "opciono",
-    "error": "Došlo je do greške. Pokušaj ponovo."
+    "error": "Došlo je do greške. Pokušaj ponovo.",
+    "ok": "U redu"
   },
   "landing": {
     "heroTitle": "Zaradi novac registrovanjem firmi na Kosovu",
@@ -132,7 +133,13 @@
     "exportHint": "Izaberi zemlje u koje firma isporučuje ili pruža usluge — osnova za B2B registar.",
     "exportOtherPh": "Druge zemlje (odvoji zarezom)",
     "successOwner": "Izmene su sačuvane!",
-    "successOwnerText": "Podaci tvoje firme su ažurirani."
+    "successOwnerText": "Podaci tvoje firme su ažurirani.",
+    "sameWeekdays": "Ponedeljak – petak isto",
+    "dayMon": "Ponedeljak",
+    "dayTue": "Utorak",
+    "dayWed": "Sreda",
+    "dayThu": "Četvrtak",
+    "dayFri": "Petak"
   },
   "list": {
     "title": "Moji unosi",
@@ -311,6 +318,17 @@
     "se": "Švedska",
     "fi": "Finska",
     "it": "Italija",
-    "al": "Albanija"
+    "al": "Albanija",
+    "fr": "Francuska",
+    "be": "Belgija",
+    "nl": "Holandija",
+    "gb": "Velika Britanija",
+    "no": "Norveška",
+    "dk": "Danska",
+    "us": "SAD",
+    "mk": "Severna Makedonija",
+    "me": "Crna Gora",
+    "hr": "Hrvatska",
+    "si": "Slovenija"
   }
 }

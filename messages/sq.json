@@ -7,7 +7,8 @@
     "cancel": "Anulo",
     "back": "Kthehu",
     "optional": "opsionale",
-    "error": "Ndodhi një gabim. Provo përsëri."
+    "error": "Ndodhi një gabim. Provo përsëri.",
+    "ok": "Në rregull"
   },
   "landing": {
     "heroTitle": "Fito para duke regjistruar bizneset e Kosovës",
@@ -132,7 +133,13 @@
     "exportHint": "Zgjidh vendet ku biznesi ofron produkte ose shërbime — baza për regjistrin B2B.",
     "exportOtherPh": "Vende të tjera (ndaji me presje)",
     "successOwner": "Ndryshimet u ruajtën!",
-    "successOwnerText": "Të dhënat e biznesit tënd u përditësuan."
+    "successOwnerText": "Të dhënat e biznesit tënd u përditësuan.",
+    "sameWeekdays": "E hënë – E premte njësoj",
+    "dayMon": "E hënë",
+    "dayTue": "E martë",
+    "dayWed": "E mërkurë",
+    "dayThu": "E enjte",
+    "dayFri": "E premte"
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -311,6 +318,17 @@
     "se": "Suedi",
     "fi": "Finlandë",
     "it": "Itali",
-    "al": "Shqipëri"
+    "al": "Shqipëri",
+    "fr": "Francë",
+    "be": "Belgjikë",
+    "nl": "Holandë",
+    "gb": "Britani e Madhe",
+    "no": "Norvegji",
+    "dk": "Danimarkë",
+    "us": "SHBA",
+    "mk": "Maqedoni e Veriut",
+    "me": "Mal i Zi",
+    "hr": "Kroaci",
+    "si": "Slloveni"
   }
 }

@@ -38,6 +38,11 @@ export type Category = {
 
 export type OpeningHours = {
   weekdays?: { open: string; close: string } | null;
+  mon?: { open: string; close: string } | null;
+  tue?: { open: string; close: string } | null;
+  wed?: { open: string; close: string } | null;
+  thu?: { open: string; close: string } | null;
+  fri?: { open: string; close: string } | null;
   saturday?: { open: string; close: string } | null;
   sunday?: { open: string; close: string } | null;
 };
