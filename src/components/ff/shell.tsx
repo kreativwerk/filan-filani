@@ -133,15 +133,18 @@ export function FFShell({
         </Link>
       </aside>
 
-      {/* Inhalt */}
-      <div className="flex min-w-0 flex-1 flex-col pb-[104px] lg:pb-0">
+      {/* Inhalt — genug Luft, damit die schwebende Pille nichts verdeckt */}
+      <div
+        className="flex min-w-0 flex-1 flex-col lg:pb-0"
+        style={{ paddingBottom: "calc(96px + env(safe-area-inset-bottom))" }}
+      >
         {children}
       </div>
 
       {/* Schwebende Bottom-Pille (mobil): aktiver Tab klappt mit Titel auf */}
       <nav
         className="pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 lg:hidden"
-        style={{ paddingBottom: "max(18px, env(safe-area-inset-bottom))" }}
+        style={{ paddingBottom: "max(14px, env(safe-area-inset-bottom))" }}
       >
         <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/10 bg-[#101917]/95 p-1.5 shadow-[0_10px_36px_rgba(16,25,23,0.38)] backdrop-blur-xl">
           {tabs.map((tab, i) => {
@@ -154,7 +157,7 @@ export function FFShell({
                 className={cn(
                   "flex h-12 items-center rounded-full transition-all duration-300 ease-out",
                   tab.active
-                    ? "bg-white/[0.16] px-4 text-ff-accent"
+                    ? "bg-white/[0.16] px-4 text-white"
                     : "px-3.5 text-white/60 hover:text-white/90 active:text-white",
                 )}
               >
