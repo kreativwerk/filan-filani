@@ -139,7 +139,18 @@
     "dayTue": "Utorak",
     "dayWed": "Sreda",
     "dayThu": "Četvrtak",
-    "dayFri": "Petak"
+    "dayFri": "Petak",
+    "leadsTitle": "Želiš li da primaš upite klijenata?",
+    "leadsHint": "Kada neko traži uslugu poput tvoje, prosleđujemo upit odgovarajućim firmama. Ti odlučuješ da li ćeš ih dobijati.",
+    "leadsYes": "Da, želim da primam upite",
+    "leadsNo": "Ne, samo moj profil",
+    "leadsEmail": "Email za upite",
+    "leadsEmailHint": "Prazno = email firme",
+    "leadsArea": "Gde radiš?",
+    "leadsAreaCity": "Samo u mom gradu",
+    "leadsAreaRegion": "Moj grad i okolina",
+    "leadsAreaCountry": "Celo Kosovo",
+    "leadsFree": "Besplatno — bez naknada i obaveza."
   },
   "list": {
     "title": "Moji unosi",
@@ -330,7 +341,8 @@
     "claimStep3": "Nakon odobrenja firma se pojavljuje pod „Biznesi im“ i možeš je uređivati.",
     "claimPrivacy": "Dokumenti se čuvaju u privatnom prostoru, vidi ih samo naš tim za proveru i automatski se brišu nakon odluke.",
     "claimStart": "Pokreni zahtev",
-    "claimBack": "Nazad na firmu"
+    "claimBack": "Nazad na firmu",
+    "acceptsRequests": "Prima upite"
   },
   "profile": {
     "title": "Moj profil",

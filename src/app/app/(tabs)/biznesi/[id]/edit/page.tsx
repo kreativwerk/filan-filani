@@ -56,6 +56,10 @@ export default async function FFOwnerEditPage({ params }: Props) {
     description: business.description ?? "",
     openingHours: (business.opening_hours as OpeningHours) ?? null,
     exportCountries: (business.export_countries as string[] | null) ?? [],
+    acceptsRequests: Boolean(business.accepts_requests),
+    requestEmail: business.request_email ?? "",
+    serviceArea:
+      (business.service_area as "city" | "region" | "country") ?? "city",
   };
 
   return (

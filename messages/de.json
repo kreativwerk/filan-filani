@@ -139,7 +139,18 @@
     "dayTue": "Dienstag",
     "dayWed": "Mittwoch",
     "dayThu": "Donnerstag",
-    "dayFri": "Freitag"
+    "dayFri": "Freitag",
+    "leadsTitle": "Möchtest du Kundenanfragen erhalten?",
+    "leadsHint": "Wenn jemand eine Leistung wie deine sucht, leiten wir die Anfrage an passende Betriebe weiter. Du entscheidest, ob du sie bekommst.",
+    "leadsYes": "Ja, ich möchte Anfragen erhalten",
+    "leadsNo": "Nein, nur mein Profil",
+    "leadsEmail": "E-Mail für Anfragen",
+    "leadsEmailHint": "Leer = E-Mail des Betriebs",
+    "leadsArea": "Wo arbeitest du?",
+    "leadsAreaCity": "Nur in meiner Stadt",
+    "leadsAreaRegion": "Meine Stadt und Umgebung",
+    "leadsAreaCountry": "Ganz Kosovo",
+    "leadsFree": "Kostenlos — keine Gebühren, keine Verpflichtung."
   },
   "list": {
     "title": "Meine Einträge",
@@ -330,7 +341,8 @@
     "claimStep3": "Nach der Freigabe erscheint der Betrieb unter „Biznesi im\" und du kannst ihn verwalten.",
     "claimPrivacy": "Die Dokumente liegen in einem privaten Speicher, werden nur von unserem Prüfteam gesehen und nach der Entscheidung automatisch gelöscht.",
     "claimStart": "Antrag starten",
-    "claimBack": "Zurück zum Betrieb"
+    "claimBack": "Zurück zum Betrieb",
+    "acceptsRequests": "Nimmt Anfragen an"
   },
   "profile": {
     "title": "Mein Profil",

@@ -92,6 +92,9 @@ export type BusinessInitial = {
   description: string;
   openingHours: OpeningHours | null;
   exportCountries?: string[];
+  acceptsRequests?: boolean;
+  requestEmail?: string;
+  serviceArea?: "city" | "region" | "country";
 };
 
 export function NewBusinessForm({
@@ -161,6 +164,13 @@ export function NewBusinessForm({
       .filter((c) => !EXPORT_CODES.includes(c))
       .join(", "),
   );
+  const [acceptsRequests, setAcceptsRequests] = useState(
+    initial?.acceptsRequests ?? false,
+  );
+  const [requestEmail, setRequestEmail] = useState(initial?.requestEmail ?? "");
+  const [serviceArea, setServiceArea] = useState<"city" | "region" | "country">(
+    initial?.serviceArea ?? "city",
+  );
   const [photos, setPhotos] = useState<File[]>([]);
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(
     null,
@@ -213,6 +223,10 @@ export function NewBusinessForm({
       { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 },
     );
   }
+
+  // Anfragen-Frage nur dem Betrieb selbst stellen (Registrierung als Inhaber
+  // oder Bearbeitung des eigenen Betriebs) — Runner können das nicht beantworten
+  const showLeadBlock = Boolean(claimOwner || ownerMode);
 
   const filledCount = Object.values(form).filter(Boolean).length;
 
@@ -365,11 +379,17 @@ export function NewBusinessForm({
           .map((s) => s.trim())
           .filter(Boolean),
       ];
-      if (exportList.length || businessId) {
-        await supabase
-          .from("businesses")
-          .update({ export_countries: exportList })
-          .eq("id", id);
+      const extra: Record<string, unknown> = {};
+      if (exportList.length || businessId) extra.export_countries = exportList;
+      if (showLeadBlock) {
+        extra.accepts_requests = acceptsRequests;
+        extra.request_email = acceptsRequests
+          ? requestEmail.trim() || form.email.trim() || null
+          : null;
+        extra.service_area = serviceArea;
+      }
+      if (Object.keys(extra).length) {
+        await supabase.from("businesses").update(extra).eq("id", id);
       }
 
       let firstPhotoUrl: string | null = null;
@@ -758,6 +778,81 @@ export function NewBusinessForm({
                 className="mt-3 h-11"
               />
             </div>
+
+            {/* Kundenanfragen (AroundHome-Modell) — nur für den Betrieb selbst */}
+            {showLeadBlock && (
+              <div className="rounded-[18px] border border-line bg-white p-4">
+                <div className="text-[15px] font-extrabold text-ink">
+                  {t("leadsTitle")}
+                </div>
+                <p className="mt-1 text-[13px] leading-relaxed text-muted">
+                  {t("leadsHint")}
+                </p>
+                <div className="mt-3 flex flex-col gap-2">
+                  {[
+                    { v: true, label: t("leadsYes") },
+                    { v: false, label: t("leadsNo") },
+                  ].map(({ v, label }) => (
+                    <label
+                      key={String(v)}
+                      className={cn(
+                        "flex cursor-pointer items-center gap-3 rounded-[14px] border-[1.5px] px-4 py-3 text-[14.5px] font-bold",
+                        acceptsRequests === v
+                          ? "border-primary bg-primary-light text-primary-dark"
+                          : "border-line-strong bg-white text-ink-2",
+                      )}
+                    >
+                      <input
+                        type="radio"
+                        name="accepts_requests"
+                        checked={acceptsRequests === v}
+                        onChange={() => setAcceptsRequests(v)}
+                        className="h-[18px] w-[18px] accent-[var(--primary)]"
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+
+                {acceptsRequests && (
+                  <div className="mt-3 space-y-3">
+                    <label className="block">
+                      <span className="text-[13px] font-bold text-ink-2">
+                        {t("leadsArea")}
+                      </span>
+                      <Select
+                        value={serviceArea}
+                        onChange={(e) =>
+                          setServiceArea(
+                            e.target.value as "city" | "region" | "country",
+                          )
+                        }
+                        className="mt-1.5 h-11"
+                      >
+                        <option value="city">{t("leadsAreaCity")}</option>
+                        <option value="region">{t("leadsAreaRegion")}</option>
+                        <option value="country">{t("leadsAreaCountry")}</option>
+                      </Select>
+                    </label>
+                    <label className="block">
+                      <span className="text-[13px] font-bold text-ink-2">
+                        {t("leadsEmail")}
+                      </span>
+                      <Input
+                        type="email"
+                        value={requestEmail}
+                        onChange={(e) => setRequestEmail(e.target.value)}
+                        placeholder={t("leadsEmailHint")}
+                        className="mt-1.5 h-11"
+                      />
+                    </label>
+                    <p className="text-[12.5px] font-semibold text-primary">
+                      {t("leadsFree")}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
 

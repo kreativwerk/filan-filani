@@ -139,7 +139,18 @@
     "dayTue": "Tuesday",
     "dayWed": "Wednesday",
     "dayThu": "Thursday",
-    "dayFri": "Friday"
+    "dayFri": "Friday",
+    "leadsTitle": "Do you want to receive customer requests?",
+    "leadsHint": "When someone looks for a service like yours, we forward the request to matching businesses. You decide whether you get them.",
+    "leadsYes": "Yes, send me requests",
+    "leadsNo": "No, just my profile",
+    "leadsEmail": "Email for requests",
+    "leadsEmailHint": "Empty = business email",
+    "leadsArea": "Where do you work?",
+    "leadsAreaCity": "Only in my city",
+    "leadsAreaRegion": "My city and surroundings",
+    "leadsAreaCountry": "All of Kosovo",
+    "leadsFree": "Free — no fees, no obligation."
   },
   "list": {
     "title": "My entries",
@@ -330,7 +341,8 @@
     "claimStep3": "Once approved, the business appears under “Biznesi im” and you can manage it.",
     "claimPrivacy": "Documents are stored privately, seen only by our verification team and deleted automatically after the decision.",
     "claimStart": "Start the request",
-    "claimBack": "Back to the business"
+    "claimBack": "Back to the business",
+    "acceptsRequests": "Accepts requests"
   },
   "profile": {
     "title": "My profile",

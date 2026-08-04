@@ -7,6 +7,7 @@ import {
   Globe,
   MapPin,
   MessageCircle,
+  MessageSquare,
   Package,
   Pencil,
   Phone,
@@ -277,6 +278,12 @@ export default async function FFBizPage({ params }: Props) {
                 {biz.name}
               </h1>
               {verified && <VerifiedBadge />}
+              {(biz as { accepts_requests?: boolean }).accepts_requests && (
+                <span className="flex h-7 items-center gap-1.5 rounded-full bg-ff-accent/10 px-2.5 text-[12px] font-extrabold text-ff-accent">
+                  <MessageSquare className="h-3.5 w-3.5" />
+                  {t("acceptsRequests")}
+                </span>
+              )}
             </div>
             {meta && <div className="text-[14.5px] text-muted">{meta}</div>}
             {rating !== null && (

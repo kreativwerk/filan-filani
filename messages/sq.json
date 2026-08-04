@@ -139,7 +139,18 @@
     "dayTue": "E martë",
     "dayWed": "E mërkurë",
     "dayThu": "E enjte",
-    "dayFri": "E premte"
+    "dayFri": "E premte",
+    "leadsTitle": "Dëshiron të marrësh kërkesa nga klientët?",
+    "leadsHint": "Kur dikush kërkon një shërbim si i yti, ia dërgojmë kërkesën bizneseve që përshtaten. Ti vendos nëse dëshiron t'i marrësh.",
+    "leadsYes": "Po, dua të marr kërkesa",
+    "leadsNo": "Jo, vetëm profili im",
+    "leadsEmail": "Email për kërkesat",
+    "leadsEmailHint": "Bosh = email-i i biznesit",
+    "leadsArea": "Ku punon?",
+    "leadsAreaCity": "Vetëm në qytetin tim",
+    "leadsAreaRegion": "Qyteti im dhe rrethina",
+    "leadsAreaCountry": "Gjithë Kosova",
+    "leadsFree": "Falas — pa kosto, pa detyrim."
   },
   "list": {
     "title": "Regjistrimet e mia",
@@ -330,7 +341,8 @@
     "claimStep3": "Pas miratimit biznesi shfaqet te «Biznesi im» dhe mund ta menaxhosh.",
     "claimPrivacy": "Dokumentet ruhen në një hapësirë private, shihen vetëm nga ekipi ynë i verifikimit dhe fshihen automatikisht pas vendimit.",
     "claimStart": "Fillo kërkesën",
-    "claimBack": "Kthehu te biznesi"
+    "claimBack": "Kthehu te biznesi",
+    "acceptsRequests": "Pranon kërkesa"
   },
   "profile": {
     "title": "Profili im",
