@@ -81,6 +81,7 @@ export default async function FFRequestPage({ searchParams }: Props) {
             defaultCategoryId={defaultCategory}
             defaultName={profileName}
             defaultPhone={profilePhone}
+            defaultEmail={user.email ?? ""}
           />
         ) : (
           <div className="flex flex-col items-center gap-4 rounded-[24px] border border-line bg-white p-8 text-center">

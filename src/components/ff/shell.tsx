@@ -38,7 +38,8 @@ export function FFShell({
   }, []);
 
   const onHome = pathname === "/app" || pathname.startsWith("/preview");
-  const onSearch = pathname.startsWith("/app/kerko");
+  const onRequestNew = pathname.startsWith("/app/kerko-oferte");
+  const onSearch = pathname.startsWith("/app/kerko") && !onRequestNew;
   const onBusiness = pathname.startsWith("/app/biznesi");
   const onSaved = pathname.startsWith("/app/ruajtura");
   const onB2B = pathname.startsWith("/app/b2b");
@@ -50,6 +51,7 @@ export function FFShell({
     !onSaved &&
     !onB2B &&
     !onRequests &&
+    !onRequestNew &&
     !pathname.startsWith("/app/login");
 
   const tabs = [

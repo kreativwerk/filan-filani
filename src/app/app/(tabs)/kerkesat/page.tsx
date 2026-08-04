@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FileText, MapPin, Store } from "lucide-react";
+import { Clock, FileText, MapPin, Store, Wallet } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
@@ -26,6 +26,9 @@ type RecipientRow = {
         description: string | null;
         contact_name: string | null;
         contact_phone: string | null;
+        contact_email: string | null;
+        timeframe: string | null;
+        budget: string | null;
         created_at: string;
         cities: City | City[] | null;
         categories: Category | Category[] | null;
@@ -36,11 +39,28 @@ type RecipientRow = {
         description: string | null;
         contact_name: string | null;
         contact_phone: string | null;
+        contact_email: string | null;
+        timeframe: string | null;
+        budget: string | null;
         created_at: string;
         cities: City | City[] | null;
         categories: Category | Category[] | null;
       }[]
     | null;
+};
+
+const TIMEFRAME_KEY: Record<string, string> = {
+  urgent: "tfUrgent",
+  soon: "tfSoon",
+  month: "tfMonth",
+  flexible: "tfFlexible",
+};
+const BUDGET_KEY: Record<string, string> = {
+  open: "bgOpen",
+  lt100: "bgLt100",
+  "100_500": "bg100",
+  "500_2000": "bg500",
+  gt2000: "bgGt2000",
 };
 
 const STATUS_STYLE: Record<string, string> = {
@@ -105,7 +125,8 @@ export default async function FFRequestsPage() {
     .select(
       `request_id, business_id, status, created_at,
        service_requests(id, title, description, contact_name, contact_phone,
-                        created_at, cities(*), categories(*))`,
+                        contact_email, timeframe, budget, created_at,
+                        cities(*), categories(*))`,
     )
     .order("created_at", { ascending: false });
 
@@ -222,9 +243,26 @@ export default async function FFRequestsPage() {
                       </p>
                     )}
 
-                    {(req.contact_name || req.contact_phone) && (
+                    {(req.timeframe || req.budget) && (
+                      <div className="flex flex-wrap gap-2">
+                        {req.timeframe && (
+                          <span className="flex h-7 items-center gap-1.5 rounded-full bg-surface px-2.5 text-[12px] font-bold text-ink-2">
+                            <Clock className="h-3.5 w-3.5" />
+                            {t(TIMEFRAME_KEY[req.timeframe] ?? "tfFlexible")}
+                          </span>
+                        )}
+                        {req.budget && (
+                          <span className="flex h-7 items-center gap-1.5 rounded-full bg-surface px-2.5 text-[12px] font-bold text-ink-2">
+                            <Wallet className="h-3.5 w-3.5" />
+                            {t(BUDGET_KEY[req.budget] ?? "bgOpen")}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {(req.contact_name || req.contact_phone || req.contact_email) && (
                       <p className="text-[14px] font-semibold text-ink">
-                        {[req.contact_name, req.contact_phone]
+                        {[req.contact_name, req.contact_phone, req.contact_email]
                           .filter(Boolean)
                           .join(" · ")}
                       </p>
