@@ -186,7 +186,8 @@
     "claimsDocs": "Dokazi",
     "claimsNoDocs": "Bez dokumenata",
     "noBilling": "Bez podataka za isplatu",
-    "billingOk": "Podaci za isplatu"
+    "billingOk": "Podaci za isplatu",
+    "osmResultUpdated": "{updated} ažurirano (izvor/datum iz OSM)"
   },
   "lang": {
     "label": "Jezik"

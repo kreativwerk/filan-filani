@@ -2,6 +2,12 @@
 // Daten © OpenStreetMap contributors, Lizenz ODbL (Quellenangabe erforderlich)
 
 export type OsmBusiness = {
+  /** OSM-Kennung, z. B. "node/123456" — für spätere Abgleiche */
+  osmId: string;
+  /** Wie oft der Eintrag in OSM bearbeitet wurde (1 = nie geändert) */
+  osmVersion: number | null;
+  /** Letzte Bearbeitung in OSM (ISO) — Gradmesser für Aktualität */
+  osmTimestamp: string | null;
   name: string;
   categorySlug: string;
   phone: string | null;
@@ -30,7 +36,7 @@ export function overpassQuery(lat: number, lng: number, radius = 8000) {
   nwr(${around})["name"]["office"~"^(${OFFICES})$"];
   nwr(${around})["name"]["tourism"~"^(${TOURISM})$"];
 );
-out center tags 1500;`;
+out center meta 1500;`;
 }
 
 type Tags = Record<string, string>;
@@ -70,7 +76,16 @@ function cleanUrl(v: string | undefined): string | null {
 }
 
 export function parseOverpass(json: {
-  elements?: Array<{ lat?: number; lon?: number; center?: { lat: number; lon: number }; tags?: Tags }>;
+  elements?: Array<{
+    type?: string;
+    id?: number;
+    version?: number;
+    timestamp?: string;
+    lat?: number;
+    lon?: number;
+    center?: { lat: number; lon: number };
+    tags?: Tags;
+  }>;
 }): OsmBusiness[] {
   const out: OsmBusiness[] = [];
   for (const el of json.elements ?? []) {
@@ -88,6 +103,9 @@ export function parseOverpass(json: {
     const street = t["addr:street"];
     const nr = t["addr:housenumber"];
     out.push({
+      osmId: `${el.type ?? "node"}/${el.id ?? ""}`,
+      osmVersion: typeof el.version === "number" ? el.version : null,
+      osmTimestamp: el.timestamp ?? null,
       name,
       categorySlug,
       phone: (t.phone ?? t["contact:phone"] ?? "").split(";")[0].trim() || null,

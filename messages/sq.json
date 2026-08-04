@@ -186,7 +186,8 @@
     "claimsDocs": "Dëshmitë",
     "claimsNoDocs": "Pa dokumente",
     "noBilling": "Pa të dhëna pagese",
-    "billingOk": "Të dhënat e pagesës"
+    "billingOk": "Të dhënat e pagesës",
+    "osmResultUpdated": "{updated} u përditësuan (burimi/data nga OSM)"
   },
   "lang": {
     "label": "Gjuha"

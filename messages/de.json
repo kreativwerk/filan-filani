@@ -186,7 +186,8 @@
     "claimsDocs": "Nachweise",
     "claimsNoDocs": "Keine Dokumente",
     "noBilling": "Keine Auszahlungsdaten",
-    "billingOk": "Auszahlungsdaten"
+    "billingOk": "Auszahlungsdaten",
+    "osmResultUpdated": "{updated} aktualisiert (Herkunft/Datum aus OSM)"
   },
   "lang": {
     "label": "Sprache"

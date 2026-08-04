@@ -186,7 +186,8 @@
     "claimsDocs": "Documents",
     "claimsNoDocs": "No documents",
     "noBilling": "No payout details",
-    "billingOk": "Payout details"
+    "billingOk": "Payout details",
+    "osmResultUpdated": "{updated} updated (OSM source/date added)"
   },
   "lang": {
     "label": "Language"

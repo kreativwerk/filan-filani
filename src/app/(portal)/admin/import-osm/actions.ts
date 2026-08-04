@@ -7,12 +7,19 @@ export type OsmImportResult = {
   found: number;
   imported: number;
   skipped: number;
+  /** Bestehende Einträge, die OSM-Herkunft/Datum nachgetragen bekamen */
+  updated?: number;
   error?: string;
 };
 
+/** Koordinaten-Schlüssel für den Abgleich (≈11 cm Genauigkeit) */
+function coordKey(lat: number, lng: number): string {
+  return `${lat.toFixed(6)},${lng.toFixed(6)}`;
+}
+
 // Die Overpass-Abfrage läuft im Browser des Admins (Vercel-IPs sind bei den
 // öffentlichen Overpass-Servern dauerhaft ratenlimitiert) — hier nur noch
-// prüfen, deduplizieren und speichern.
+// prüfen, deduplizieren, speichern und OSM-Metadaten nachtragen.
 export async function importOsmBusinesses(
   cityId: number,
   elements: OsmBusiness[],
@@ -40,7 +47,7 @@ export async function importOsmBusinesses(
     supabase.from("categories").select("id, slug"),
     supabase
       .from("businesses")
-      .select("name, phone")
+      .select("id, name, phone, lat, lng, osm_id")
       .eq("city_id", cityId)
       .neq("status", "rejected"),
   ]);
@@ -52,9 +59,17 @@ export async function importOsmBusinesses(
   const seenPhones = new Set(
     (existing ?? []).map((b) => b.phone).filter(Boolean),
   );
+  // Bestehende Einträge über ihre exakten OSM-Koordinaten wiederfinden
+  const byCoord = new Map<string, { id: string; osm_id: string | null }>();
+  for (const b of existing ?? []) {
+    if (typeof b.lat === "number" && typeof b.lng === "number") {
+      byCoord.set(coordKey(b.lat, b.lng), { id: b.id, osm_id: b.osm_id });
+    }
+  }
 
   let imported = 0;
   let skipped = 0;
+  let updated = 0;
 
   for (const b of elements) {
     const name = (b.name ?? "").trim();
@@ -62,6 +77,25 @@ export async function importOsmBusinesses(
       skipped++;
       continue;
     }
+
+    // Schon vorhanden? Dann Herkunft und Bearbeitungsdatum nachtragen.
+    const match = byCoord.get(coordKey(b.lat, b.lng));
+    if (match) {
+      if (!match.osm_id && b.osmId) {
+        const { error } = await supabase
+          .from("businesses")
+          .update({
+            osm_id: b.osmId,
+            osm_version: b.osmVersion,
+            osm_timestamp: b.osmTimestamp,
+          })
+          .eq("id", match.id);
+        if (!error) updated++;
+      }
+      skipped++;
+      continue;
+    }
+
     const nameKey = name.toLowerCase();
     if (seenNames.has(nameKey) || (b.phone && seenPhones.has(b.phone))) {
       skipped++;
@@ -85,6 +119,9 @@ export async function importOsmBusinesses(
         website: b.website,
         facebook: b.facebook,
         instagram: b.instagram,
+        osm_id: b.osmId,
+        osm_version: b.osmVersion,
+        osm_timestamp: b.osmTimestamp,
         status: "approved",
         source: "admin",
         created_by: user!.id,
@@ -100,8 +137,9 @@ export async function importOsmBusinesses(
       .insert({ business_id: row.id, category_id: categoryId });
     seenNames.add(nameKey);
     if (b.phone) seenPhones.add(b.phone);
+    byCoord.set(coordKey(b.lat, b.lng), { id: row.id, osm_id: b.osmId });
     imported++;
   }
 
-  return { found, imported, skipped };
+  return { found, imported, skipped, updated };
 }

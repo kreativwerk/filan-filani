@@ -109,6 +109,12 @@ export function ImportOsmClient({ cities }: { cities: City[] }) {
                 imported: result.imported,
                 skipped: result.skipped,
               })}
+              {result.updated ? (
+                <>
+                  <br />
+                  {t("osmResultUpdated", { updated: result.updated })}
+                </>
+              ) : null}
             </p>
           ))}
         <p className="text-[11px] text-faint">
