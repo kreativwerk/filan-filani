@@ -158,7 +158,7 @@ export function FFHomeView({ data }: { data: FFHomeData }) {
               {t("bannerTitle")}
             </div>
             <Link
-              href="/app/kerko"
+              href="/app/kerko-oferte"
               className="flex h-12 items-center self-start rounded-full bg-white px-5 text-[16px] font-extrabold text-ff-primary-dark"
             >
               {t("bannerCta")}

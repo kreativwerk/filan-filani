@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   Compass,
+  FileText,
   Globe,
   Heart,
   Home,
@@ -41,12 +42,14 @@ export function FFShell({
   const onBusiness = pathname.startsWith("/app/biznesi");
   const onSaved = pathname.startsWith("/app/ruajtura");
   const onB2B = pathname.startsWith("/app/b2b");
+  const onRequests = pathname.startsWith("/app/kerkesat");
   const onDiscover =
     !onHome &&
     !onSearch &&
     !onBusiness &&
     !onSaved &&
     !onB2B &&
+    !onRequests &&
     !pathname.startsWith("/app/login");
 
   const tabs = [
@@ -81,7 +84,12 @@ export function FFShell({
       active: onSaved,
     },
     { href: "/app/b2b", icon: Globe, label: t("b2bNav"), active: onB2B },
-    // "Kërkesat" (Anfragen) kommt zurück, sobald das Feature gebaut ist
+    {
+      href: "/app/kerkesat",
+      icon: FileText,
+      label: t("reqInbox"),
+      active: onRequests,
+    },
     {
       href: "/app/biznesi",
       icon: Store,
