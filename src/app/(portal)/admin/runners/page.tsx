@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { Button, Card, Input, SectionLabel } from "@/components/ui";
+import { formatIban } from "@/lib/iban";
 import { recordPayout } from "./actions";
 
 const eur = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
@@ -23,7 +24,7 @@ export default async function AdminRunnersPage() {
   const [{ data: scouts }, { data: ledger }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("id, full_name, phone, created_at")
+      .select("id, full_name, phone, created_at, iban, bank_holder, billing_email, billing_address")
       .eq("role", "scout")
       .order("created_at"),
     supabase.from("scout_ledger").select("scout_id, type, amount"),
@@ -71,6 +72,26 @@ export default async function AdminRunnersPage() {
                     <p className="text-sm text-muted">
                       {s.phone || "—"} · {st.entries} {t("entriesApproved")}
                     </p>
+                    {/* Auszahlungsdaten für die Überweisung */}
+                    {s.iban ? (
+                      <div className="mt-2 rounded-[12px] bg-surface px-3 py-2 text-[13px] leading-relaxed">
+                        <SectionLabel className="tracking-[0.06em]">
+                          {t("billingOk")}
+                        </SectionLabel>
+                        <div className="mt-1 font-mono text-ink">
+                          {formatIban(s.iban)}
+                        </div>
+                        <div className="text-muted">
+                          {[s.bank_holder, s.billing_email, s.billing_address]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </div>
+                      </div>
+                    ) : (
+                      <span className="mt-2 inline-block rounded-full bg-[#FBF0D6] px-2.5 py-1 text-xs font-extrabold text-[#6B4C07]">
+                        {t("noBilling")}
+                      </span>
+                    )}
                   </div>
                   <div className="flex gap-5 text-right">
                     <div>

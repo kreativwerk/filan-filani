@@ -184,7 +184,9 @@
     "claimsEmpty": "Keine offenen Anträge.",
     "claimsBusinessPhone": "Betriebs-Tel.",
     "claimsDocs": "Nachweise",
-    "claimsNoDocs": "Keine Dokumente"
+    "claimsNoDocs": "Keine Dokumente",
+    "noBilling": "Keine Auszahlungsdaten",
+    "billingOk": "Auszahlungsdaten"
   },
   "lang": {
     "label": "Sprache"
@@ -331,7 +333,16 @@
   },
   "profile": {
     "title": "Mein Profil",
-    "saved": "Gespeichert."
+    "saved": "Gespeichert.",
+    "billingTitle": "Auszahlungsdaten",
+    "billingHint": "Wir brauchen sie, um deinen Verdienst zu überweisen. Nur du und unser Team sehen sie.",
+    "iban": "IBAN",
+    "bankHolder": "Kontoinhaber",
+    "bankHolderPh": "Name wie bei der Bank",
+    "billingEmail": "E-Mail für die Rechnung",
+    "billingAddress": "Adresse (optional)",
+    "ibanInvalid": "Die IBAN sieht nicht korrekt aus. Bitte prüfen.",
+    "billingMissing": "Trage IBAN und E-Mail ein, damit wir auszahlen können."
   },
   "countries": {
     "de": "Deutschland",

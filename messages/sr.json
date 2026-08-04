@@ -184,7 +184,9 @@
     "claimsEmpty": "Nema zahteva na čekanju.",
     "claimsBusinessPhone": "Tel. firme",
     "claimsDocs": "Dokazi",
-    "claimsNoDocs": "Bez dokumenata"
+    "claimsNoDocs": "Bez dokumenata",
+    "noBilling": "Bez podataka za isplatu",
+    "billingOk": "Podaci za isplatu"
   },
   "lang": {
     "label": "Jezik"
@@ -331,7 +333,16 @@
   },
   "profile": {
     "title": "Moj profil",
-    "saved": "Sačuvano."
+    "saved": "Sačuvano.",
+    "billingTitle": "Podaci za isplatu",
+    "billingHint": "Potrebni su nam da ti prebacimo zaradu. Vide ih samo ti i naš tim.",
+    "iban": "IBAN",
+    "bankHolder": "Vlasnik računa",
+    "bankHolderPh": "Ime kao u banci",
+    "billingEmail": "Email za fakturu",
+    "billingAddress": "Adresa (opciono)",
+    "ibanInvalid": "IBAN ne izgleda ispravno. Proveri još jednom.",
+    "billingMissing": "Unesi IBAN i email da bismo mogli da isplatimo."
   },
   "countries": {
     "de": "Nemačka",

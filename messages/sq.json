@@ -184,7 +184,9 @@
     "claimsEmpty": "S'ka kërkesa në pritje.",
     "claimsBusinessPhone": "Tel. i biznesit",
     "claimsDocs": "Dëshmitë",
-    "claimsNoDocs": "Pa dokumente"
+    "claimsNoDocs": "Pa dokumente",
+    "noBilling": "Pa të dhëna pagese",
+    "billingOk": "Të dhënat e pagesës"
   },
   "lang": {
     "label": "Gjuha"
@@ -331,7 +333,16 @@
   },
   "profile": {
     "title": "Profili im",
-    "saved": "U ruajt."
+    "saved": "U ruajt.",
+    "billingTitle": "Të dhënat për pagesë",
+    "billingHint": "Nevojiten për të të paguar fitimet. Vetëm ti dhe ekipi ynë i shohin.",
+    "iban": "IBAN",
+    "bankHolder": "Pronari i llogarisë",
+    "bankHolderPh": "Emri si në bankë",
+    "billingEmail": "Email për faturë",
+    "billingAddress": "Adresa (opsionale)",
+    "ibanInvalid": "IBAN-i duket i pasaktë. Kontrollo edhe një herë.",
+    "billingMissing": "Plotëso IBAN-in dhe email-in për të marrë pagesën."
   },
   "countries": {
     "de": "Gjermani",

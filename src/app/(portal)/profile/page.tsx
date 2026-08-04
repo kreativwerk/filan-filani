@@ -9,7 +9,9 @@ export default async function ProfilePage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, phone")
+    .select(
+      "full_name, phone, role, iban, bank_holder, billing_email, billing_address",
+    )
     .eq("id", user!.id)
     .single();
 
@@ -18,6 +20,11 @@ export default async function ProfilePage() {
       email={user!.email ?? ""}
       initialName={profile?.full_name ?? ""}
       initialPhone={profile?.phone ?? ""}
+      initialIban={profile?.iban ?? ""}
+      initialBankHolder={profile?.bank_holder ?? ""}
+      initialBillingEmail={profile?.billing_email ?? ""}
+      initialBillingAddress={profile?.billing_address ?? ""}
+      isScout={profile?.role === "scout" || profile?.role === "admin"}
     />
   );
 }

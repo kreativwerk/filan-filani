@@ -184,7 +184,9 @@
     "claimsEmpty": "No pending claims.",
     "claimsBusinessPhone": "Business phone",
     "claimsDocs": "Documents",
-    "claimsNoDocs": "No documents"
+    "claimsNoDocs": "No documents",
+    "noBilling": "No payout details",
+    "billingOk": "Payout details"
   },
   "lang": {
     "label": "Language"
@@ -331,7 +333,16 @@
   },
   "profile": {
     "title": "My profile",
-    "saved": "Saved."
+    "saved": "Saved.",
+    "billingTitle": "Payout details",
+    "billingHint": "We need these to transfer your earnings. Only you and our team can see them.",
+    "iban": "IBAN",
+    "bankHolder": "Account holder",
+    "bankHolderPh": "Name as at the bank",
+    "billingEmail": "Email for the invoice",
+    "billingAddress": "Address (optional)",
+    "ibanInvalid": "That IBAN doesn't look right. Please check it.",
+    "billingMissing": "Add your IBAN and email so we can pay you out."
   },
   "countries": {
     "de": "Germany",

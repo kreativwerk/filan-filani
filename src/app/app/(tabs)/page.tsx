@@ -78,10 +78,15 @@ export default async function FFAppHome() {
           )
           .eq("status", "approved");
         if (city) q = q.eq("city_id", city.id);
-        return q
-          .order("completeness", { ascending: false })
-          .order("created_at", { ascending: false })
-          .limit(12);
+        return (
+          q
+            // Startseite lebt von Bildern: Einträge mit Foto zuerst,
+            // danach nach Datenqualität und Aktualität
+            .order("cover_url", { ascending: false, nullsFirst: false })
+            .order("completeness", { ascending: false })
+            .order("created_at", { ascending: false })
+            .limit(12)
+        );
       })(),
     ]);
 
