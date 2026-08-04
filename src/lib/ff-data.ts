@@ -58,7 +58,12 @@ export function cityOption(city: City, locale: Locale): FFCityOption {
 }
 
 export function toFFCat(cat: Category, locale: Locale): FFCat {
-  return { slug: cat.slug, label: localizedName(cat, locale), icon: cat.icon };
+  return {
+    slug: cat.slug,
+    label: localizedName(cat, locale),
+    icon: cat.icon,
+    isTrade: Boolean(cat.is_trade),
+  };
 }
 
 /** Betriebszeile → Kartendaten (Kategorie·Stadt, Bewertung, Verifiziert-Badge) */

@@ -10,7 +10,12 @@ import { categoryIcon } from "./icons";
 import { CityPill, type FFCityOption } from "./city-pill";
 import { FFBusinessCard, type FFBiz } from "./business-card";
 
-export type FFCat = { slug: string; label: string; icon: string | null };
+export type FFCat = {
+  slug: string;
+  label: string;
+  icon: string | null;
+  isTrade?: boolean;
+};
 
 export type FFHomeData = {
   signedIn: boolean;
@@ -25,6 +30,7 @@ export function FFHomeView({ data }: { data: FFHomeData }) {
   const t = useTranslations("ff");
   const cityHref = `/app/${data.city.slug}`;
   const initial = data.userName?.trim().charAt(0).toUpperCase() ?? null;
+  const trades = data.categories.filter((c) => c.isTrade);
 
   return (
     <>
@@ -157,9 +163,23 @@ export function FFHomeView({ data }: { data: FFHomeData }) {
             <div className="max-w-[24ch] text-[20px] font-extrabold leading-tight tracking-[-0.02em] text-white">
               {t("bannerTitle")}
             </div>
+            <p className="max-w-[38ch] text-[13.5px] leading-relaxed text-ff-teal-soft">
+              {t("bannerSub")}
+            </p>
+            {/* Gewerke auf einen Blick */}
+            <div className="flex flex-wrap gap-1.5">
+              {trades.slice(0, 5).map((c) => (
+                <span
+                  key={c.slug}
+                  className="flex h-7 items-center rounded-full bg-white/12 px-2.5 text-[12px] font-bold text-white"
+                >
+                  {c.label}
+                </span>
+              ))}
+            </div>
             <Link
               href="/app/kerko-oferte"
-              className="flex h-12 items-center self-start rounded-full bg-white px-5 text-[16px] font-extrabold text-ff-primary-dark"
+              className="flex h-12 items-center self-start rounded-full bg-ff-accent px-5 text-[16px] font-extrabold text-white"
             >
               {t("bannerCta")}
             </Link>

@@ -26,6 +26,8 @@ export type City = {
 
 export type Category = {
   id: number;
+  /** Handwerksgewerk — nur diese erscheinen im Anfrage-Assistenten */
+  is_trade?: boolean;
   slug: string;
   parent_id: number | null;
   name_sq: string;

@@ -52,8 +52,10 @@ export default async function FFRequestPage({ searchParams }: Props) {
     citySlug === ALL_CITIES
       ? ""
       : String(cities.find((c) => c.slug === citySlug)?.id ?? "");
+  // AroundHome-Prinzip: Anfragen nur für Handwerksleistungen
+  const tradeCategories = categories.filter((c) => c.is_trade);
   const defaultCategory = kategoria
-    ? String(categories.find((c) => c.slug === kategoria)?.id ?? "")
+    ? String(tradeCategories.find((c) => c.slug === kategoria)?.id ?? "")
     : "";
 
   return (
@@ -76,7 +78,7 @@ export default async function FFRequestPage({ searchParams }: Props) {
         {user ? (
           <RequestForm
             cities={cities}
-            categories={categories}
+            categories={tradeCategories}
             defaultCityId={defaultCity}
             defaultCategoryId={defaultCategory}
             defaultName={profileName}
