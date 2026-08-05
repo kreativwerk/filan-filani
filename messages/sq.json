@@ -411,7 +411,21 @@
     "myReqSentToNone": "Ende pa marrës — ekipi ynë po e shqyrton",
     "myReqResponded": "{count} u përgjigjën",
     "reqPhoneReq": "Telefoni është i domosdoshëm që mjeshtrit të të kontaktojnë.",
-    "reqPending": "Ende s'ka mjeshtër të regjistruar për këtë punë. Ekipi ynë e merr kërkesën dhe të kontakton."
+    "reqPending": "Ende s'ka mjeshtër të regjistruar për këtë punë. Ekipi ynë e merr kërkesën dhe të kontakton.",
+    "poolTitle": "Tregu i punëve",
+    "poolHint": "Punë të hapura që përshtaten me zejen dhe zonën tënde. Shpreh interesin dhe merr të dhënat e klientit.",
+    "poolEmpty": "Ende s'ka punë të hapura për zejen tënde.",
+    "poolEmptyHint": "Sapo një klient të kërkojë ofertë, shfaqet këtu.",
+    "poolNoBiz": "Merr biznesin tënd dhe akto «Pranon kërkesa» për të parë tregun.",
+    "poolInterested": "{count} nga {max} vende të zëna",
+    "poolFull": "Vendet u plotësuan",
+    "poolClaim": "Më intereson",
+    "poolClaimed": "E ke marrë — shihe te «Kërkesat»",
+    "poolClaiming": "Po dërgohet…",
+    "poolWhy": "Të dhënat e klientit shfaqen pasi të shprehësh interesin.",
+    "poolErrFull": "Kjo punë ka mbushur vendet.",
+    "poolErrOff": "Aktivizo «Pranon kërkesa» te «Përpuno».",
+    "poolPickBiz": "Me cilin biznes?"
   },
   "profile": {
     "title": "Profili im",

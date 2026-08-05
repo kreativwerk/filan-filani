@@ -411,7 +411,21 @@
     "myReqSentToNone": "No recipients yet — our team is on it",
     "myReqResponded": "{count} replied",
     "reqPhoneReq": "Tradespeople need your phone number to reach you.",
-    "reqPending": "No tradesperson is registered for this work yet. Our team picks up the request and will contact you."
+    "reqPending": "No tradesperson is registered for this work yet. Our team picks up the request and will contact you.",
+    "poolTitle": "Job market",
+    "poolHint": "Open jobs matching your trade and area. Express interest and get the customer's details.",
+    "poolEmpty": "No open jobs for your trade right now.",
+    "poolEmptyHint": "As soon as a customer requests a quote, it shows up here.",
+    "poolNoBiz": "Claim your business and turn on “Accept requests” to see the market.",
+    "poolInterested": "{count} of {max} slots taken",
+    "poolFull": "Slots taken",
+    "poolClaim": "I'm interested",
+    "poolClaimed": "Taken — see it under “Requests”",
+    "poolClaiming": "Sending…",
+    "poolWhy": "Customer details appear once you've expressed interest.",
+    "poolErrFull": "All slots for this job are taken.",
+    "poolErrOff": "Turn on “Accept requests” under “Edit”.",
+    "poolPickBiz": "With which business?"
   },
   "profile": {
     "title": "My profile",

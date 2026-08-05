@@ -411,7 +411,21 @@
     "myReqSentToNone": "Noch keine Empfänger — unser Team kümmert sich darum",
     "myReqResponded": "{count} haben geantwortet",
     "reqPhoneReq": "Die Telefonnummer brauchen die Handwerker, um dich zu erreichen.",
-    "reqPending": "Für diese Arbeit ist noch kein Handwerker registriert. Unser Team nimmt die Anfrage auf und meldet sich bei dir."
+    "reqPending": "Für diese Arbeit ist noch kein Handwerker registriert. Unser Team nimmt die Anfrage auf und meldet sich bei dir.",
+    "poolTitle": "Auftragsmarkt",
+    "poolHint": "Offene Aufträge, die zu deinem Gewerk und Gebiet passen. Melde Interesse und erhalte die Kundendaten.",
+    "poolEmpty": "Aktuell keine offenen Aufträge für dein Gewerk.",
+    "poolEmptyHint": "Sobald ein Kunde ein Angebot anfragt, erscheint es hier.",
+    "poolNoBiz": "Übernimm deinen Betrieb und schalte „Anfragen annehmen\" ein, um den Markt zu sehen.",
+    "poolInterested": "{count} von {max} Plätzen belegt",
+    "poolFull": "Plätze vergeben",
+    "poolClaim": "Interesse melden",
+    "poolClaimed": "Übernommen — unter „Anfragen\" ansehen",
+    "poolClaiming": "Wird gesendet…",
+    "poolWhy": "Die Kundendaten erscheinen, sobald du Interesse gemeldet hast.",
+    "poolErrFull": "Für diesen Auftrag sind die Plätze vergeben.",
+    "poolErrOff": "Schalte „Anfragen annehmen\" unter „Bearbeiten\" ein.",
+    "poolPickBiz": "Mit welchem Betrieb?"
   },
   "profile": {
     "title": "Mein Profil",

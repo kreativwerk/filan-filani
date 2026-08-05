@@ -11,6 +11,7 @@ import {
   Compass,
   FileText,
   Globe,
+  HandCoins,
   Heart,
   Home,
   Plus,
@@ -44,6 +45,7 @@ export function FFShell({
   const onBusiness = pathname.startsWith("/app/biznesi");
   const onSaved = pathname.startsWith("/app/ruajtura");
   const onB2B = pathname.startsWith("/app/b2b");
+  const onPool = pathname.startsWith("/app/tregu");
   const onMyRequests = pathname.startsWith("/app/kerkesat-e-mia");
   const onRequests = pathname.startsWith("/app/kerkesat") && !onMyRequests;
   const onDiscover =
@@ -54,6 +56,7 @@ export function FFShell({
     !onB2B &&
     !onRequests &&
     !onMyRequests &&
+    !onPool &&
     !onRequestNew &&
     !pathname.startsWith("/app/login");
 
@@ -94,6 +97,12 @@ export function FFShell({
       icon: Send,
       label: t("myReqTitle"),
       active: onMyRequests,
+    },
+    {
+      href: "/app/tregu",
+      icon: HandCoins,
+      label: t("poolTitle"),
+      active: onPool,
     },
     {
       href: "/app/kerkesat",

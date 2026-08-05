@@ -411,7 +411,21 @@
     "myReqSentToNone": "Još bez primalaca — naš tim se bavi time",
     "myReqResponded": "{count} je odgovorilo",
     "reqPhoneReq": "Majstorima treba tvoj broj telefona da te kontaktiraju.",
-    "reqPending": "Za ovaj posao još nije registrovan majstor. Naš tim preuzima upit i javiće ti se."
+    "reqPending": "Za ovaj posao još nije registrovan majstor. Naš tim preuzima upit i javiće ti se.",
+    "poolTitle": "Tržnica poslova",
+    "poolHint": "Otvoreni poslovi koji odgovaraju tvom zanatu i zoni. Prijavi interes i dobij podatke klijenta.",
+    "poolEmpty": "Trenutno nema otvorenih poslova za tvoj zanat.",
+    "poolEmptyHint": "Čim klijent zatraži ponudu, pojaviće se ovde.",
+    "poolNoBiz": "Preuzmi svoju firmu i uključi „Prima upite“ da vidiš tržnicu.",
+    "poolInterested": "{count} od {max} mesta zauzeto",
+    "poolFull": "Mesta popunjena",
+    "poolClaim": "Zanima me",
+    "poolClaimed": "Preuzeto — pogledaj pod „Upiti“",
+    "poolClaiming": "Šalje se…",
+    "poolWhy": "Podaci klijenta pojavljuju se kada prijaviš interes.",
+    "poolErrFull": "Mesta za ovaj posao su popunjena.",
+    "poolErrOff": "Uključi „Prima upite“ pod „Uredi“.",
+    "poolPickBiz": "Sa kojom firmom?"
   },
   "profile": {
     "title": "Moj profil",
