@@ -198,7 +198,11 @@
     "claimsNoDocs": "Pa dokumente",
     "noBilling": "Pa të dhëna pagese",
     "billingOk": "Të dhënat e pagesës",
-    "osmResultUpdated": "{updated} u përditësuan (burimi/data nga OSM)"
+    "osmResultUpdated": "{updated} u përditësuan (burimi/data nga OSM)",
+    "requestsTitle": "Kërkesat e klientëve",
+    "requestsHint": "Kërkesat pa marrës — kontakto biznesin me telefon dhe ftoje në platformë.",
+    "requestsEmpty": "Ende s'ka kërkesa.",
+    "requestsRecipients": "marrës"
   },
   "lang": {
     "label": "Gjuha"
@@ -400,7 +404,14 @@
     "q6Hint": "Vetëm bizneset që marrin kërkesën i shohin këto të dhëna.",
     "reqEmail": "Email (opsional)",
     "bannerSub": "Përshkruaje punën një herë — merr oferta nga disa mjeshtër të zonës. Falas.",
-    "reqTradesOnly": "Për shërbime të tjera, kërko drejtpërdrejt biznesin në kërkim."
+    "reqTradesOnly": "Për shërbime të tjera, kërko drejtpërdrejt biznesin në kërkim.",
+    "myReqTitle": "Kërkesat e mia",
+    "myReqEmpty": "Ende s'ke dërguar asnjë kërkesë.",
+    "myReqSentTo": "{count} biznese e morën",
+    "myReqSentToNone": "Ende pa marrës — ekipi ynë po e shqyrton",
+    "myReqResponded": "{count} u përgjigjën",
+    "reqPhoneReq": "Telefoni është i domosdoshëm që mjeshtrit të të kontaktojnë.",
+    "reqPending": "Ende s'ka mjeshtër të regjistruar për këtë punë. Ekipi ynë e merr kërkesën dhe të kontakton."
   },
   "profile": {
     "title": "Profili im",

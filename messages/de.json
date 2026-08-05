@@ -198,7 +198,11 @@
     "claimsNoDocs": "Keine Dokumente",
     "noBilling": "Keine Auszahlungsdaten",
     "billingOk": "Auszahlungsdaten",
-    "osmResultUpdated": "{updated} aktualisiert (Herkunft/Datum aus OSM)"
+    "osmResultUpdated": "{updated} aktualisiert (Herkunft/Datum aus OSM)",
+    "requestsTitle": "Kundenanfragen",
+    "requestsHint": "Anfragen ohne Empfänger — Betrieb anrufen und auf die Plattform einladen.",
+    "requestsEmpty": "Noch keine Anfragen.",
+    "requestsRecipients": "Empfänger"
   },
   "lang": {
     "label": "Sprache"
@@ -400,7 +404,14 @@
     "q6Hint": "Nur Betriebe, die die Anfrage erhalten, sehen diese Daten.",
     "reqEmail": "E-Mail (optional)",
     "bannerSub": "Auftrag einmal beschreiben — Angebote von mehreren Handwerkern aus deiner Gegend erhalten. Kostenlos.",
-    "reqTradesOnly": "Für andere Leistungen such den Betrieb direkt über die Suche."
+    "reqTradesOnly": "Für andere Leistungen such den Betrieb direkt über die Suche.",
+    "myReqTitle": "Meine Anfragen",
+    "myReqEmpty": "Du hast noch keine Anfrage gesendet.",
+    "myReqSentTo": "{count} Betriebe haben sie erhalten",
+    "myReqSentToNone": "Noch keine Empfänger — unser Team kümmert sich darum",
+    "myReqResponded": "{count} haben geantwortet",
+    "reqPhoneReq": "Die Telefonnummer brauchen die Handwerker, um dich zu erreichen.",
+    "reqPending": "Für diese Arbeit ist noch kein Handwerker registriert. Unser Team nimmt die Anfrage auf und meldet sich bei dir."
   },
   "profile": {
     "title": "Mein Profil",

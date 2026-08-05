@@ -198,7 +198,11 @@
     "claimsNoDocs": "No documents",
     "noBilling": "No payout details",
     "billingOk": "Payout details",
-    "osmResultUpdated": "{updated} updated (OSM source/date added)"
+    "osmResultUpdated": "{updated} updated (OSM source/date added)",
+    "requestsTitle": "Customer requests",
+    "requestsHint": "Requests without recipients — call the business and invite them to the platform.",
+    "requestsEmpty": "No requests yet.",
+    "requestsRecipients": "recipients"
   },
   "lang": {
     "label": "Language"
@@ -400,7 +404,14 @@
     "q6Hint": "Only businesses receiving the request can see this.",
     "reqEmail": "Email (optional)",
     "bannerSub": "Describe the job once — get quotes from several local tradespeople. Free.",
-    "reqTradesOnly": "For other services, find the business directly via search."
+    "reqTradesOnly": "For other services, find the business directly via search.",
+    "myReqTitle": "My requests",
+    "myReqEmpty": "You haven't sent a request yet.",
+    "myReqSentTo": "{count} businesses received it",
+    "myReqSentToNone": "No recipients yet — our team is on it",
+    "myReqResponded": "{count} replied",
+    "reqPhoneReq": "Tradespeople need your phone number to reach you.",
+    "reqPending": "No tradesperson is registered for this work yet. Our team picks up the request and will contact you."
   },
   "profile": {
     "title": "My profile",

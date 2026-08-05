@@ -15,6 +15,7 @@ import {
   Home,
   Plus,
   Search,
+  Send,
   Store,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -43,7 +44,8 @@ export function FFShell({
   const onBusiness = pathname.startsWith("/app/biznesi");
   const onSaved = pathname.startsWith("/app/ruajtura");
   const onB2B = pathname.startsWith("/app/b2b");
-  const onRequests = pathname.startsWith("/app/kerkesat");
+  const onMyRequests = pathname.startsWith("/app/kerkesat-e-mia");
+  const onRequests = pathname.startsWith("/app/kerkesat") && !onMyRequests;
   const onDiscover =
     !onHome &&
     !onSearch &&
@@ -51,6 +53,7 @@ export function FFShell({
     !onSaved &&
     !onB2B &&
     !onRequests &&
+    !onMyRequests &&
     !onRequestNew &&
     !pathname.startsWith("/app/login");
 
@@ -86,6 +89,12 @@ export function FFShell({
       active: onSaved,
     },
     { href: "/app/b2b", icon: Globe, label: t("b2bNav"), active: onB2B },
+    {
+      href: "/app/kerkesat-e-mia",
+      icon: Send,
+      label: t("myReqTitle"),
+      active: onMyRequests,
+    },
     {
       href: "/app/kerkesat",
       icon: FileText,

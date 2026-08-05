@@ -198,7 +198,11 @@
     "claimsNoDocs": "Bez dokumenata",
     "noBilling": "Bez podataka za isplatu",
     "billingOk": "Podaci za isplatu",
-    "osmResultUpdated": "{updated} ažurirano (izvor/datum iz OSM)"
+    "osmResultUpdated": "{updated} ažurirano (izvor/datum iz OSM)",
+    "requestsTitle": "Upiti klijenata",
+    "requestsHint": "Upiti bez primalaca — pozovi firmu i pozovi je na platformu.",
+    "requestsEmpty": "Još nema upita.",
+    "requestsRecipients": "primalaca"
   },
   "lang": {
     "label": "Jezik"
@@ -400,7 +404,14 @@
     "q6Hint": "Ove podatke vide samo firme koje prime upit.",
     "reqEmail": "Email (opciono)",
     "bannerSub": "Opiši posao jednom — dobij ponude od više majstora iz okoline. Besplatno.",
-    "reqTradesOnly": "Za druge usluge pronađi firmu direktno u pretrazi."
+    "reqTradesOnly": "Za druge usluge pronađi firmu direktno u pretrazi.",
+    "myReqTitle": "Moji upiti",
+    "myReqEmpty": "Još nisi poslao nijedan upit.",
+    "myReqSentTo": "{count} firmi ga je primilo",
+    "myReqSentToNone": "Još bez primalaca — naš tim se bavi time",
+    "myReqResponded": "{count} je odgovorilo",
+    "reqPhoneReq": "Majstorima treba tvoj broj telefona da te kontaktiraju.",
+    "reqPending": "Za ovaj posao još nije registrovan majstor. Naš tim preuzima upit i javiće ti se."
   },
   "profile": {
     "title": "Moj profil",

@@ -66,6 +66,12 @@ export default async function AdminPage() {
             {t("claimsTitle")}
           </Link>
           <Link
+            href="/admin/requests"
+            className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
+          >
+            {t("requestsTitle")}
+          </Link>
+          <Link
             href="/admin/runners"
             className="rounded-full border-[1.5px] border-primary bg-white px-4 py-1.5 text-sm font-bold text-primary-dark hover:bg-primary-light/40"
           >

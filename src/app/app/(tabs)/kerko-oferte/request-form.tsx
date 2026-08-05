@@ -153,10 +153,10 @@ export function RequestForm({
         </p>
         <p className="text-[13.5px] text-muted">{t("reqDoneHint")}</p>
         <Link
-          href="/app"
+          href="/app/kerkesat-e-mia"
           className="mt-2 flex h-12 items-center justify-center rounded-full bg-ff-primary px-8 text-[15px] font-extrabold text-white hover:opacity-90"
         >
-          {t("backHome")}
+          {t("myReqTitle")}
         </Link>
       </div>
     );
@@ -330,11 +330,17 @@ export function RequestForm({
               </span>
               <input
                 type="tel"
+                required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+383 4x xxx xxx"
                 className={field}
               />
+              {!phone.trim() && (
+                <span className="text-[12.5px] leading-relaxed text-muted">
+                  {t("reqPhoneReq")}
+                </span>
+              )}
             </label>
             <label className="flex flex-col gap-1.5">
               <span className="text-[13px] font-bold text-ink-2">
