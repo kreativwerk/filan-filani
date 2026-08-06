@@ -425,7 +425,9 @@
     "poolWhy": "Die Kundendaten erscheinen, sobald du Interesse gemeldet hast.",
     "poolErrFull": "Für diesen Auftrag sind die Plätze vergeben.",
     "poolErrOff": "Schalte „Anfragen annehmen\" unter „Bearbeiten\" ein.",
-    "poolPickBiz": "Mit welchem Betrieb?"
+    "poolPickBiz": "Mit welchem Betrieb?",
+    "qTradeHint": "Das hilft den Handwerkern, den Aufwand einzuschätzen.",
+    "reqDetails": "Angaben zum Auftrag"
   },
   "profile": {
     "title": "Mein Profil",

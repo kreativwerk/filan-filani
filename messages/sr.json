@@ -425,7 +425,9 @@
     "poolWhy": "Podaci klijenta pojavljuju se kada prijaviš interes.",
     "poolErrFull": "Mesta za ovaj posao su popunjena.",
     "poolErrOff": "Uključi „Prima upite“ pod „Uredi“.",
-    "poolPickBiz": "Sa kojom firmom?"
+    "poolPickBiz": "Sa kojom firmom?",
+    "qTradeHint": "Ovo majstorima pomaže da procene posao.",
+    "reqDetails": "Detalji posla"
   },
   "profile": {
     "title": "Moj profil",

@@ -425,7 +425,9 @@
     "poolWhy": "Customer details appear once you've expressed interest.",
     "poolErrFull": "All slots for this job are taken.",
     "poolErrOff": "Turn on “Accept requests” under “Edit”.",
-    "poolPickBiz": "With which business?"
+    "poolPickBiz": "With which business?",
+    "qTradeHint": "This helps tradespeople judge the job.",
+    "reqDetails": "Job details"
   },
   "profile": {
     "title": "My profile",

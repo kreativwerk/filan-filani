@@ -425,7 +425,9 @@
     "poolWhy": "Të dhënat e klientit shfaqen pasi të shprehësh interesin.",
     "poolErrFull": "Kjo punë ka mbushur vendet.",
     "poolErrOff": "Aktivizo «Pranon kërkesa» te «Përpuno».",
-    "poolPickBiz": "Me cilin biznes?"
+    "poolPickBiz": "Me cilin biznes?",
+    "qTradeHint": "Kjo i ndihmon zejtarët të vlerësojnë punën.",
+    "reqDetails": "Detajet e punës"
   },
   "profile": {
     "title": "Profili im",

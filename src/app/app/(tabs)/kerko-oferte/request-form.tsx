@@ -3,7 +3,7 @@
 /* Anfrage-Assistent im AroundHome-Stil: eine Frage pro Schritt, große
    Auswahlkacheln statt Formularfelder, Fortschrittsbalken, Kontaktdaten zuletzt. */
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, ChevronLeft, Send } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
@@ -11,9 +11,14 @@ import { createClient } from "@/lib/supabase/client";
 import { localizedName, type Category, type City } from "@/lib/types";
 import type { Locale } from "@/i18n/config";
 import { categoryIcon } from "@/components/ff/icons";
+import { tradeQuestions, type TradeQuestion } from "@/lib/trade-questions";
 import { cn } from "@/components/ui";
 
-const TOTAL = 6;
+/** Ein Schritt des Assistenten — die Gewerke-Fragen kommen je nach Kategorie
+ *  dazu, deshalb ist die Länge nicht fix. */
+type Step =
+  | { kind: "category" | "city" | "timeframe" | "describe" | "budget" | "contact" }
+  | { kind: "question"; question: TradeQuestion };
 
 const field =
   "h-[52px] w-full rounded-[14px] border-[1.5px] border-line-strong bg-white px-4 text-[16px] text-ink placeholder:text-muted focus:border-ff-primary focus:outline-none";
@@ -66,9 +71,10 @@ export function RequestForm({
   const tc = useTranslations("common");
   const locale = useLocale() as Locale;
 
-  const [step, setStep] = useState(defaultCategoryId ? 2 : 1);
+  const [step, setStep] = useState(defaultCategoryId ? 1 : 0);
   const [categoryId, setCategoryId] = useState(defaultCategoryId);
   const [cityId, setCityId] = useState(defaultCityId);
+  const [details, setDetails] = useState<Record<string, string>>({});
   const [timeframe, setTimeframe] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -80,22 +86,56 @@ export function RequestForm({
   const [error, setError] = useState<string | null>(null);
   const [sentTo, setSentTo] = useState<number | null>(null);
 
+  const categorySlug =
+    categories.find((c) => String(c.id) === categoryId)?.slug ?? null;
+
+  const steps = useMemo<Step[]>(
+    () => [
+      { kind: "category" },
+      ...tradeQuestions(categorySlug).map(
+        (question) => ({ kind: "question", question }) as Step,
+      ),
+      { kind: "city" },
+      { kind: "timeframe" },
+      { kind: "describe" },
+      { kind: "budget" },
+      { kind: "contact" },
+    ],
+    [categorySlug],
+  );
+
+  const total = steps.length;
+  const current = steps[Math.min(step, total - 1)];
+
   const canContinue =
-    step === 1
+    current.kind === "category"
       ? Boolean(categoryId)
-      : step === 2
-        ? Boolean(cityId)
-        : step === 3
-          ? Boolean(timeframe)
-          : step === 4
-            ? Boolean(title.trim())
-            : step === 5
-              ? true
-              : Boolean(phone.trim());
+      : current.kind === "question"
+        ? Boolean(details[current.question.key])
+        : current.kind === "city"
+          ? Boolean(cityId)
+          : current.kind === "timeframe"
+            ? Boolean(timeframe)
+            : current.kind === "describe"
+              ? Boolean(title.trim())
+              : current.kind === "budget"
+                ? true
+                : Boolean(phone.trim());
+
+  /** Ein Schritt weiter — bei Auswahlkacheln direkt, ohne „Weiter" zu tippen. */
+  function advance() {
+    setStep((s) => Math.min(s + 1, total - 1));
+  }
 
   function next() {
     if (!canContinue) return;
-    setStep((s) => Math.min(s + 1, TOTAL));
+    advance();
+  }
+
+  /** Antwort setzen und direkt weiterspringen (AroundHome-Verhalten). */
+  function answer(key: string, value: string) {
+    setDetails((d) => ({ ...d, [key]: value }));
+    advance();
   }
 
   async function handleSubmit() {
@@ -121,6 +161,7 @@ export function RequestForm({
         description: description.trim() || null,
         timeframe: timeframe || null,
         budget: budget || null,
+        details,
         contact_name: name.trim() || null,
         contact_phone: phone.trim() || null,
         contact_email: email.trim() || null,
@@ -162,28 +203,32 @@ export function RequestForm({
     );
   }
 
-  const heads: Record<number, [string, string]> = {
-    1: [t("q1"), t("q1Hint")],
-    2: [t("q2"), t("q2Hint")],
-    3: [t("q3"), t("q3Hint")],
-    4: [t("q4"), t("q4Hint")],
-    5: [t("q5"), t("q5Hint")],
-    6: [t("q6"), t("q6Hint")],
+  const heads: Record<string, [string, string]> = {
+    category: [t("q1"), t("q1Hint")],
+    city: [t("q2"), t("q2Hint")],
+    timeframe: [t("q3"), t("q3Hint")],
+    describe: [t("q4"), t("q4Hint")],
+    budget: [t("q5"), t("q5Hint")],
+    contact: [t("q6"), t("q6Hint")],
   };
-  const [heading, hint] = heads[step];
+  const [heading, hint] =
+    current.kind === "question"
+      ? [current.question.label[locale], t("qTradeHint")]
+      : heads[current.kind];
+  const stepNo = step + 1;
 
   return (
     <div className="flex flex-col gap-4">
       {/* Fortschritt */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between text-[12.5px] font-bold text-muted">
-          <span>{t("wizStep", { n: step, total: TOTAL })}</span>
-          <span>{Math.round((step / TOTAL) * 100)}%</span>
+          <span>{t("wizStep", { n: stepNo, total })}</span>
+          <span>{Math.round((stepNo / total) * 100)}%</span>
         </div>
         <div className="h-1.5 overflow-hidden rounded-full bg-line">
           <div
             className="h-full rounded-full bg-ff-primary transition-[width] duration-300"
-            style={{ width: `${(step / TOTAL) * 100}%` }}
+            style={{ width: `${(stepNo / total) * 100}%` }}
           />
         </div>
       </div>
@@ -196,8 +241,8 @@ export function RequestForm({
           <p className="mt-1 text-[13.5px] leading-relaxed text-muted">{hint}</p>
         </div>
 
-        {/* 1 — Kategorie als Kachelraster */}
-        {step === 1 && (
+        {/* Kategorie als Kachelraster */}
+        {current.kind === "category" && (
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
             {categories.map((c) => {
               const Icon = categoryIcon(c.icon);
@@ -208,7 +253,8 @@ export function RequestForm({
                   type="button"
                   onClick={() => {
                     setCategoryId(String(c.id));
-                    setStep(2);
+                    setDetails({});
+                    setStep(1);
                   }}
                   className={cn(
                     "flex flex-col items-center gap-2 rounded-[16px] border-[1.5px] p-3 text-center transition-colors",
@@ -229,8 +275,23 @@ export function RequestForm({
           </div>
         )}
 
-        {/* 2 — Stadt */}
-        {step === 2 && (
+        {/* Gewerke-Frage (je nach Kategorie) */}
+        {current.kind === "question" && (
+          <div className="flex flex-col gap-2.5">
+            {current.question.options.map((o) => (
+              <Choice
+                key={o.value}
+                active={details[current.question.key] === o.value}
+                onClick={() => answer(current.question.key, o.value)}
+              >
+                {o.label[locale]}
+              </Choice>
+            ))}
+          </div>
+        )}
+
+        {/* Stadt */}
+        {current.kind === "city" && (
           <select
             value={cityId}
             onChange={(e) => setCityId(e.target.value)}
@@ -245,8 +306,8 @@ export function RequestForm({
           </select>
         )}
 
-        {/* 3 — Zeitrahmen */}
-        {step === 3 && (
+        {/* Zeitrahmen */}
+        {current.kind === "timeframe" && (
           <div className="flex flex-col gap-2.5">
             {[
               ["urgent", t("tfUrgent")],
@@ -259,7 +320,7 @@ export function RequestForm({
                 active={timeframe === value}
                 onClick={() => {
                   setTimeframe(value);
-                  setStep(4);
+                  advance();
                 }}
               >
                 {label}
@@ -268,8 +329,8 @@ export function RequestForm({
           </div>
         )}
 
-        {/* 4 — Beschreibung */}
-        {step === 4 && (
+        {/* Beschreibung */}
+        {current.kind === "describe" && (
           <div className="flex flex-col gap-3">
             <input
               value={title}
@@ -287,8 +348,8 @@ export function RequestForm({
           </div>
         )}
 
-        {/* 5 — Budget */}
-        {step === 5 && (
+        {/* Budget */}
+        {current.kind === "budget" && (
           <div className="flex flex-col gap-2.5">
             {[
               ["open", t("bgOpen")],
@@ -302,7 +363,7 @@ export function RequestForm({
                 active={budget === value}
                 onClick={() => {
                   setBudget(value);
-                  setStep(6);
+                  advance();
                 }}
               >
                 {label}
@@ -311,8 +372,8 @@ export function RequestForm({
           </div>
         )}
 
-        {/* 6 — Kontakt */}
-        {step === 6 && (
+        {/* Kontakt */}
+        {current.kind === "contact" && (
           <div className="flex flex-col gap-3">
             <label className="flex flex-col gap-1.5">
               <span className="text-[13px] font-bold text-ink-2">
@@ -362,7 +423,7 @@ export function RequestForm({
 
         {/* Navigation */}
         <div className="flex items-center gap-2.5">
-          {step > 1 && (
+          {step > 0 && (
             <button
               type="button"
               onClick={() => setStep((s) => s - 1)}
@@ -372,7 +433,7 @@ export function RequestForm({
               {t("wizBack")}
             </button>
           )}
-          {step === TOTAL ? (
+          {current.kind === "contact" ? (
             <button
               type="button"
               onClick={handleSubmit}
@@ -383,7 +444,8 @@ export function RequestForm({
               {sending ? t("reqSending") : t("reqSend")}
             </button>
           ) : (
-            step !== 1 && (
+            current.kind !== "category" &&
+            current.kind !== "question" && (
               <button
                 type="button"
                 onClick={next}

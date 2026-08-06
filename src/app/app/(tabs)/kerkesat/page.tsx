@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Locale } from "@/i18n/config";
 import { localizedName, one, type Category, type City } from "@/lib/types";
+import { describeDetails } from "@/lib/trade-questions";
 import { cn } from "@/components/ui";
 import { RequestActions } from "./request-actions";
 
@@ -29,6 +30,7 @@ type RecipientRow = {
         contact_email: string | null;
         timeframe: string | null;
         budget: string | null;
+        details: Record<string, string> | null;
         created_at: string;
         cities: City | City[] | null;
         categories: Category | Category[] | null;
@@ -42,6 +44,7 @@ type RecipientRow = {
         contact_email: string | null;
         timeframe: string | null;
         budget: string | null;
+        details: Record<string, string> | null;
         created_at: string;
         cities: City | City[] | null;
         categories: Category | Category[] | null;
@@ -125,7 +128,7 @@ export default async function FFRequestsPage() {
     .select(
       `request_id, business_id, status, created_at,
        service_requests(id, title, description, contact_name, contact_phone,
-                        contact_email, timeframe, budget, created_at,
+                        contact_email, timeframe, budget, details, created_at,
                         cities(*), categories(*))`,
     )
     .order("created_at", { ascending: false });
@@ -259,6 +262,28 @@ export default async function FFRequestsPage() {
                         )}
                       </div>
                     )}
+
+                    {(() => {
+                      const answers = describeDetails(
+                        category?.slug,
+                        req.details,
+                        locale,
+                      );
+                      if (!answers.length) return null;
+                      return (
+                        <dl className="flex flex-col gap-1 rounded-[14px] bg-surface p-3">
+                          {answers.map((a) => (
+                            <div
+                              key={a.question}
+                              className="flex flex-wrap items-baseline gap-x-2 text-[13.5px]"
+                            >
+                              <dt className="text-muted">{a.question}</dt>
+                              <dd className="font-bold text-ink">{a.answer}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      );
+                    })()}
 
                     {(req.contact_name || req.contact_phone || req.contact_email) && (
                       <p className="text-[14px] font-semibold text-ink">

@@ -7,6 +7,7 @@ import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Locale } from "@/i18n/config";
 import { localizedName } from "@/lib/types";
 import { getCategories, getCities } from "@/lib/ff-data";
+import { describeDetails } from "@/lib/trade-questions";
 import { cn } from "@/components/ui";
 import { ClaimButton } from "./claim-button";
 
@@ -39,6 +40,7 @@ type PoolRow = {
   description: string | null;
   timeframe: string | null;
   budget: string | null;
+  details: Record<string, string> | null;
   created_at: string;
   interested: number;
   claimed_by_me: boolean;
@@ -148,6 +150,7 @@ export default async function FFPoolPage() {
             const city = cityById.get(r.city_id);
             const category = catById.get(r.category_id);
             const full = r.interested >= MAX_INTERESTED;
+            const answers = describeDetails(category?.slug, r.details, locale);
             return (
               <article
                 key={r.id}
@@ -207,6 +210,20 @@ export default async function FFPoolPage() {
                   <p className="whitespace-pre-line text-[14.5px] leading-relaxed text-ink-2">
                     {r.description}
                   </p>
+                )}
+
+                {answers.length > 0 && (
+                  <dl className="flex flex-col gap-1 rounded-[14px] bg-surface p-3">
+                    {answers.map((a) => (
+                      <div
+                        key={a.question}
+                        className="flex flex-wrap items-baseline gap-x-2 text-[13.5px]"
+                      >
+                        <dt className="text-muted">{a.question}</dt>
+                        <dd className="font-bold text-ink">{a.answer}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 )}
 
                 {r.claimed_by_me ? (
