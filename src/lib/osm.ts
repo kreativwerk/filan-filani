@@ -60,8 +60,17 @@ function mapCategory(t: Tags): string | null {
   if (shop === "clothes" || shop === "shoes" || shop === "boutique" || shop === "fashion_accessories" || craft === "tailor") return "mode";
   if (shop === "furniture" || shop === "interior_decoration" || shop === "curtain" || craft === "carpenter") return "mobileri";
   if (craft === "electrician" || shop === "electrical") return "elektricist";
-  if (craft === "plumber" || craft === "hvac" || shop === "bathroom_furnishing") return "hidraulik";
-  if (craft === "painter" || craft === "tiler" || craft === "roofer" || craft === "builder" || craft === "scaffolder" || shop === "doityourself" || shop === "hardware" || shop === "trade") return "ndertim";
+  if (craft === "plumber" || shop === "bathroom_furnishing") return "hidraulik";
+  // Eigene Gewerke — vorher landete alles in „Bau"
+  if (craft === "painter" || craft === "plasterer" || craft === "stucco_plasterer") return "bojatis";
+  if (craft === "roofer" || craft === "insulation" || craft === "chimney_sweeper") return "kulme";
+  if (craft === "window_construction" || craft === "glaziery" || shop === "doors" || shop === "windows" || shop === "glaziery") return "dritare-dyer";
+  if (craft === "tiler" || craft === "floorer" || craft === "parquet_layer" || shop === "flooring" || shop === "tiles") return "pllakosje";
+  if (craft === "hvac" || craft === "heating" || craft === "heating_engineer" || shop === "hvac" || shop === "heating") return "klima-ngrohje";
+  if (craft === "photovoltaic" || craft === "solar" || shop === "solar" || shop === "energy") return "solar";
+  if (craft === "metal_construction" || craft === "blacksmith" || craft === "welder" || craft === "locksmith" || craft === "handicraft") return "metalpunues";
+  if (craft === "gardener" || craft === "landscape_gardener" || shop === "garden_furniture" || shop === "fencing") return "kopsht-oborr";
+  if (craft === "builder" || craft === "scaffolder" || craft === "sawmill" || craft === "stonemason" || shop === "doityourself" || shop === "hardware" || shop === "trade" || shop === "building_materials" || shop === "paint") return "ndertim";
   if (amenity === "driving_school" || amenity === "kindergarten" || shop === "books" || shop === "stationery") return "edukim";
   if (amenity === "events_venue" || shop === "florist" || craft === "photographer" || shop === "photo") return "evente";
   if (shop === "agrarian" || shop === "farm" || shop === "garden_centre") return "bujqesi";
